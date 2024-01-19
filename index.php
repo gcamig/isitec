@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-  <title>Isitec: Login</title>
+  <title>Login | Isitec</title>
   <meta charset="utf-8">
   <meta name="author" content="author">
   <meta name="keywords" content="keywords">
