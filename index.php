@@ -1,19 +1,17 @@
 <?php
 require_once "model/db.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if($_POST['form_id'] == "login"){
     $user = $_POST["user"];
     $pass = $_POST["pass"];
-    if(verificarUsuariBD($user, $pass)){
-       console_log("login Works");
-    }else {
-        console_log("login Failed");
-    }
-
-    if($register){
-        $usre = 
-        $userIns = ['user' => $user, 'pass' => $pass];
-        userInsert($userIns);
-    }
+    if(verifyUserEmail($user, $pass)){
+      echo "Login correcte";
+    }else{
+      echo "Login incorrecte";
+    } 
+  }else if ($_POST['form_id'] == "register"){
+    
+  }
 }
 
 ?>

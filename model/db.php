@@ -15,13 +15,13 @@ function getDBConnection()
     }
 }
 
-function verificarUsuariBD($mail, $pass){
+function verifyUserEmail($userOrEmail, $pass){
     $result = false;
     $conn   = getDBConnection();
-    $sql    = "SELECT `mail`,`passHash` FROM `users` WHERE `mail`=:mail";
+    $sql    = "SELECT `mail`,`passHash` FROM `users` WHERE `mail`=:userOrEmail OR `username`=:userOrEmail AND `active` = 1";
     try{
         $usuaris = $conn->prepare($sql);
-        $usuaris->execute([':mail'=>$mail]);
+        $usuaris->execute([':userOrEmail'=>$userOrEmail]);
         if($usuaris->rowCount()==1){
             $dadesUsuari = $usuaris->fetch(PDO::FETCH_ASSOC);
             if(password_verify($pass,$dadesUsuari['password'])){
@@ -36,11 +36,12 @@ function verificarUsuariBD($mail, $pass){
     }    
 }
 
-function insertUsers($user)
+
+function insertUser($user)
 {
     $inserit = false;
     $conn = getConnection();
-    $sql = "INSERT INTO users (mail, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn) VALUES (:mail, :passHash, :userFirstName, :userLastName, now(), null, now())";
+    $sql = "INSERT INTO users (mail, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active) VALUES (:mail, :passHash, :userFirstName, :userLastName, now(), null, now(),1)";
     $mail = $user['mail'];
     $pass = $user['passHash'];
     $userFirstName = $user['userFirstName'];
