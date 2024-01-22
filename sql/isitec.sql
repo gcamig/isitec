@@ -6,6 +6,7 @@ USE isitec;
 CREATE TABLE users (
     iduser INT AUTO_INCREMENT PRIMARY KEY,
     mail VARCHAR(40) UNIQUE,
+    username VARCHAR(16) UNIQUE,
     passHash VARCHAR(60),
     userFirstName VARCHAR(60),
     userLastName VARCHAR(120),
