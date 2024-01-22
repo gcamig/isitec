@@ -41,20 +41,13 @@ function insertUsers($user)
     $inserit = false;
     $conn = getConnection();
     $sql = "INSERT INTO users (mail, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn) VALUES (:mail, :passHash, :userFirstName, :userLastName, now(), null, now())";
+    $mail = $user['mail'];
+    $pass = $user['passHash'];
+    $userFirstName = $user['userFirstName'];
+    $userLastName = $user['userLastName'];
     try {
-        $mail = $user['mail'];
-        $pass = $user['passHash'];
-        $userFirstName = $user['userFirstName'];
-        $userLastName = $user['userLastName'];
-        for ($i = 0; $i < count($tagsArray); $i++) {
-            if ($i < count($tagsArray) - 1) {
-                $tags .= $tagsArray[$i] . ',';
-            } else {
-                $tags .= $tagsArray[$i];
-            }
-        }
         $resultat = $conn->prepare($sql);
-        $resultat->execute([':id' => $id, ':tags' => $tags]);
+        $resultat->execute([':mail' => $mail, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName]);
         
         if ($resultat) {
             $inserit = true;
