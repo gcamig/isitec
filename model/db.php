@@ -41,14 +41,15 @@ function insertUser($user)
 {
     $inserit = false;
     $conn = getConnection();
-    $sql = "INSERT INTO users (mail, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active) VALUES (:mail, :passHash, :userFirstName, :userLastName, now(), null, now(),1)";
+    $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, now(),1)";
     $mail = $user['mail'];
     $pass = $user['passHash'];
+    $username = $user['username'];
     $userFirstName = $user['userFirstName'];
     $userLastName = $user['userLastName'];
     try {
         $resultat = $conn->prepare($sql);
-        $resultat->execute([':mail' => $mail, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName]);
+        $resultat->execute([':mail' => $mail, ':username' => $username, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName]);
         
         if ($resultat) {
             $inserit = true;

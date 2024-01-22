@@ -2,15 +2,36 @@
 require_once "model/db.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   if($_POST['form_id'] == "login"){
-    $user = $_POST["user"];
-    $pass = $_POST["pass"];
+    $user = $_POST["userLogin"];
+    $pass = $_POST["passLogin"];
     if(verifyUserEmail($user, $pass)){
       echo "Login correcte";
     }else{
       echo "Login incorrecte";
     } 
   }else if ($_POST['form_id'] == "register"){
-    
+    $email = $_POST["email"];
+    $username = $_POST["user"];
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $pass = $_POST["pass"];
+    $passVerify = $_POST["verifpass"];
+    if($pass == $passVerify){
+      $user = [
+        'mail' => $email,
+        'username' => $username,
+        'userFirstName' => $firstName,
+        'userLastName' => $lastName,
+        'passHash' => password_hash($pass, PASSWORD_BCRYPT)
+      ];
+      if(insertUser($user)){
+        echo "Registre correcte";
+      }else{
+        echo "Registre incorrecte";
+      }
+    }else {
+      echo "La contrasenya no coincideix";
+    }
   }
 }
 
@@ -33,6 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <section class="container" id="container">
     <div class="form-container sign-up-container">
       <form class="sign-up-form">
+        <input type="hidden" name="form_id" value="register">
         <h2>Sign up</h2>
         <div class="sign-up-grid">
           <div class="input-group">
@@ -65,13 +87,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div class="form-container sign-in-container" id="sign-in-container">
       <form class="login-form">
+        <input type="hidden" name="form_id" value="login">
         <h2>Login</h2>
         <div class="input-group">
-          <input class="data-input" name="user" type="text" placeholder="" />
+          <input class="data-input" name="userLogin" type="text" placeholder="" />
           <label class="data-label" for="user">User / email</label>
         </div>
         <div class="input-group">
-          <input class="data-input" name="pass" type="text" placeholder="" />
+          <input class="data-input" name="passLogin" type="text" placeholder="" />
           <label class="data-label" for="pass">Password</label>
         </div>
         <button class="form-button">Sign In</button>
