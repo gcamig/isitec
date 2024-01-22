@@ -1,15 +1,16 @@
 <?php
 require_once "model/db.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if ($_POST['form_id'] == "login") {
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if($_POST['form_id'] == "login"){
     $user = $_POST["user"];
     $pass = $_POST["pass"];
-    if (verifyUserEmail($user, $pass)) {
+    if(verifyUserEmail($user, $pass)){
       echo "Login correcte";
     } else {
       echo "Login incorrecte";
-    }
-  } else if ($_POST['form_id'] == "register") {
+    } 
+  }else if ($_POST['form_id'] == "register"){
+    
   }
 }
 
@@ -31,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <section class="container" id="container">
     <div class="form-container sign-up-container">
-      <form class="sign-up-form" action="./index.php" method="POST">
+      <form class="sign-up-form">
         <h2>Sign up</h2>
         <div class="sign-up-grid">
           <div class="input-group">
@@ -63,14 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </form>
     </div>
     <div class="form-container sign-in-container" id="sign-in-container">
-      <form class="login-form" action="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+      <form class="login-form">
         <h2>Login</h2>
         <div class="input-group">
-          <input class="data-input" name="user" type="text" placeholder="" />
+          <input class="data-input" name="userLogin" type="text" placeholder="" />
           <label class="data-label" for="user">User / email</label>
         </div>
         <div class="input-group">
-          <input class="data-input" name="pass" type="password" placeholder="" />
+          <input class="data-input" name="pass" type="text" placeholder="" />
           <label class="data-label" for="pass">Password</label>
         </div>
         <button class="form-button">Sign In</button>
