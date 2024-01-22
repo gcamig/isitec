@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
   <section class="container" id="container">
     <div class="form-container sign-up-container">
-      <form class="sign-up-form">
+      <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
         <h2>Sign up</h2>
         <div class="sign-up-grid">
           <div class="input-group">
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </form>
     </div>
     <div class="form-container sign-in-container" id="sign-in-container">
-      <form class="login-form">
+      <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
         <h2>Login</h2>
         <div class="input-group">
           <input class="data-input" name="userLogin" type="text" placeholder="" />
