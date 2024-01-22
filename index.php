@@ -4,13 +4,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   if($_POST['form_id'] == "login"){
     $user = $_POST["user"];
     $pass = $_POST["pass"];
+    $user = $_POST["userLogin"];
+    $pass = $_POST["passLogin"];
     if(verifyUserEmail($user, $pass)){
       echo "Login correcte";
-    } else {
+    }else{
       echo "Login incorrecte";
     } 
   }else if ($_POST['form_id'] == "register"){
-    
+
+    $email = $_POST["email"];
+    $username = $_POST["user"];
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $pass = $_POST["pass"];
+    $passVerify = $_POST["verifpass"];
+    if($pass == $passVerify){
+      $user = [
+        'mail' => $email,
+        'username' => $username,
+        'userFirstName' => $firstName,
+        'userLastName' => $lastName,
+        'passHash' => password_hash($pass, PASSWORD_BCRYPT)
+      ];
+      if(insertUser($user)){
+        echo "Registre correcte";
+      }else{
+        echo "Registre incorrecte";
+      }
+    }else {
+      echo "La contrasenya no coincideix";
+    }
   }
 }
 
