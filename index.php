@@ -4,10 +4,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   if($_POST['form_id'] == "login"){
     $user = $_POST["userLogin"];
     $pass = $_POST["passLogin"];
-    if(verifyUserEmail($user, $pass)){
-      echo "Login correcte";
+    $result = loginUser($user, $pass);
+    if($result != false){
+      session_start();
+      $_SESSION['mail'] = $result['mail'];
+      $_SESSION['username'] = $result['username'];
+      $_SESSION['userFirstName'] = $result['userFirstName'];
+      $_SESSION['userLastName'] = $result['userLastName'];
+      
+      updateLastSignIn($user);
+      
+      header('Location: ./view/home.php');
     }else{
+      //TODO: Mostrar mensaje pop up de login incorrecto
       echo "Login incorrecte";
+      
     } 
   }else if ($_POST['form_id'] == "register"){
 
