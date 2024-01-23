@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="author" content="author">
   <meta name="description" content="description">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/register.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/register.css">
 </head>
 
 <body>
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
     <div class="change-form">
       <p>Already have an account?</p>
-      <a href="../index.php">Sign In</a>
+      <a href="/index.php">Sign In</a>
     </div>
   </section>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
