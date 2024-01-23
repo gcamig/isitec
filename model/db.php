@@ -26,6 +26,7 @@ function loginUser($userOrEmail, $pass){
             $dadesUsuari = $usuaris->fetch(PDO::FETCH_ASSOC);
             if(password_verify($pass,$dadesUsuari['passHash'])){
                 $result = $dadesUsuari;
+                updateLastSignIn($userOrEmail);
                 // $result = $dadesUsuari;
             }
         }
@@ -69,7 +70,7 @@ function verifyExistentUser($user){
     $sql = "SELECT * FROM `users` WHERE `mail`=:userMail OR `username`=:userName";
     try{
         $usuaris = $conn->prepare($sql);
-        $usuaris->execute([':userMail'=>$user['mail'], ':userName'=>$user['username']]);
+        $usuaris->execute([':userMail'=>$userOrEmail, ':userName'=>$userOrEmail]);
         if($usuaris->rowCount()==1){
             $result = true;
         }
