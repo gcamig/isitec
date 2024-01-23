@@ -110,6 +110,7 @@ body {
   width: 400px;
   background: transparent;
   backdrop-filter: blur(10px);
+  border-radius: 10px;
 }
 
 form {

@@ -12,7 +12,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $_SESSION['userFirstName'] = $result['userFirstName'];
       $_SESSION['userLastName'] = $result['userLastName'];
       
-      updateLastSignIn($user);
       
       header('Location: ./view/home.php');
     }else{
@@ -61,67 +60,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body>
-  <section class="container" id="container">
-    <div class="form-container sign-up-container">
-      <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
-        <h2>Sign up</h2>
-        <div class="sign-up-grid">
-          <div class="input-group">
-            <input class="data-input" name="email" type="email" placeholder="" />
-            <label class="data-label" for="Email">Email</label>
-          </div>
-          <div class="input-group">
-            <input class="data-input" name="user" type="text" placeholder="" />
-            <label class="data-label" for="user">Username</label>
-          </div>
-          <div class="input-group">
-            <input class="data-input" name="firstname" type="text" placeholder="" />
-            <label class="data-label" for="firstname">First Name</label>
-          </div>
-          <div class="input-group">
-            <input class="data-input" name="lastname" type="text" placeholder="" />
-            <label class="data-label" for="lastname">Last Name</label>
-          </div>
-          <div class="input-group">
-            <input class="data-input" name="pass" type="password" placeholder="" />
-            <label class="data-label" for="pass">Password</label>
-          </div>
-          <div class="input-group">
-            <input class="data-input" name="verifpass" type="password" placeholder="" />
-            <label class="data-label" for="verifpass">Verify Password</label>
-          </div>
-        </div>
-        <button class="form-button">Sign Up</button>
-      </form>
+  <section class="text-animation-box">
+    <div>
+      <h1 class="typeHeader">Welcome back!</h1>
+      <p class="typeText"></p>
     </div>
-    <div class="form-container sign-in-container" id="sign-in-container">
-      <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
-        <h2>Login</h2>
-        <div class="input-group">
-          <input class="data-input" name="userLogin" type="text" placeholder="" />
-          <label class="data-label" for="user">User / email</label>
-        </div>
-        <div class="input-group">
-          <input class="data-input" name="pass" type="text" placeholder="" />
-          <label class="data-label" for="pass">Password</label>
-        </div>
-        <button class="form-button">Sign In</button>
-      </form>
-    </div>
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-panel overlay-left">
-        <img src="./img/logo.png" alt="">
-          <h1>Welcome Back!</h1>
-          <p>To keep connected with us please login with your personal info</p>
-          <button class="ghost" id="signIn">Sign In</button>
-        </div>
-        <div class="overlay-panel overlay-right">
-        <img src="./img/logo.png" alt="">
-          <h1>Don't have an account yet?</h1>
-          <p>Enter your personal details and start journey with us</p>
-          <button class="ghost" id="signUp">Sign Up</button>
-        </div>
+  </section>
+  <section class="form-box">
+    <h1>Login</h1>
+    <form class="login-form">
+      <div class="input-box">
+        <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
+        <input type="text" id="usr" name="user" required="true" placeholder="">
+        <span>User / Email</span>
+      </div>
+      <div class="input-box">
+        <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
+        <input type="password" id="pswd" name="password" required="" placeholder="">
+        <span>Password</span>
+
       </div>
       <button class="button-86">Sign In</button>
     </form>
