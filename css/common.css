@@ -1,0 +1,248 @@
+:root {
+  --steps1: 13;
+  --steps2: 63;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  z-index: 1;
+  font-family: system-ui;
+  background-image: url("https://images.unsplash.com/photo-1705448082121-dd6888a685d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  display: flex;
+  justify-content: end;
+}
+
+.change-form{
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.change-form a{
+  color: #fff;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.change-form a:hover{
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.text-animation-box {
+  width: calc(100% - 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 5vh;
+  font-weight: 500;
+}
+
+.text-animation-box div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.typeText,
+.typeHeader {
+  text-align: center;
+  width: fit-content;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  padding-right: 2px;
+  position: relative;
+  transition: background-position 1s;
+
+  &::after {
+    background-color: transparent;
+    content: "";
+    display: block;
+    height: 2rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 2px;
+  }
+
+  &.highlight {
+    background-image: linear-gradient(to left,
+        rgba(0, 0, 0, 0.2) 50%,
+        transparent 50%);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 200% 6rem;
+
+    &::after {
+      animation: none;
+    }
+  }
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  height: 100%;
+  width: 400px;
+  background: transparent;
+  backdrop-filter: blur(10px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.input-box {
+  position: relative;
+  display: flex;
+}
+
+input {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(77, 77, 77, 0.3) 0px 18px 36px -18px inset;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  background: none;
+  padding: 1rem;
+  font-size: 1.2rem;
+  transition: transform 500ms;
+  width: 100%;
+}
+
+label {
+  background-color: #28282d60;
+  border-radius: 10px 0 0 10px;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+span {
+  font-weight: bold;
+  position: absolute;
+  left: 60px;
+  transform: translateY(0.85rem);
+  transition: transform 500ms;
+}
+
+input:focus~span,
+input:valid~span {
+  transform: translate(-3rem, -1.5rem) scale(0.8);
+}
+
+.button-86 {
+  all: unset;
+  width: 100px;
+  height: 20px;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-86::after,
+.button-86::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -99999;
+  transition: all .4s;
+}
+
+.button-86::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #28282d60;
+  border-radius: 10px;
+}
+
+.button-86::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff50;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 50px;
+}
+
+.button-86:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.button-86:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.button-86:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
+
+@media screen and (max-width: 780px) {
+  .text-animation-box {
+    display: none;
+  }
+
+  body {
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .form-box {
+    height: fit-content;
+    padding: 40px 0;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+  }
+
+}
