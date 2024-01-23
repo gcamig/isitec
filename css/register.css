@@ -1,0 +1,63 @@
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  width: 100%;
+}
+
+.sign-up-grid {
+  display: grid;
+  width: 70%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+}
+
+.input-box:nth-child(3) input,
+.input-box:nth-child(4) input {
+  border-radius: 10px;
+}
+
+.input-box:nth-child(3) span,
+.input-box:nth-child(4) span {
+  left: 20px;
+}
+
+input:focus~span,
+input:valid~span {
+  transform: translate(-3rem, -1.2rem) scale(0.8);
+}
+
+.input-box:nth-child(3) input:focus~span,
+.input-box:nth-child(3) input:valid~span,
+.input-box:nth-child(4) input:focus~span,
+.input-box:nth-child(4) input:valid~span {
+  transform: translate(-1rem, -1.2rem) scale(0.8);
+}
+
+.input-box:nth-child(1) {
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.input-box:nth-child(2) {
+  grid-area: 2 / 1 / 3 / 3;
+}
+
+.input-box:nth-child(3) {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+.input-box:nth-child(4) {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.input-box:nth-child(5) {
+  grid-area: 4 / 1 / 5 / 3;
+}
+
+.input-box:nth-child(6) {
+  grid-area: 5 / 1 / 6 / 3;
+}
