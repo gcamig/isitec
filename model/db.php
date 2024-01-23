@@ -42,7 +42,7 @@ function insertUser($user)
 {
     $inserit = false;
     $conn = getDBConnection();
-    if(verifyExistentUser($user) != false)
+    if(verifyExistentUser($user) != true)
     {
         $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,1)";
         $mail = $user['mail'];
@@ -70,7 +70,7 @@ function verifyExistentUser($user){
     $sql = "SELECT * FROM `users` WHERE `mail`=:userMail OR `username`=:userName";
     try{
         $usuaris = $conn->prepare($sql);
-        $usuaris->execute([':userMail'=>$userOrEmail, ':userName'=>$userOrEmail]);
+        $usuaris->execute([':userMail'=>$user['mail'], ':userName'=>$user['username']]);
         if($usuaris->rowCount()==1){
             $result = true;
         }
@@ -79,4 +79,20 @@ function verifyExistentUser($user){
     }finally{
         return $result;
     }
+}
+
+function updateLastSignIn($userOrEmail){
+    $result = false;
+    $conn = getDBConnection();
+    $sql = "UPDATE `users` SET `lastSignIn`=now() WHERE `mail`=:userOrEmail OR `username`=:userOrEmail";
+    try{
+        $usuaris = $conn->prepare($sql);
+        $rslt=$usuaris->execute([':userOrEmail'=>$userOrEmail]);
+        if($rslt) $result = true; 
+    }catch(PDOException $e){
+        echo "<p style=\"color:red;\">Error " . $e->getMessage() . "</p>";
+    }finally{
+        return $result;
+    }
+
 }

@@ -1,49 +1,28 @@
 <?php
 require_once "model/db.php";
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-  if($_POST['form_id'] == "login"){
-    $user = $_POST["userLogin"];
-    $pass = $_POST["passLogin"];
-    $result = loginUser($user, $pass);
-    if($result != false){
-      session_start();
-      $_SESSION['mail'] = $result['mail'];
-      $_SESSION['username'] = $result['username'];
-      $_SESSION['userFirstName'] = $result['userFirstName'];
-      $_SESSION['userLastName'] = $result['userLastName'];
-      
-      
-      header('Location: ./view/home.php');
-    }else{
-      //TODO: Mostrar mensaje pop up de login incorrecto
-      echo "Login incorrecte";
-      
-    } 
-  }else if ($_POST['form_id'] == "register"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    {
+        $user = $_POST["user"];
+        $pass = $_POST["password"];
+        $result = loginUser($user, $pass);
+        if ($result != false) {
+            session_start();
+            $_SESSION['mail'] = $result['mail'];
+            $_SESSION['username'] = $result['username'];
+            $_SESSION['userFirstName'] = $result['userFirstName'];
+            $_SESSION['userLastName'] = $result['userLastName'];
 
-    $email = $_POST["email"];
-    $username = $_POST["user"];
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $pass = $_POST["pass"];
-    $passVerify = $_POST["verifpass"];
-    if($pass == $passVerify){
-      $user = [
-        'mail' => $email,
-        'username' => $username,
-        'userFirstName' => $firstName,
-        'userLastName' => $lastName,
-        'passHash' => password_hash($pass, PASSWORD_BCRYPT)
-      ];
-      if(insertUser($user)){
-        echo "Registre correcte";
-      }else{
-        echo "Registre incorrecte";
-      }
-    }else {
-      echo "La contrasenya no coincideix";
+            header('Location: ./view/home.php');
+            exit();
+        } else {
+            echo "Login incorrecte";
+        }
     }
-  }
+} else if($_SERVER["REQUEST_METHOD"] == "GET"){
+    if (isset($_COOKIE['PHPSESSID'])) {
+        header('Location: ./view/home.php');
+        exit();
+    }
 }
 
 ?>
@@ -68,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   </section>
   <section class="form-box">
     <h1>Login</h1>
-    <form class="login-form">
+    <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"])?>" method="POST">
       <div class="input-box">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="usr" name="user" required="true" placeholder="">

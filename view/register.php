@@ -1,3 +1,31 @@
+<?php
+require "../model/db.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $username = $_POST["username"];
+    $firstName = $_POST["firstname"];
+    $lastName = $_POST["lastname"];
+    $pass = $_POST["password"];
+    $passVerify = $_POST["veri-pswd"];
+    if ($pass == $passVerify) {
+        $user = [
+            'mail' => $email,
+            'username' => $username,
+            'userFirstName' => $firstName,
+            'userLastName' => $lastName,
+            'passHash' => password_hash($pass, PASSWORD_BCRYPT),
+        ];
+        if (insertUser($user)) {
+            header('Location: ../index.php');
+            exit();
+        } else {
+            echo "Registre incorrecte";
+        }
+    } else {
+        echo "La contrasenya no coincideix";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,8 +35,8 @@
   <meta name="author" content="author">
   <meta name="description" content="description">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/register.css">
 </head>
 
 <body>
@@ -20,7 +48,7 @@
   </section>
   <section class="form-box">
     <h1>Sign Up</h1>
-    <form class="sign-up-form">
+    <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="sign-up-grid">
         <div class="input-box">
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
@@ -55,7 +83,7 @@
     </form>
     <div class="change-form">
       <p>Already have an account?</p>
-      <a href="/index.php">Sign In</a>
+      <a href="../index.php">Sign In</a>
     </div>
   </section>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
