@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 
 <head>
-  <title>#</title>
+<title>Sign Up | Isitec</title>
   <meta charset="utf-8">
   <meta name="author" content="author">
   <meta name="description" content="description">
