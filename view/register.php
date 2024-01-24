@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/register.css">
+  <link rel="icon" href="/img/logo-white.png">
 </head>
 
 <body>
