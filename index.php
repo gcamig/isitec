@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 
 <head>
-  <title>#</title>
+  <title>Login | Isitec</title>
   <meta charset="utf-8">
   <meta name="author" content="author">
   <meta name="description" content="description">
@@ -73,3 +73,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+ 
