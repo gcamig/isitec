@@ -19,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: ../index.php');
             exit();
         } else {
-            echo "Registre incorrecte";
+            echo "<p class='error'>Registre incorrecte</p>";
         }
     } else {
-        echo "La contrasenya no coincideix";
+        echo "<p class='error'>Contrasenya no coincideix</p>";
     }
 }
 ?>

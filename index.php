@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: ./view/home.php');
             exit();
         } else {
-            echo "Login incorrecte";
+          //TODO:alerta de login incorrecte
+            echo "<p class='error'>Login incorrecte</p>";
         }
     }
 } else if($_SERVER["REQUEST_METHOD"] == "GET"){
