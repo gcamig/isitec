@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: ./view/home.php');
             exit();
         } else {
-          //TODO:alerta de login incorrecte
             echo "<p class='error'>Login incorrecte</p>";
         }
     }
@@ -23,6 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_COOKIE['PHPSESSID'])) {
         header('Location: ./view/home.php');
         exit();
+    }
+    if ($_GET["register"] == "success") {
+        echo "<p class='success'>Registre correcte</p>";
     }
 }
 

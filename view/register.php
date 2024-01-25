@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'passHash' => password_hash($pass, PASSWORD_BCRYPT),
         ];
         if (insertUser($user)) {
-            header('Location: ../index.php');
+            header('Location: ../index.php?register=success');
             exit();
         } else {
             echo "<p class='error'>Registre incorrecte</p>";
