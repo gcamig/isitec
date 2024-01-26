@@ -1,5 +1,6 @@
 <?php
 require "../model/db.php";
+$msgError = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST["email"];
   $username = $_POST["username"];
@@ -24,6 +25,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     echo "<p class='error'>Contrasenya no coincideix</p>";
   }
+    $email = $_POST["email"];
+    $username = $_POST["username"];
+    $firstName = $_POST["firstname"];
+    $lastName = $_POST["lastname"];
+    $pass = $_POST["password"];
+    $passVerify = $_POST["veri-pswd"];
+    $user = [
+        'mail' => $email,
+        'username' => $username,
+        'userFirstName' => $firstName,
+        'userLastName' => $lastName,
+        'passHash' => password_hash($pass, PASSWORD_BCRYPT),
+    ];
+    $rslt = insertUser($user);
+    if ($rslt == true) {
+        header('Location: ../index.php?register=success');
+        exit();
+    } else {
+        $msgError = $rslt;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -49,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </section>
   <section class="form-box">
     <h1>Sign Up</h1>
-    <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+    <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"])?>" method="POST">
       <div class="sign-up-grid">
         <div class="input-box">
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>

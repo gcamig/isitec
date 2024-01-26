@@ -9,7 +9,7 @@ function getDBConnection()
     try {
         $db = new PDO($connString, $user, $pass, [PDO::ATTR_PERSISTENT => True]);
     } catch (PDOException $e) {
-        echo "<p style=\"color:red;\">Error " . $e->getMessage() . "</p>";
+        echo "";
     } finally {
         return $db;
     }
@@ -26,12 +26,12 @@ function loginUser($userOrEmail, $pass){
             $dadesUsuari = $usuaris->fetch(PDO::FETCH_ASSOC);
             if(password_verify($pass,$dadesUsuari['passHash'])){
                 $result = $dadesUsuari;
-                updateLastSignIn($userOrEmail);
+                updateLastSignIn($userOrEmail); 
                 // $result = $dadesUsuari;
-            }
-        }
+            }else $result = "Wrong password";  
+        }else $result = "User or email does not exists";
     }catch(PDOException $e){
-        echo "<p style=\"color:red;\">Error " . $e->getMessage() . "</p>";
+       echo "";
     }finally{
         return $result;
     }    
@@ -40,9 +40,12 @@ function loginUser($userOrEmail, $pass){
 
 function insertUser($user)
 {
-    $inserit = false;
+    $result = false;
     $conn = getDBConnection();
-    if(verifyExistentUser($user) != true)
+    $userExists = verifyExistentUser($user);
+    if($userExists == true) $result = "User or email already exist";
+    else if(is_string($userExists)) $result = $userExists;
+    else if($userExists == false)
     {
         $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,1)";
         $mail = $user['mail'];
@@ -55,14 +58,14 @@ function insertUser($user)
             $resultat->execute([':mail' => $mail, ':username' => $username, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName]);
     
             if ($resultat) {
-                $inserit = true;
+                $result = true;
             }
         } catch (PDOException $e) {
-            echo "<p style=\"color:red;\">Error " . $e->getMessage() . "</p>";
+            echo "";
         } finally {
-            return $inserit;
+            return $result;
         }
-    }else return $inserit;
+    }
 }
 function verifyExistentUser($user){
     $result = false;
@@ -75,7 +78,7 @@ function verifyExistentUser($user){
             $result = true;
         }
     }catch(PDOException $e){
-        echo "<p style=\"color:red;\">Error " . $e->getMessage() . "</p>";
+        echo "";  
     }finally{
         return $result;
     }
@@ -90,7 +93,7 @@ function updateLastSignIn($userOrEmail){
         $rslt=$usuaris->execute([':userOrEmail'=>$userOrEmail]);
         if($rslt) $result = true; 
     }catch(PDOException $e){
-        echo "<p style=\"color:red;\">Error " . $e->getMessage() . "</p>";
+        echo "";
     }finally{
         return $result;
     }
