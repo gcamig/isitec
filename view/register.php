@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Sign Up</h1>
     <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"])?>" method="POST">
       <div class="sign-up-grid">
-        <div class="input-box">
+        <div class="input-box" id="input-usr">
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
           <input type="text" id="usr" name="username" required placeholder="">
           <span>Username</span>
