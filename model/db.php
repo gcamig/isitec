@@ -26,11 +26,10 @@ function loginUser($userOrEmail, $pass){
             $dadesUsuari = $usuaris->fetch(PDO::FETCH_ASSOC);
             if(password_verify($pass,$dadesUsuari['passHash'])){
                 $result = $dadesUsuari;
-                $updateResult = updateLastSignIn($userOrEmail); 
-                if ($updateResult != true) $result = $updateResult;
+                updateLastSignIn($userOrEmail); 
                 // $result = $dadesUsuari;
-            }
-        }
+            }else $result = "Wrong password";  
+        }else $result = "User or email does not exists";
     }catch(PDOException $e){
        echo "";
     }finally{
