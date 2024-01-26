@@ -1,11 +1,14 @@
 <?php
 require_once "model/db.php";
+$msgError = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     {
         $user = $_POST["user"];
         $pass = $_POST["password"];
         $result = loginUser($user, $pass);
-        if ($result != false) {
+        if (is_string($result)) {
+            $msgError = $result;
+        }else if ($result != false) {
             session_start();
             $_SESSION['mail'] = $result['mail'];
             $_SESSION['username'] = $result['username'];
@@ -15,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: ./view/home.php');
             exit();
         } else {
-            echo "<p class='error'>Login incorrecte</p>";
+            $msgError = $result;
         }
     }
 } else if($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -27,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p class='success'>Registre correcte</p>";
     }
 }
+
 
 ?>
 <!DOCTYPE html>
