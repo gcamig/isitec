@@ -24,7 +24,7 @@ body {
   justify-content: end;
 }
 
-.change-form{
+.change-form {
   font-weight: 600;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@ body {
   gap: 1em;
 }
 
-.change-form a{
+.change-form a {
   color: #fff;
   font-weight: 400;
   text-align: center;
@@ -43,7 +43,7 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.change-form a:hover{
+.change-form a:hover {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -58,7 +58,7 @@ body {
   font-weight: 500;
 }
 
-.text-animation-box div{
+.text-animation-box div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,12 +105,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3em;
+  gap: 2em;
   height: 100%;
   width: 400px;
   background: transparent;
   backdrop-filter: blur(10px);
-  border-radius: 10px;
 }
 
 form {
@@ -124,6 +123,11 @@ form {
 .input-box {
   position: relative;
   display: flex;
+  
+  &.invalid {
+    outline: 1px solid red;
+    border-radius: 10px;
+  }
 }
 
 input {
@@ -149,11 +153,28 @@ input:focus {
 }
 
 span {
+  display: block;
   font-weight: bold;
   position: absolute;
   left: 60px;
   transform: translateY(0.85rem);
   transition: transform 500ms;
+}
+
+#error, #userError{
+  position: absolute;
+  font-size: 0.7rem;
+  color: #d20000;
+  top: 55px;
+  right: 5px;
+
+  &.active{
+    display: block;
+  }
+
+  &.inactive{
+    display: none;
+  }
 }
 
 input:focus~span,
@@ -245,5 +266,4 @@ input:valid~span {
     backdrop-filter: blur(15px);
     border-radius: 10px;
   }
-
 }

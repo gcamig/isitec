@@ -1,29 +1,28 @@
 <?php
 require_once "model/db.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    {
-        $user = $_POST["user"];
-        $pass = $_POST["password"];
-        $result = loginUser($user, $pass);
-        if ($result != false) {
-            session_start();
-            $_SESSION['mail'] = $result['mail'];
-            $_SESSION['username'] = $result['username'];
-            $_SESSION['userFirstName'] = $result['userFirstName'];
-            $_SESSION['userLastName'] = $result['userLastName'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") { {
+    $user = $_POST["user"];
+    $pass = $_POST["password"];
+    $result = loginUser($user, $pass);
+    if ($result != false) {
+      session_start();
+      $_SESSION['mail'] = $result['mail'];
+      $_SESSION['username'] = $result['username'];
+      $_SESSION['userFirstName'] = $result['userFirstName'];
+      $_SESSION['userLastName'] = $result['userLastName'];
 
-            header('Location: ./view/home.php');
-            exit();
-        } else {
-          //TODO:alerta de login incorrecte
-            echo "<p class='error'>Login incorrecte</p>";
-        }
+      header('Location: ./view/home.php');
+      exit();
+    } else {
+      //TODO:alerta de login incorrecte
+      echo "<p class='error'>Login incorrecte</p>";
     }
-} else if($_SERVER["REQUEST_METHOD"] == "GET"){
-    if (isset($_COOKIE['PHPSESSID'])) {
-        header('Location: ./view/home.php');
-        exit();
-    }
+  }
+} else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  if (isset($_COOKIE['PHPSESSID'])) {
+    header('Location: ./view/home.php');
+    exit();
+  }
 }
 
 ?>
@@ -49,19 +48,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </section>
   <section class="form-box">
     <h1>Login</h1>
-    <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"])?>" method="POST">
-      <div class="input-box">
+    <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+      <div class="input-box" id="input-usr">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="usr" name="user" required="true" placeholder="">
         <span>User / Email</span>
+        <p id="userError" class="inactive"></p>
       </div>
-      <div class="input-box">
-        <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
-        <input type="password" id="pswd" name="password" required="" placeholder="">
-        <span>Password</span>
 
+      <div class="input-box" id="input-pwd">
+        <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
+        <input type="password" id="pswd" name="password" required placeholder="">
+        <span>Password</span>
+        <p id="error" class="inactive"></p>
       </div>
-      <button class="button-86">Sign In</button>
+
+      <button class="button-86" id="form-button">Sign In</button>
     </form>
     <div class="change-form">
       <p>Don't have an account?</p>
@@ -71,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="./js/typing.js"></script>
+  <script src="./js/inputValidation.js"></script>
 </body>
 
 </html>
- 

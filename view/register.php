@@ -1,36 +1,36 @@
 <?php
 require "../model/db.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $username = $_POST["username"];
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $pass = $_POST["password"];
-    $passVerify = $_POST["veri-pswd"];
-    if ($pass == $passVerify) {
-        $user = [
-            'mail' => $email,
-            'username' => $username,
-            'userFirstName' => $firstName,
-            'userLastName' => $lastName,
-            'passHash' => password_hash($pass, PASSWORD_BCRYPT),
-        ];
-        if (insertUser($user)) {
-            header('Location: ../index.php');
-            exit();
-        } else {
-            echo "<p class='error'>Registre incorrecte</p>";
-        }
+  $email = $_POST["email"];
+  $username = $_POST["username"];
+  $firstName = $_POST["firstname"];
+  $lastName = $_POST["lastname"];
+  $pass = $_POST["password"];
+  $passVerify = $_POST["veri-pswd"];
+  if ($pass == $passVerify) {
+    $user = [
+      'mail' => $email,
+      'username' => $username,
+      'userFirstName' => $firstName,
+      'userLastName' => $lastName,
+      'passHash' => password_hash($pass, PASSWORD_BCRYPT),
+    ];
+    if (insertUser($user)) {
+      header('Location: ../index.php');
+      exit();
     } else {
-        echo "<p class='error'>Contrasenya no coincideix</p>";
+      echo "<p class='error'>Registre incorrecte</p>";
     }
+  } else {
+    echo "<p class='error'>Contrasenya no coincideix</p>";
+  }
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-<title>Sign Up | Isitec</title>
+  <title>Sign Up | Isitec</title>
   <meta charset="utf-8">
   <meta name="author" content="author">
   <meta name="description" content="description">
@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
           <input type="text" id="usr" name="username" required placeholder="">
           <span>Username</span>
+          <p id="userError" class="inactive"></p>
         </div>
         <div class="input-box">
           <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
@@ -69,18 +70,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <input type="text" id="lastname" name="lastname" required placeholder="">
           <span>Last Name</span>
         </div>
-        <div class="input-box">
+        <div class="input-box" id="input-pwd">
           <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
           <input type="password" id="pswd" name="password" required placeholder="">
           <span>Password</span>
+          <p id="error" class="inactive"></p>
         </div>
-        <div class="input-box">
+        <div class="input-box" id="input-pwd-verif">
           <label for="veri-pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
-          <input type="password" id="veri-pswd" name="veri-pswd" required placeholder="">
+          <input type="password" id="pswd-verif" name="veri-pswd" required placeholder="">
           <span>Verify Password</span>
+          <p id="verifError" class="inactive"></p>
         </div>
       </div>
-      <button class="button-86">Sign Up</button>
+      <button class="button-86" id="form-button">Sign Up</button>
     </form>
     <div class="change-form">
       <p>Already have an account?</p>
@@ -90,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="../js/typing.js"></script>
+  <script src="/js/inputValidation.js"></script>
 </body>
 
 </html>
