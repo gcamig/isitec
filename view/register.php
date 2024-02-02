@@ -1,5 +1,5 @@
 <?php
-require "../model/db.php";
+require "../controller/controller.php";
 $msgError = "";
 $errorBox = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

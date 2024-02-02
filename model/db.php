@@ -14,7 +14,7 @@ function getDBConnection()
   }
 }
 
-function loginUser($userOrEmail, $pass)
+function loginUserDB($userOrEmail, $pass)
 {
   $result = false;
   $conn = getDBConnection();
@@ -40,7 +40,7 @@ function loginUser($userOrEmail, $pass)
 }
 
 
-function insertUser($user)
+function insertUserDB($user)
 {
   $result = false;
   $conn = getDBConnection();
