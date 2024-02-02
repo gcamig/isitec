@@ -2,29 +2,29 @@
 require "../controller/controller.php";
 $msgError = "";
 $errorBox = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {  
-    $email = $_POST["email"];
-    $username = $_POST["username"];
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $pass = $_POST["password"];
-    $passVerify = $_POST["veri-pswd"];
-    $user = [
-        'mail' => $email,
-        'username' => $username,
-        'userFirstName' => $firstName,
-        'userLastName' => $lastName,
-        'passHash' => password_hash($pass, PASSWORD_BCRYPT),
-    ];
-    $rslt = insertUser($user);
-    if ($rslt == true) {
-      //TODO:devolver algo para comprovar que el email ha sido verificado
-      verificationEmail($user);
-        header('Location: ../index.php?register=success');
-        exit();
-    } else {
-        $msgError = $rslt;
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST["email"];
+  $username = $_POST["username"];
+  $firstName = $_POST["firstname"];
+  $lastName = $_POST["lastname"];
+  $pass = $_POST["password"];
+  $passVerify = $_POST["veri-pswd"];
+  $user = [
+    'mail' => $email,
+    'username' => $username,
+    'userFirstName' => $firstName,
+    'userLastName' => $lastName,
+    'passHash' => password_hash($pass, PASSWORD_BCRYPT),
+  ];
+  $rslt = insertUser($user);
+  if ($rslt == true) {
+    //TODO:devolver algo para comprovar que el email ha sido verificado
+    verificationEmail($user);
+    header('Location: ../index.php?register=success');
+    exit();
+  } else {
+    $msgError = $rslt;
+  }
 }
 ?>
 <!DOCTYPE html>
