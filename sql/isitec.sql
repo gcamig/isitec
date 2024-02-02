@@ -1,7 +1,4 @@
-DROP DATABASE IF EXISTS isitec;
-
-CREATE DATABASE isitec CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE isitec;
+USE ddb218593;
 
 CREATE TABLE users (
     iduser INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,5 +10,9 @@ CREATE TABLE users (
     creationDate DATETIME,
     removeDate DATETIME,
     lastSignIn DATETIME,
-    active TINYINT(1)
+    active TINYINT(1) DEFAULT 0,
+    activationDate DATETIME,
+    activationCode CHAR(64),
+    resetPassExpiry DATETIME,
+    resetPassCode CHAR(64)
 );
