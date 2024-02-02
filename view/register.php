@@ -1,6 +1,7 @@
 <?php
 require "../controller/controller.php";
 $msgError = "";
+$errorBox = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  
     $email = $_POST["email"];
     $username = $_POST["username"];
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rslt = insertUser($user);
     if ($rslt == true) {
       //TODO:devolver algo para comprovar que el email ha sido verificado
-        verificationEmail($user);
+      verificationEmail($user);
         header('Location: ../index.php?register=success');
         exit();
     } else {
@@ -49,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </section>
   <section class="form-box">
     <h1>Sign Up</h1>
-    <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"])?>" method="POST">
+    <?= $errorBox ?>
+    <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="sign-up-grid">
         <div class="input-box" id="input-usr">
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
