@@ -1,30 +1,7 @@
 <?php
-require "../model/db.php";
+require "../controller/controller.php";
 $msgError = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $email = $_POST["email"];
-  $username = $_POST["username"];
-  $firstName = $_POST["firstname"];
-  $lastName = $_POST["lastname"];
-  $pass = $_POST["password"];
-  $passVerify = $_POST["veri-pswd"];
-  if ($pass == $passVerify) {
-    $user = [
-      'mail' => $email,
-      'username' => $username,
-      'userFirstName' => $firstName,
-      'userLastName' => $lastName,
-      'passHash' => password_hash($pass, PASSWORD_BCRYPT),
-    ];
-    if (insertUser($user)) {
-      header('Location: ../index.php');
-      exit();
-    } else {
-      echo "<p class='error'>Registre incorrecte</p>";
-    }
-  } else {
-    echo "<p class='error'>Contrasenya no coincideix</p>";
-  }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {  
     $email = $_POST["email"];
     $username = $_POST["username"];
     $firstName = $_POST["firstname"];

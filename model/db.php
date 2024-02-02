@@ -15,7 +15,7 @@ function getDBConnection()
     }
 }
 
-function loginUser($userOrEmail, $pass){
+function loginUserDB($userOrEmail, $pass){
     $result = false;
     $conn   = getDBConnection();
     $sql    = "SELECT * FROM `users` WHERE `mail`=:userOrEmail OR `username`=:userOrEmail AND `active` = 1";
@@ -38,7 +38,7 @@ function loginUser($userOrEmail, $pass){
 }
 
 
-function insertUser($user)
+function insertUserDB($user)
 {
     $result = false;
     $conn = getDBConnection();

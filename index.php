@@ -1,38 +1,13 @@
 <?php
-require_once "model/db.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST") { {
+require_once "controller/controller.php";
+$msgError = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {{
     $user = $_POST["user"];
     $pass = $_POST["password"];
     $result = loginUser($user, $pass);
-    if ($result != false) {
-      session_start();
-      $_SESSION['mail'] = $result['mail'];
-      $_SESSION['username'] = $result['username'];
-      $_SESSION['userFirstName'] = $result['userFirstName'];
-      $_SESSION['userLastName'] = $result['userLastName'];
-
-      header('Location: ./view/home.php');
-      exit();
-    } else {
-      //TODO:alerta de login incorrecte
-      echo "<p class='error'>Login incorrecte</p>";
-    }
-  }
-} else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-  if (isset($_COOKIE['PHPSESSID'])) {
-    header('Location: ./view/home.php');
-    exit();
-  }
-
-  $msgError = "";
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") { {
-      $user = $_POST["user"];
-      $pass = $_POST["password"];
-      $result = loginUser($user, $pass);
-      if (is_string($result)) {
+    if (is_string($result)) {
         $msgError = $result;
-      } else if ($result != false) {
+    } else if ($result != false) {
         session_start();
         $_SESSION['mail'] = $result['mail'];
         $_SESSION['username'] = $result['username'];
@@ -41,22 +16,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
 
         header('Location: ./view/home.php');
         exit();
-      }
     }
-  } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+}
+} else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_COOKIE['PHPSESSID'])) {
-      header('Location: ./view/home.php');
-      exit();
+        header('Location: ./view/home.php');
+        exit();
     }
 
     // si el $_Get es empty sabem que hem entrar per primera vegada sino vol dir que venim desde el registre
     if (!empty($_GET)) {
-      //mirem si el registre s'ha completat correctament
-      if ($_GET["register"] == "success") {
-        echo "<p class='success'>Registre correcte</p>";
-      }
+        //mirem si el registre s'ha completat correctament
+        if ($_GET["register"] == "success") {
+            echo "<p class='success'>Registre correcte</p>";
+        }
     }
-  }
 }
 
 ?>
@@ -82,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   </section>
   <section class="form-box">
     <h1>Login</h1>
-    <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+    <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"])?>" method="POST">
       <div class="input-box" id="input-usr">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="usr" name="user" required="true" placeholder="">
