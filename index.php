@@ -1,5 +1,5 @@
 <?php
-require_once "model/db.php";
+require_once "controller/controller.php";
 
 $msgError = "";
 $errorBox = "";

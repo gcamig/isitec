@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
     $rslt = insertUser($user);
     if ($rslt == true) {
-      //TODO:devolver algo para comprovar que el email ha sido verificado
-      verificationEmail($user);
+        //TODO:devolver algo para comprovar que el email ha sido verificado
+        verificationEmail($user);
         header('Location: ../index.php?register=success');
         exit();
     } else {
