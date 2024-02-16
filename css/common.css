@@ -255,7 +255,7 @@ input:valid~span {
   transform: translate(0, 5%);
 }
 
-@media screen and (max-width: 780px) {
+@media only screen and (max-width: 800px) {
   .text-animation-box {
     display: none;
   }
@@ -273,7 +273,7 @@ input:valid~span {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
   .text-animation-box {
     display: none;
   }
@@ -282,5 +282,6 @@ input:valid~span {
     margin: 0;
     height: 100%;
     border-radius: 0;
+    backdrop-filter: blur(10px);
   }
 }
