@@ -1,6 +1,6 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-
+require 'vendor/autoload.php';
 require_once "model/db.php";
 
 function loginUser($userOrEmail, $pass)
@@ -22,19 +22,19 @@ function verificationEmail($user)
   $mail->SMTPDebug = 2;
   $mail->SMTPAuth = true;
   $mail->SMTPSecure = 'tls';
-  $mail->Host = 'smtp.gmail.com';
+  $mail->Host = 'smtp.dondominio.com';
   $mail->Port = 587;
   //Credencials del compte GMAIL
-  $mail->Username = '';
-  $mail->Password = '';
+  $mail->Username = 'support@cetisi.cat';
+  $mail->Password = 'Cetisi@1234';
 
   //Dades del correu electrònic
-  $mail->SetFrom('user@gmail.com', 'Test');
+  $mail->SetFrom('support@cetisi.cat', 'Test');
   $mail->Subject = 'Correu de test';
   $mail->MsgHTML('Prova');
 
   //Destinatari
-  $address = 'destinatari@servidor.com';
+  $address = 'ferran.viaplanal@educem.net';
   $mail->AddAddress($address, 'Test');
 
   //Enviament
