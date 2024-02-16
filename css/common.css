@@ -263,7 +263,18 @@ input:valid~span {
   .form-box {
     height: fit-content;
     padding: 40px 0;
-    backdrop-filter: blur(15px);
     border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .text-animation-box {
+    display: none;
+  }
+
+  .form-box {
+    margin: 0;
+    height: 100%;
+    border-radius: 0;
   }
 }
