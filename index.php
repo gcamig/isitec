@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   <link rel="icon" href="./img/logo-white.png">
 </head>
 
-<body>
+<body id="screen">
   <section class="text-animation-box">
     <div>
       <h1 class="typeHeader">Welcome back!</h1>
@@ -86,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="./js/typing.js"></script>
   <script src="./js/inputValidation.js"></script>
+  <script src="./js/background.js"></script>
 </body>
 
 </html>
