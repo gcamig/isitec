@@ -281,6 +281,7 @@ input:valid~span {
   .form-box {
     margin: 0;
     height: 100%;
+    padding: 0 10px;
     border-radius: 0;
     backdrop-filter: blur(10px);
   }
