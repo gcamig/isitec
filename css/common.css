@@ -18,8 +18,10 @@ body {
 body {
   z-index: 1;
   font-family: system-ui;
-  background-image: url("https://images.unsplash.com/photo-1705448082121-dd6888a685d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
+  background: #333;
+  color: white;
+  /* background-image: url("https://images.unsplash.com/photo-1705448082121-dd6888a685d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover; */
   display: flex;
   justify-content: end;
 }
@@ -69,8 +71,8 @@ body {
 .typeHeader {
   text-align: center;
   width: fit-content;
-  background: transparent;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
   padding-right: 2px;
   position: relative;
   transition: background-position 1s;
@@ -108,8 +110,12 @@ body {
   gap: 2em;
   height: 100%;
   width: 400px;
-  background: transparent;
-  backdrop-filter: blur(10px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  backdrop-filter: blur(30px);
 }
 
 form {
