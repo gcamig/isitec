@@ -79,6 +79,6 @@ function verifyAccount($code, $mail)
   else return false;
 }
 
-function updateActive(){
-  updateActiveDB();
+function updateActive($mail){
+  updateActiveDB($mail);
 }

@@ -24,10 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($rslt == true) {
     //el correo envia un enlace a otro php y este es el que luego redirige al index.php
     verificationEmail($user);
-    //TODO: mostrar un mensaje conforme se ha enviado un correo
-    
-    // header('Location: ../index.php?register=success');
-    // exit();
+    //TODO: mostrar un mensaje conforme se ha enviado un correo    
+    header('Location: ../index.php?register=success&verificationMail=n');
+    exit();
   } else {
     $msgError = $rslt;
   }

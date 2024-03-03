@@ -33,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     if ($_GET["register"] == "success") {
       $msgError = "<div class='error-box'>Registre correcte</div>";
     }
+    if ($_GET["verificationMail"] == "success"){
+      $msgError = "<div class='error-box'>Correu verificat correctament</div>";
+    }
   }
 }
 

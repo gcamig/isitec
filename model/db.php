@@ -119,7 +119,7 @@ function getActivationCode($mail)
     $usuaris = $conn->prepare($sql);
     $usuaris->execute([':userMail' => $mail]);
     if ($usuaris->rowCount() == 1) {
-      $result = $usuaris->fetch(PDO::FETCH_ASSOC);
+      $result = $usuaris->fetchColumn();
     }
   } catch (PDOException $e) {
     echo "";
