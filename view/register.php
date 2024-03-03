@@ -18,13 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     'userFirstName' => $firstName,
     'userLastName' => $lastName,
     'passHash' => password_hash($pass, PASSWORD_BCRYPT),
+    'activationCode' => generateActivationCode()
   ];
   $rslt = insertUser($user);
   if ($rslt == true) {
-    //TODO: devolver algo para comprovar que el email ha sido verificado
+    //el correo envia un enlace a otro php y este es el que luego redirige al index.php
     verificationEmail($user);
-    header('Location: ../index.php?register=success');
-    exit();
+    //TODO: mostrar un mensaje conforme se ha enviado un correo
+    
+    // header('Location: ../index.php?register=success');
+    // exit();
   } else {
     $msgError = $rslt;
   }

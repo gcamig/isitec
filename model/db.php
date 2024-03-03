@@ -1,14 +1,14 @@
 <?php
 function getDBConnection()
 {
-  $connString = 'mysql:host=172.21.0.222;port=3306;dbname=ddb218593;charset=utf8';
+  /*$connString = 'mysql:host=172.21.0.222;port=3306;dbname=ddb218593;charset=utf8';
   $user = 'ddb218593';
   $pass = 'Cetisi1234';
-  $db = null;
- /*  $connString = 'mysql:host=localhost;port=3306;dbname=isitec;charset=utf8';
+  $db = null;*/
+  $connString = 'mysql:host=localhost;port=3306;dbname=isitec;charset=utf8';
   $user = 'root';
   $pass = '';
-  $db = null; */
+  $db = null; 
   try {
     $db = new PDO($connString, $user, $pass, [PDO::ATTR_PERSISTENT => True]);
   } catch (PDOException $e) {
@@ -51,18 +51,17 @@ function insertUserDB($user)
   $userExists = verifyExistentUser($user);
   if ($userExists == true)
     $result = "User or email already exist";
-  else if (is_string($userExists))
-    $result = $userExists;
   else if ($userExists == false) {
-    $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,1)";
+    $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active, activationCode) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,0,:activationCode)";
     $mail = $user['mail'];
     $pass = $user['passHash'];
     $username = $user['username'];
     $userFirstName = $user['userFirstName'];
     $userLastName = $user['userLastName'];
+    $activationCode = $user['activationCode'];
     try {
       $resultat = $conn->prepare($sql);
-      $resultat->execute([':mail' => $mail, ':username' => $username, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName]);
+      $resultat->execute([':mail' => $mail, ':username' => $username, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName, ':activationCode' => $activationCode]);
 
       if ($resultat) {
         $result = true;
@@ -108,4 +107,40 @@ function updateLastSignIn($userOrEmail)
     return $result;
   }
 
+}
+
+function getActivationCode($mail)
+{
+  
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "SELECT activationCode FROM `users` WHERE `mail`=:userMail";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute([':userMail' => $mail]);
+    if ($usuaris->rowCount() == 1) {
+      $result = $usuaris->fetch(PDO::FETCH_ASSOC);
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}
+
+function updateActiveDB($mail)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "UPDATE `users` SET `active`=1 WHERE `mail`=:mail";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $rslt = $usuaris->execute([':mail' => $mail]);
+    if ($rslt)
+      $result = true;
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
 }
