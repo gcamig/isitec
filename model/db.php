@@ -22,18 +22,20 @@ function loginUserDB($userOrEmail, $pass)
 {
   $result = false;
   $conn = getDBConnection();
-  $sql = "SELECT * FROM `users` WHERE `mail`=:userOrEmail OR `username`=:userOrEmail AND `active` = 1";
+  $sql = "SELECT * FROM `users` WHERE `mail`=:userOrEmail OR `username`=:userOrEmail";
   try {
     $usuaris = $conn->prepare($sql);
     $usuaris->execute([':userOrEmail' => $userOrEmail]);
     if ($usuaris->rowCount() == 1) {
       $dadesUsuari = $usuaris->fetch(PDO::FETCH_ASSOC);
-      if (password_verify($pass, $dadesUsuari['passHash'])) {
-        $result = $dadesUsuari;
-        updateLastSignIn($userOrEmail);
-        // $result = $dadesUsuari;
-      } else
-        $result = "Wrong password";
+      if($dadesUsuari['active'] == 1){
+        if (password_verify($pass, $dadesUsuari['passHash'])) {
+          $result = $dadesUsuari;
+          updateLastSignIn($userOrEmail);
+        } else
+          $result = "Wrong password";
+      }else 
+        $result = "User not activated";
     } else
       $result = "User or email does not exists";
   } catch (PDOException $e) {
@@ -132,7 +134,7 @@ function updateActiveDB($mail)
 {
   $result = false;
   $conn = getDBConnection();
-  $sql = "UPDATE `users` SET `active`=1 WHERE `mail`=:mail";
+  $sql = "UPDATE `users` SET `active`=1, `activationDate`=now() WHERE `mail`=:mail";
   try {
     $usuaris = $conn->prepare($sql);
     $rslt = $usuaris->execute([':mail' => $mail]);

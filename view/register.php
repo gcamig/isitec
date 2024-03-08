@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $rslt = insertUser($user);
   if ($rslt == true) {
     //el correo envia un enlace a otro php y este es el que luego redirige al index.php
-    verificationEmail($user);
+    $mailType = "verification";
+    sendEmail($user, $mailType);
     //TODO: mostrar un mensaje conforme se ha enviado un correo    
     header('Location: ../index.php?register=success&verificationMail=n');
     exit();
