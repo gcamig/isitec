@@ -1,3 +1,8 @@
+// Variabels for email input validation
+var email = document.querySelector("#email")
+var emailVerificaion = document.querySelector("#pswd-verif")
+var emailError = document.querySelector("#emailError")
+
 // variables for password input validation
 var pswd = document.querySelector("#pswd")
 var pswdVerification = document.querySelector("#pswd-verif")
@@ -12,6 +17,18 @@ var userContainer = document.querySelector("#input-usr")
 var userError = document.querySelector("#userError")
 document.addEventListener("DOMContentLoaded", function () {
 
+  // email input validation
+  email.onkeyup = function () {
+    console.log("si")
+    if (!validateEmail()) {
+      email.classList.add("invalid")
+      disableButton()
+    } else {
+      email.classList.remove("invalid")
+      enableButton()
+    }
+  }
+  
   // password input validation
   pswd.onkeyup = function () {
     if (!validatePassword(/[A-Z]/, "Must contain at least one uppercase letter")) {
@@ -58,8 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // user input validation
   user.onkeyup = function () {
-    console.log(user.value)
-    if (!validateUser(/^\S*$/, "Username cannot contain whitespaces")) {
+    if (!validateUser()) {
       userContainer.classList.add("invalid")
       disableButton()
     } else {
@@ -82,15 +98,28 @@ function validatePassword(regex, text) {
   }
 }
 
-function validateUser(regex, text) {
+function validateUser() {
+  var regex = /^\S*$/;
   if (!regex.test(user.value)) {
     userError.classList.remove("inactive")
     userError.classList.add("active")
-    userError.innerText = text
+    userError.innerText = "Username cannot contain whitespaces"
     return false;
   } else {
     userError.classList.remove("active")
     userError.classList.add("inactive")
+    return true;
+  }
+}
+
+function validateEmail() {
+  var emailRegex = /\S+@\S+\.\S+/;
+  if (!emailRegex.test(email.value)) {
+    emailError.classList.remove("inactive")
+    emailError.classList.add("active")
+    emailError.innerText = "Invalid email"
+    return false;
+  } else {
     return true;
   }
 }

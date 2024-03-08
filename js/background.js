@@ -12,13 +12,15 @@ function generateShape() {
 
   const shape = document.createElement("div");
   shape.style.backgroundColor = getRandomColor();
-  const size = Math.floor(10 + 15 * Math.random()) + "vh";
-  shape.style.borderRadius = "15px";
+  /* const size = Math.floor(1 + 5 * Math.random()) + "vh";
+  shape.style.borderRadius = "50%"; */
+  const size = Math.floor(5 + 10 * Math.random()) + "vh";
+  shape.style.borderRadius = "10px";
   shape.style.width = size;
   shape.style.height = size;
   shape.style.position = "fixed";
   shape.style.zIndex = "-1";
-
+  shape.style.boxShadow = "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset";
   const edge = Math.floor(Math.random() * 4);
   let x, y;
 
@@ -51,7 +53,7 @@ function generateShape() {
 
 function moveShape(shape) {
   const speed = 1 + Math.random() * 2;
-  const rotationSpeed = 1 + Math.random() * 3;
+  const rotationSpeed = 0.5 + Math.random() * 2;
   const angle = (Math.random() - 0.5) * 2 * Math.PI;
   let rotation = 0;
   const dx = Math.cos(angle) * speed;
@@ -78,7 +80,6 @@ function moveShape(shape) {
     shape.style.left = x + "px";
     shape.style.top = y + "px";
 
-
     rotation += rotationSpeed;
     shape.style.transform = `rotate(${rotation}deg)`;
 
@@ -96,6 +97,4 @@ function generateShapes(amountShapes) {
 
 generateShapes(maxShapes);
 
-screen.addEventListener('DOMNodeRemoved', function (event) {
-  generateShape();
-});
+screen.addEventListener('DOMNodeRemoved', generateShape);

@@ -67,8 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="input-box">
           <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
-          <input type="email" id="email" name="email" required placeholder="">
+          <input type="text" id="email" name="email" required placeholder="">
           <span>Email</span>
+          <p id="emailError" class="inactive"></p>
         </div>
         <div class="input-box">
           <input type="text" id="firstname" name="firstname" required placeholder="">
