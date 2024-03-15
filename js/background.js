@@ -53,7 +53,7 @@ function generateShape() {
 
 function moveShape(shape) {
   const speed = 1 + Math.random() * 2;
-  const rotationSpeed = 0.5 + Math.random() * 2;
+  const rotationSpeed = (0.5 + Math.random() * 2) / window.screen.refreshRate;
   const angle = (Math.random() - 0.5) * 2 * Math.PI;
   let rotation = 0;
   const dx = Math.cos(angle) * speed;
@@ -88,6 +88,8 @@ function moveShape(shape) {
 
   move();
 }
+
+
 
 function generateShapes(amountShapes) {
   for (let i = 0; i < amountShapes; i++) {
