@@ -277,6 +277,10 @@ input:valid~span {
   text-decoration: underline;
 }
 
+#toggle-area-text{
+  margin-right: 5px;
+}
+
 @media only screen and (max-width: 800px) {
   .text-animation-box {
     display: none;
