@@ -59,24 +59,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       <h1 class="typeHeader">Welcome back!</h1>
       <p class="typeText"></p>
     </div>
-    <!-- Modal -->
-    <section id="passModal" class="hide"  >
-        <div class="modal-content">
-          <span class="closeModal">close</span>
-          <form action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>">
-            <div class="input-box" id="input-usr">
-              <label for="resetpass"><ion-icon name="person-outline"></ion-icon></label>
-              <input type="text" id="resetpass" name="user" required="true" placeholder="">
-              <span>Email</span>
-            </div>
-          </form>
-        </div>
-      </section>
-      <!-- FI MODAL -->
   </section>
   <section class="form-box">
     <h1>Login</h1>
     <?= $msgError ?>
+    <!-- Reset password -->
+    <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+      <div class="input-box" id="input-email">
+        <label for="email"><ion-icon name="person-outline"></ion-icon></label>
+        <input type="text" id="email" name="email" required="true" placeholder="">
+        <span>Email</span>
+        <p id="userError" class="inactive"></p>
+      </div>
+      <button class="button-86" id="reset-pass-form-button">Submit</button>
+    </form>
+    
+    <!-- Fi reset password -->
     <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="input-box" id="input-usr">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
@@ -91,10 +89,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
         <span>Password</span>
         <p id="error" class="inactive"></p>
       </div>
-      <button class="button-86" id="form-button">Sign In</button>
+      <button class="button-86" id="login-form-button">Sign In</button>
     </form>
-    <!-- LLAMADA MODAL -->
-    <p id="openModal">Forgot password? Click here.</p>
+    <div class="forgot-password">
+      <p id="toggle-area-text">Forgot password?</p>
+      <strong id="toggle-form">Click here.</strong>
+    </div>
       
     <div class="change-form">
       <p>Don't have an account?</p>

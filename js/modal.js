@@ -1,31 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let modal = document.querySelector("#passModal");
-    let btn = document.querySelector("#openModal");
-    let span = document.querySelector(".closeModal");
-    console.log(modal, btn, span)
-    
-    btn.addEventListener("click", function(){
-        console.log("clicked");
-        console.log(modal);
-        // modal.style.display = "block!important";
-        // console.log(modal.style.display);
-        modal.classList.toggle("show");
-        modal.classList.toggle("hide");
-        console.log(modal.style.display);
-    }) 
-    
-    span.addEventListener("click", function(){
-        modal.classList.toggle("show");
-        modal.classList.toggle("hide");
-        // modal.style.display = "none!important";
-        console.log(modal.style.display);
-    })
-
-    window.addEventListener("click", function(event){
-        if(event.target == modal){
-            modal.classList.toggle("show");
-            modal.classList.toggle("hide");
-            // modal.style.display = "none";
-        }
-    })
+  const resetForm = document.querySelector(".reset-password-form");
+  const loginForm = document.querySelector(".login-form");
+  const btn = document.querySelector("#toggle-form");
+  const toggleText = document.querySelector("#toggle-area-text");
+  
+  btn.addEventListener("click", function(){
+    console.log("clicked");
+    resetForm.classList.toggle("active");
+    loginForm.classList.toggle("active");
+    resetForm.classList.toggle("inactive");
+    loginForm.classList.toggle("inactive");
+    if (resetForm.classList.contains("active")) {
+      toggleText.textContent = "Back to Login. ";
+    } else {
+      toggleText.textContent = "Forgot Password? ";
+    } 
+  })
 })

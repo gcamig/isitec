@@ -83,7 +83,7 @@ function moveShape(shape) {
     rotation += rotationSpeed;
     shape.style.transform = `rotate(${rotation}deg)`;
 
-    requestAnimationFrame(move);
+    window.requestAnimationFrame(move);
   }
 
   move();
