@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 // Variabels for email input validation
 var email = document.querySelector("#email")
 var emailVerificaion = document.querySelector("#pswd-verif")
@@ -15,7 +16,6 @@ var verifText = document.querySelector("#verifError")
 var user = document.querySelector("#usr")
 var userContainer = document.querySelector("#input-usr")
 var userError = document.querySelector("#userError")
-document.addEventListener("DOMContentLoaded", function () {
 
   // email input validation
   email.onkeyup = function () {
