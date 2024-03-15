@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     }else {
       $user = [
         'mail' => $_POST["resetpass"],
-        'resetPassCode' => generateResetPassCode()
+        'resetPassCode' => generateResetPassCode($_POST["resetpass"])
       ];
       sendEmail($user, "password");
     }
