@@ -18,6 +18,11 @@ function generateActivationCode()
   return hash("sha256",rand(0, 9999));
 }
 
+function generateResetPassCode()
+{
+  return hash("sha256",rand(0, 9999));
+}
+
 function sendEmail($user, $type)
 {
   $mail = new PHPMailer(true);
@@ -39,7 +44,7 @@ function sendEmail($user, $type)
   $mail->isHTML(true);
   $mail->Body = mailBodyConstructor($user,$type);
   //Destinatari
-  $address = $user['mail'];
+  $address = $email;
   $mail->AddAddress($address, 'Test');
 
   //Enviament
@@ -69,7 +74,7 @@ function mailBodyConstructor($user,$type)
           </html>
       ";
   }else if($type == "password"){
-    $passwordLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['mail'];
+    $passwordLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['resetPassCode'] . '&mail=' . $user['mail'];
       $body = "
       <html>
       <body>
