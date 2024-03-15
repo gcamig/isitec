@@ -39,7 +39,7 @@ function sendEmail($user, $type)
   $mail->isHTML(true);
   $mail->Body = mailBodyConstructor($user,$type);
   //Destinatari
-  $address = 'ferran.viaplanal@educem.net';
+  $address = $user['mail'];
   $mail->AddAddress($address, 'Test');
 
   //Enviament
