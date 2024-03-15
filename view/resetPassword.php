@@ -25,22 +25,22 @@
       <div class="input-box" id="input-usr">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="usr" name="user" required="true" placeholder="">
-        <span>User / Email</span>
+        <span>New Password</span>
         <p id="userError" class="inactive"></p>
       </div>
 
       <div class="input-box" id="input-pwd">
         <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
         <input type="password" id="pswd" name="password" required placeholder="">
-        <span>Password</span>
+        <span>Repeat Password</span>
         <p id="error" class="inactive"></p>
       </div>
 
-      <button class="button-86" id="form-button">Sign In</button>
+      <button class="button-86" id="form-button">Change Password</button>
     </form>
     <div class="change-form">
       <p>Don't have an account?</p>
-      <a href="./view/register.php">Sign Up</a>
+      <a href="./index.php">Sign In</a>
     </div>
   </section>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

@@ -7,18 +7,26 @@ $errorBox = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     $user = $_POST["user"];
     $pass = $_POST["password"];
-    $result = loginUser($user, $pass);
-    if (is_string($result)) {
-      $msgError = $result;
-    } else if ($result != false) {
-      session_start();
-      $_SESSION['mail'] = $result['mail'];
-      $_SESSION['username'] = $result['username'];
-      $_SESSION['userFirstName'] = $result['userFirstName'];
-      $_SESSION['userLastName'] = $result['userLastName'];
-
-      header('Location: ./view/home.php');
-      exit();
+    if (!isset($_POST["resetpass"])) {
+      $result = loginUser($user, $pass);
+      if (is_string($result)) {
+        $msgError = $result;
+      } else if ($result != false) {
+        session_start();
+        $_SESSION['mail'] = $result['mail'];
+        $_SESSION['username'] = $result['username'];
+        $_SESSION['userFirstName'] = $result['userFirstName'];
+        $_SESSION['userLastName'] = $result['userLastName'];
+  
+        header('Location: ./view/home.php');
+        exit();
+      }
+    }else {
+      $user = [
+        'mail' => $_POST["resetpass"],
+        'resetPassCode' => generateResetPassCode()
+      ];
+      sendEmail($user, "password");
     }
   }
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
