@@ -145,6 +145,7 @@ input {
   font-size: 1.2rem;
   transition: transform 500ms;
   width: 100%;
+  color: #fff;
 }
 
 label {

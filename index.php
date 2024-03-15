@@ -104,7 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="./js/typing.js"></script>
-  <script src="./js/inputValidation.js"></script>
   <script src="./js/background.js"></script>
   <script src="./js/modal.js"></script>
 </body>

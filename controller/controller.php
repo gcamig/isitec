@@ -1,5 +1,5 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer; 
+use PHPMailer\PHPMailer\PHPMailer;
 require 'vendor/autoload.php';
 require_once "model/db.php";
 
