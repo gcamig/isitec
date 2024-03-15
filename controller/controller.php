@@ -20,7 +20,7 @@ function generateActivationCode()
 
 function generateResetPassCode()
 {
-  return hash("sha256",rand(0, 9999));
+  return generateResetPassCodeDB();
 }
 
 function sendEmail($user, $type)
