@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleText = document.querySelector("#toggle-area-text");
   
   btn.addEventListener("click", function(){
-    console.log("clicked");
+    console.log(window.screen.refreshRate);
     resetForm.classList.toggle("active");
     loginForm.classList.toggle("active");
     resetForm.classList.toggle("inactive");
