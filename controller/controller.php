@@ -141,7 +141,7 @@ function sendConfirmationEmail($mail){
   $mail->SetFrom('support@cetisi.cat', 'Soporte Cetisi');
   $mail->Subject = 'Confirmation email';
   $mail->isHTML(true);
-  $mail->Body = confirmationEmailBodyConstructor($user,$type);
+  $mail->Body = confirmationEmailBodyConstructor();
 
   //Destinatari
   $address = $user['email'];
@@ -156,7 +156,7 @@ function sendConfirmationEmail($mail){
   }
 }
 
-function confirmationEmailBodyConstructor($user,$type){
+function confirmationEmailBodyConstructor(){
   $body = '
   <html>
   <head>
