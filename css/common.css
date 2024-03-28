@@ -168,22 +168,6 @@ span {
   transition: transform 500ms;
 }
 
-#error, #userError{
-  position: absolute;
-  font-size: 0.7rem;
-  color: #d20000;
-  top: 55px;
-  right: 5px;
-
-  &.active{
-    display: block;
-  }
-
-  &.inactive{
-    display: none;
-  }
-}
-
 input:focus~span,
 input:valid~span {
   transform: translate(-3rem, -1.5rem) scale(0.8);
