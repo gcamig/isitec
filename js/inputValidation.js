@@ -1,36 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-// Variabels for email input validation
-var email = document.querySelector("#email")
-var emailVerificaion = document.querySelector("#pswd-verif")
-var emailError = document.querySelector("#emailError")
+  // Variabels for email input validation
+  var email = document.querySelector("#email")
+  var emailContainer = document.querySelector("#input-email")
+  var emailError = document.querySelector("#emailError")
 
-// variables for password input validation
-var pswd = document.querySelector("#pswd")
-var pswdVerification = document.querySelector("#pswd-verif")
-var container = document.querySelector("#input-pwd")
-var containerVerification = document.querySelector("#input-pwd-verif")
-var errorText = document.querySelector("#error")
-var verifText = document.querySelector("#verifError")
+  // variables for password input validation
+  let password = document.querySelector("#pwd")
+  let pswdVerification = document.querySelector("#pswd-verif")
+  let container = document.querySelector("#input-pwd")
+  let containerVerification = document.querySelector("#input-pwd-verif")
+  let errorText = document.querySelector("#error")
+  let verifText = document.querySelector("#verifError")
 
-// variables for user input validation
-var user = document.querySelector("#usr")
-var userContainer = document.querySelector("#input-usr")
-var userError = document.querySelector("#userError")
+  // variables for user input validation
+  let user = document.querySelector("#user")
+  let userContainer = document.querySelector("#input-usr")
+  let userError = document.querySelector("#userError")
+
 
   // email input validation
   email.onkeyup = function () {
-    console.log("si")
-    if (!validateEmail()) {
-      email.classList.add("invalid")
+    if (!validateEmail(/\S+@\S+\.\S+/, "Incorrect email format")) {
+      emailContainer.classList.add("invalid")
+      disableButton()
+    } else if (!validateEmail(/^\S*$/, "Email cannot contain spaces")) {
+      emailContainer.classList.add("invalid")
       disableButton()
     } else {
-      email.classList.remove("invalid")
+      emailContainer.classList.remove("invalid")
       enableButton()
     }
   }
-  
+
   // password input validation
-  pswd.onkeyup = function () {
+  password.onkeyup = function () {
     if (!validatePassword(/[A-Z]/, "Must contain at least one uppercase letter")) {
       container.classList.add("invalid")
       disableButton()
@@ -43,7 +46,7 @@ var userError = document.querySelector("#userError")
     } else if (!validatePassword(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, "Must contain at least one special character")) {
       container.classList.add("invalid")
       disableButton()
-    } else if (pswd.value.length < 8) {
+    } else if (password.value.length < 8) {
       container.classList.add("invalid")
       errorText.classList.remove("inactive")
       errorText.classList.add("active")
@@ -58,7 +61,7 @@ var userError = document.querySelector("#userError")
   // password verification input validation
   if (pswdVerification) {
     pswdVerification.onkeyup = function () {
-      if (pswd.value !== pswdVerification.value) {
+      if (password.value !== pswdVerification.value) {
         containerVerification.classList.add("invalid")
         verifText.classList.remove("inactive")
         verifText.classList.add("active")
@@ -83,54 +86,53 @@ var userError = document.querySelector("#userError")
       enableButton()
     }
   }
+
+
+  function validatePassword(regex, text) {
+    if (!regex.test(password.value)) {
+      errorText.classList.remove("inactive")
+      errorText.classList.add("active")
+      errorText.innerText = text
+      return false;
+    } else {
+      errorText.classList.remove("active")
+      errorText.classList.add("inactive")
+      return true;
+    }
+  }
+
+  function validateUser() {
+    var regex = /^\S*$/;
+    if (!regex.test(user.value)) {
+      userError.classList.remove("inactive")
+      userError.classList.add("active")
+      userError.innerText = "Username cannot contain spaces"
+      return false;
+    } else {
+      userError.classList.remove("active")
+      userError.classList.add("inactive")
+      return true;
+    }
+  }
+
+  function validateEmail(regex, text) {
+    if (!regex.test(email.value)) {
+      emailError.classList.remove("inactive")
+      emailError.classList.add("active")
+      emailError.innerText = text
+      return false;
+    } else {
+      emailError.classList.remove("active")
+      emailError.classList.add("inactive")
+      return true;
+    }
+  }
+
+  function disableButton() {
+    document.getElementById("form-button").disabled = true;
+  }
+
+  function enableButton() {
+    document.getElementById("form-button").disabled = false;
+  }
 })
-
-function validatePassword(regex, text) {
-  if (!regex.test(pswd.value)) {
-    errorText.classList.remove("inactive")
-    errorText.classList.add("active")
-    errorText.innerText = text
-    return false;
-  } else {
-    errorText.classList.remove("active")
-    errorText.classList.add("inactive")
-    return true;
-  }
-}
-
-function validateUser() {
-  var regex = /^\S*$/;
-  if (!regex.test(user.value)) {
-    userError.classList.remove("inactive")
-    userError.classList.add("active")
-    userError.innerText = "Username cannot contain whitespaces"
-    return false;
-  } else {
-    userError.classList.remove("active")
-    userError.classList.add("inactive")
-    return true;
-  }
-}
-
-function validateEmail() {
-  var emailRegex = /\S+@\S+\.\S+/;
-  if (!emailRegex.test(email.value)) {
-    emailError.classList.remove("inactive")
-    emailError.classList.add("active")
-    emailError.innerText = "Invalid email"
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function disableButton() {
-  document.getElementById("form-button").disabled = true;
-}
-
-function enableButton() {
-  document.getElementById("form-button").disabled = false;
-}
-
-
-

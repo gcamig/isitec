@@ -60,11 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="sign-up-grid">
         <div class="input-box" id="input-usr">
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
-          <input type="text" id="usr" name="username" required placeholder="">
+          <input type="text" id="user" name="username" required placeholder="">
           <span>Username</span>
           <p id="userError" class="inactive"></p>
         </div>
-        <div class="input-box">
+        <div class="input-box" id="input-email">
           <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
           <input type="text" id="email" name="email" required placeholder="">
           <span>Email</span>
@@ -79,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <span>Last Name</span>
         </div>
         <div class="input-box" id="input-pwd">
-          <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
-          <input type="password" id="pswd" name="password" required placeholder="">
+          <label for="pwd"><ion-icon name="lock-closed-outline"></ion-icon></label>
+          <input type="password" id="pwd" name="password" required placeholder="">
           <span>Password</span>
           <p id="error" class="inactive"></p>
         </div>
@@ -101,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="../js/typing.js"></script>
-  <script src="/js/inputValidation.js"></script>
-  <script src="/js/background.js"></script>
+  <script src="../js/inputValidation.js"></script>
+  <script src="../js/background.js"></script>
 </body>
 
 </html>

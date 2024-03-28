@@ -37,11 +37,7 @@ span{
   font-size: 0.8rem;
 }
 
-#error, #userError{
-  top: 50px;
-}
-
-#verifError{
+#verifError, #userError, #error, #emailError {
   position: absolute;
   font-size: 0.7rem;
   color: #d20000;
