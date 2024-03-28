@@ -22,11 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
         exit();
       }
     }else {
-      $user = [
-        'email' => $_POST["resetPassMail"],
-        'resetPassCode' => generateResetPassCode($_POST["resetPassMail"])
-      ];
-      sendEmail($user, "password");
+      if(verifyExistentUser($user['email']) == true)
+      {
+        $user = [
+          'email' => $_POST["resetPassMail"],
+          'resetPassCode' => generateResetPassCode($_POST["resetPassMail"])
+        ];
+        sendEmail($user, "password");
+      }
+      // verifyExistentUser($user['email']) == true ? sendEmail($user, "password") : $msgError = 'The email does not match with any account';
     }
   }
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {

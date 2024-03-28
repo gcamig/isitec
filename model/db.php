@@ -50,7 +50,7 @@ function insertUserDB($user)
 {
   $result = false;
   $conn = getDBConnection();
-  $userExists = verifyExistentUser($user);
+  $userExists = verifyExistentUserDB($user);
   if ($userExists == true)
     $result = "User or email already exist";
   else if ($userExists == false) {
@@ -75,7 +75,7 @@ function insertUserDB($user)
     }
   }
 }
-function verifyExistentUser($user)
+function verifyExistentUserDB($user)
 {
   $result = false;
   $conn = getDBConnection();
@@ -113,7 +113,6 @@ function updateLastSignIn($userOrEmail)
 
 function getActivationCode($mail)
 {
-  
   $result = false;
   $conn = getDBConnection();
   $sql = "SELECT activationCode FROM `users` WHERE `mail`=:userMail";
@@ -158,6 +157,59 @@ function generateResetPassCodeDB($mail)
     $rslt = $usuaris->execute([':mail' => $mail, ':resetPassCode' => $resetPassCode]);
     if ($rslt)
       $result = $resetPassCode;
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}
+
+function verifyResetPassCodeDB($mail, $resetPassCode)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "SELECT resetPassCode FROM `users` WHERE `mail`=:userMail";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute([':userMail' => $mail]);
+    if ($usuaris->fetchColumn() == $resetPassCode) {
+      $result = true;
+    }
+  } catch (PDOException $e) {
+  } finally {
+    return $result;
+  }
+}
+
+function verifyTimeLeftDB($mail, $resetPassCode)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "SELECT resetPassExpiry FROM `users` WHERE `mail`=:userMail AND `resetPassCode`=:resetPassCode";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute([':userMail' => $mail, ':resetPassCode' => $resetPassCode]);
+    if ($usuaris->fetchColumn() > time()) {
+      $result = true;
+    }
+  } catch (PDOException $e) {
+  } finally {
+    return $result;
+  }
+}
+
+function updatePasswordDB($mail, $firstPass)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "UPDATE `users` SET `passHash`= :resetPass WHERE `mail`=:mail";
+  $passHash = password_hash($firstPass, PASSWORD_BCRYPT);
+  try {
+    $usuaris = $conn->prepare($sql);
+    $rslt = $usuaris->execute([':mail' => $mail, ':resetPass' => $passHash]);
+    isset($rslt) ? $result = true : $result = false;
+    // if ($rslt)
+    //   $result = $true;
   } catch (PDOException $e) {
     echo "";
   } finally {

@@ -45,7 +45,7 @@ function sendEmail($user, $type)
   $mail->Body = mailBodyConstructor($user,$type);
   //Destinatari
   $address = $user['email'];
-  $mail->AddAddress($address, 'Test');
+  $mail->AddAddress($address);
 
   //Enviament
   $result = $mail->Send();
@@ -103,3 +103,111 @@ function verifyAccount($code, $mail)
 function updateActive($mail){
   updateActiveDB($mail);
 }
+
+function verifyExistentUser($mail){
+  $user = [
+    'email' => $mail,
+    'username' => '',
+  ];
+  return verifyExistentUserDB($user);
+}
+function verifyResetPassCode($mail, $resetPassCode){
+  return verifyResetPassCodeDB($mail, $resetPassCode);
+}
+
+function verifyTimeLeft($mail, $resetPassCode){
+  return verifyTimeLeftDB($mail, $resetPassCode);
+}
+
+function updatePassword($mail, $firstPass){
+  return updatePasswordDB($mail, $firstPass);
+}
+
+function sendConfirmationEmail($mail){
+  $mail = new PHPMailer(true);
+  $mail->IsSMTP();
+  //Configuració del servidor de Correu
+  //Modificar a 0 per eliminar msg error
+  $mail->SMTPDebug = 0;
+  $mail->SMTPAuth = true;
+  $mail->SMTPSecure = 'tls';
+  $mail->Host = 'smtp.dondominio.com';
+  $mail->Port = 587;
+  //Credencials del compte GMAIL
+  $mail->Username = 'support@cetisi.cat';
+  $mail->Password = 'Cetisi@1234';
+
+  //Dades del correu electrònic
+  $mail->SetFrom('support@cetisi.cat', 'Soporte Cetisi');
+  $mail->Subject = 'Confirmation email';
+  $mail->isHTML(true);
+  $mail->Body = confirmationEmailBodyConstructor($user,$type);
+
+  //Destinatari
+  $address = $user['email'];
+  $mail->AddAddress($address);
+
+  //Enviament
+  $result = $mail->Send();
+  if (!$result) {
+    echo 'Error: ' . $mail->ErrorInfo;
+  } else {
+    echo "Correu enviat";
+  }
+}
+
+function confirmationEmailBodyConstructor($user,$type){
+  $body = '
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cambio de Contraseña</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="header">
+            <h2>Cambio de Contraseña</h2>
+        </div>
+        <div class="content">
+            <p>Su contraseña ha sido cambiada correctamente. Si usted no ha realizado este cambio, por favor póngase en contacto con nosotros de inmediato.</p>
+        </div>
+        <div class="footer">
+            <p>Este es un mensaje automático. Por favor, no responda a este correo.</p>
+        </div>
+    </div>
+  </body>
+  </html>
+  ';
+  return $body;
+}
+
