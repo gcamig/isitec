@@ -123,7 +123,7 @@ function updatePassword($mail, $firstPass){
   return updatePasswordDB($mail, $firstPass);
 }
 
-function sendConfirmationEmail($mail){
+function sendConfirmationEmail($email){
   $mail = new PHPMailer(true);
   $mail->IsSMTP();
   //Configuració del servidor de Correu
@@ -144,7 +144,7 @@ function sendConfirmationEmail($mail){
   $mail->Body = confirmationEmailBodyConstructor();
 
   //Destinatari
-  $address = $mail;
+  $address = $email;
   $mail->AddAddress($address);
 
   //Enviament
@@ -159,40 +159,6 @@ function sendConfirmationEmail($mail){
 function confirmationEmailBodyConstructor(){
   $body = '
   <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Cambio de Contraseña</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .header {
-            background-color: #007BFF;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            border-radius: 5px 5px 0 0;
-        }
-        .content {
-            padding: 20px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-        }
-    </style>
-  </head>
   <body>
     <div class="container">
         <div class="header">

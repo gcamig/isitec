@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
         exit();
       }
     }else {
-      if(verifyExistentUser($user['email']) == true)
+      if(verifyExistentUser($_POST["resetPassMail"]) == true)
       {
         $user = [
           'email' => $_POST["resetPassMail"],
@@ -42,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   // si el $_Get es empty sabem que hem entrar per primera vegada sino vol dir que venim desde el registre
   if (!empty($_GET)) {
     //mirem si el registre s'ha completat correctament
-    $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
-    $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
+    if(isset($_GET["register"])) $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
+    if(isset($_GET["verificationMail"]))$_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
     // if ($_GET["register"] == "success") {
     //   $msgError = "<div class='error-box'>Registre correcte</div>";
     // }
