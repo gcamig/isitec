@@ -5,9 +5,9 @@ $msgError = "";
 $errorBox = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { {
-    $user = $_POST["user"];
-    $pass = $_POST["password"];
-    if (!isset($_POST["resetpass"])) {
+  if (!isset($_POST["resetPassMail"])) {
+      $user = $_POST["user"];
+      $pass = $_POST["password"];
       $result = loginUser($user, $pass);
       if (is_string($result)) {
         $msgError = $result;
@@ -23,27 +23,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       }
     }else {
       $user = [
-        'mail' => $_POST["resetpass"],
-        'resetPassCode' => generateResetPassCode($_POST["resetpass"])
+        'email' => $_POST["resetPassMail"],
+        'resetPassCode' => generateResetPassCode($_POST["resetPassMail"])
       ];
       sendEmail($user, "password");
     }
   }
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  
   if (isset($_COOKIE['PHPSESSID'])) {
     header('Location: ./view/home.php');
     exit();
   }
-
   // si el $_Get es empty sabem que hem entrar per primera vegada sino vol dir que venim desde el registre
   if (!empty($_GET)) {
     //mirem si el registre s'ha completat correctament
-    if ($_GET["register"] == "success") {
-      $msgError = "<div class='error-box'>Registre correcte</div>";
-    }
-    if ($_GET["verificationMail"] == "success"){
-      $msgError = "<div class='error-box'>Correu verificat correctament</div>";
-    }
+    $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
+    $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
+    // if ($_GET["register"] == "success") {
+    //   $msgError = "<div class='error-box'>Registre correcte</div>";
+    // }
+    // if ($_GET["verificationMail"] == "success"){
+    //   $msgError = "<div class='error-box'>Correu verificat correctament</div>";
+    // }
   }
 }
 
@@ -75,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="input-box" id="input-email">
         <label for="email"><ion-icon name="person-outline"></ion-icon></label>
-        <input type="text" id="email" name="email" required="true" placeholder="">
+        <input type="text" id="resetPassMail" name="resetPassMail" required="true" placeholder="">
         <span>Email</span>
         <p id="userError" class="inactive"></p>
       </div>

@@ -18,9 +18,9 @@ function generateActivationCode()
   return hash("sha256",rand(0, 9999));
 }
 
-function generateResetPassCode()
+function generateResetPassCode($mail)
 {
-  return generateResetPassCodeDB();
+  return generateResetPassCodeDB($mail);
 }
 
 function sendEmail($user, $type)
@@ -44,7 +44,7 @@ function sendEmail($user, $type)
   $mail->isHTML(true);
   $mail->Body = mailBodyConstructor($user,$type);
   //Destinatari
-  $address = $email;
+  $address = $user['email'];
   $mail->AddAddress($address, 'Test');
 
   //Enviament
@@ -60,7 +60,7 @@ function mailBodyConstructor($user,$type)
 {
   if($type == "verification"){
   //TODO: CAMBIAR EL CUERPO COMO DICE EN EL WORD
-    $verificationLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['mail'];
+    $verificationLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
     $body = "
           <html>
           <body>
@@ -74,7 +74,7 @@ function mailBodyConstructor($user,$type)
           </html>
       ";
   }else if($type == "password"){
-    $passwordLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['resetPassCode'] . '&mail=' . $user['mail'];
+    $passwordLink = 'http://localhost/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
       $body = "
       <html>
       <body>

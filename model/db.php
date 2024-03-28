@@ -55,7 +55,7 @@ function insertUserDB($user)
     $result = "User or email already exist";
   else if ($userExists == false) {
     $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active, activationCode) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,0,:activationCode)";
-    $mail = $user['mail'];
+    $mail = $user['email'];
     $pass = $user['passHash'];
     $username = $user['username'];
     $userFirstName = $user['userFirstName'];
@@ -82,7 +82,7 @@ function verifyExistentUser($user)
   $sql = "SELECT * FROM `users` WHERE `mail`=:userMail OR `username`=:userName";
   try {
     $usuaris = $conn->prepare($sql);
-    $usuaris->execute([':userMail' => $user['mail'], ':userName' => $user['username']]);
+    $usuaris->execute([':userMail' => $user['email'], ':userName' => $user['username']]);
     if ($usuaris->rowCount() == 1) {
       $result = true;
     }
@@ -140,6 +140,24 @@ function updateActiveDB($mail)
     $rslt = $usuaris->execute([':mail' => $mail]);
     if ($rslt)
       $result = true;
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}
+
+function generateResetPassCodeDB($mail)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "UPDATE `users` SET `resetPassCode`= :resetPassCode, `resetPassExpiry`=DATE_ADD(NOW(), INTERVAL 30 MINUTE) WHERE `mail`=:mail";
+  try {
+    $resetPassCode = hash("sha256", rand(0, 9999));
+    $usuaris = $conn->prepare($sql);
+    $rslt = $usuaris->execute([':mail' => $mail, ':resetPassCode' => $resetPassCode]);
+    if ($rslt)
+      $result = $resetPassCode;
   } catch (PDOException $e) {
     echo "";
   } finally {

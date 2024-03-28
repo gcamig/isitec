@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $pass = $_POST["password"];
   $passVerify = $_POST["veri-pswd"];
   $user = [
-    'mail' => $email,
+    'email' => $email,
     'username' => $username,
     'userFirstName' => $firstName,
     'userLastName' => $lastName,
