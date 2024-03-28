@@ -144,7 +144,7 @@ function sendConfirmationEmail($mail){
   $mail->Body = confirmationEmailBodyConstructor();
 
   //Destinatari
-  $address = $user['email'];
+  $address = $mail;
   $mail->AddAddress($address);
 
   //Enviament
