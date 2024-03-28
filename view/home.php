@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>Home Page</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
 <body id="screen">
   <section class="left-side-panel">
     <div class="nav-title">
-      <img src="./img/logo.jpeg" alt="Cetisi icon">
+      <img src="./img/white.jpeg" alt="Cetisi icon">
       <hr>
       <h2>Cetisi</h2>
     </div>
@@ -58,8 +58,8 @@
       <p>&copy; 2024 Cetisi. All rights reserved.</p>
     </footer>
   </main>
-  <script src="carousel.js"></script>
-  <script src="background.js"></script>
+  <script src="/js/carousel.js"></script>
+  <script src="/js/background.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
