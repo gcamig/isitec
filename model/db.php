@@ -239,14 +239,13 @@ function insertCourseDB($course)
 {
   $result = false;
   $conn = getDBConnection();
-  if (verifyExistentCourse($course) == true) $result = "User or email already exist";
+  if (verifyExistentCourse($course['title']) == true) $result = "User or email already exist";
   else
   {
-    $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active, activationCode) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,0,:activationCode)";
+    $sql = "INSERT INTO courses (title, description, hashtags, publishDate,founder, caratula) VALUES (:title, :description ,:hashtags, now(), :founder, :caratula);";
     try {
       $resultat = $conn->prepare($sql);
-      $resultat->execute([':mail' => $course[''], ':username' => $username, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName, ':activationCode' => $activationCode]);
-
+      $resultat->execute(['title'=> $course['title'], ':description' => $course['description'], ':hashtags' => $course['hashtags'], ':founder' => $course['founder'], ':caratula' => $course['caratula']]);
       if ($resultat) {
         $result = true;
       }
@@ -255,5 +254,23 @@ function insertCourseDB($course)
     } finally {
       return $result;
     }
+  }
+}
+
+function verifyExistentCourse($courseTitle)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "SELECT * FROM `courses` WHERE `title`=:courseTitle";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute([':courseTitle' => $courseTitle]);
+    if ($usuaris->rowCount() == 1) {
+      $result = true;
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
   }
 }

@@ -1,34 +1,43 @@
 <?php
-chdir("..");
-  require_once "controller/controller.php";
-  if (!isset($_COOKIE['PHPSESSID'])) {
-    header('Location: /controller/logout.php');
-    exit();
-  }
-  else 
-  {
-    session_start();
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if($check !== false){
-        //tratamiento de la imagen
-        $caratula = $_FILES['caratula']['tmp_name'];         
-        $course = [
-          'title' => $_POST["title"],
-          'description' => $_POST["description"],
-          'etiquetas_array' => explode('#', $_POST["etiquetas"]),
-          'caratula' => addslashes(file_get_contents($caratula)),
-          'founder' => $_SESSION['user']['username']
-        ];
-        //TODO: MODIFICAR EL IF PARA HACER LO NECESARIO CON EL HOME DEFINITIVO
-      insertCourse($course) == true ? header('Location: /view/home.php?createCourse=success') : header('Location: /view/course_creation.php?createCourse=fail');
-      exit();
-        }
-    }else{
-        //entramos por get
-        if(isset($_GET["createCourse"])) $_GET["createCourse"] == "fail" ? $msgError = "<div class='error-box'>Course creation failed</div>" : '';
+    chdir("..");
+    require_once "controller/controller.php";
+
+    if (!isset($_COOKIE['PHPSESSID'])) {
+        header('Location: /controller/logout.php');
+        exit();
     }
-  }
+     else 
+    {
+        session_start();
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $check = getimagesize($_FILES["caratula"]["tmp_name"]);
+            if($check !== false){
+                //tratamiento de la imagen
+                $caratula_name_hash = hash('sha256', $_FILES["caratula"]["name"] . rand(0, 1000));
+                $caratula_extension = pathinfo($_FILES["caratula"]["name"], PATHINFO_EXTENSION);
+                $caratula_destino = "media/" . $caratula_name_hash . "." . $caratula_extension;
+                //inserimos el curso   
+                $course = [
+                    'title' => $_POST["title"],
+                    'description' => $_POST["description"],
+                    'hashtags' => $_POST["etiquetas"],
+                    'founder' => $_SESSION['user']['username'],
+                    'caratula' => $caratula_destino
+                ];
+                $rslt = insertCourse($course);
+                if($rslt == true)
+                {
+                    move_uploaded_file($_FILES["caratula"]["tmp_name"], $caratula_destino);
+                    header('Location: /view/home.php?createCourse=success');
+                    exit();
+                }else $msgError = $rslt;
+                // insertCourse($course) == true ? header('Location: /view/home.php?createCourse=success') : header('Location: /view/course_creation.php?createCourse=fail');
+            }
+        }else{
+            //entramos por get
+            if(isset($_GET["createCourse"])) $_GET["createCourse"] == "fail" ? $msgError = "<div class='error-box'>Course creation failed</div>" : '';
+        }
+    }
 ?>
 
 <!DOCTYPE html>

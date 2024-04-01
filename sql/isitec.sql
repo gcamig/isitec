@@ -25,6 +25,7 @@ CREATE TABLE courses (
     hashtags TEXT,
     publishDate DATETIME,
     founder VARCHAR(16) NOT NULL,
+    caratula VARCHAR(255) NOT NULL,
     nlikes INT NOT NULL    DEFAULT 0,
     nDislikes INT NOT NULL DEFAULT 0,
     score FLOAT NOT NULL DEFAULT 0
