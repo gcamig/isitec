@@ -8,7 +8,7 @@ chdir("..");
   else 
   {
     session_start();
-    $user = getUserInfo($_SESSION['username']);
+    $_SESSION['user'] = getUserInfo($_SESSION['username']);
   }
 
 ?>
@@ -31,7 +31,7 @@ chdir("..");
         <div>
           <ul>
             <li><a href="/view/home.php"><ion-icon name="home"></ion-icon></a></li>
-            <li><a href="user-courses.html"><ion-icon name="school"></ion-icon></ion-icon></a></li>
+            <li><a href="/view/course_creation.php"><ion-icon name="school"></ion-icon></ion-icon></a></li>
             <li><a href="saved-courses.html"><ion-icon name="heart"></ion-icon></a></li>
             <li><a href="settings.html"><ion-icon name="settings"></ion-icon></a></li>
           </ul>
@@ -46,7 +46,7 @@ chdir("..");
   </section>
 
   <main>
-    <h1 class="col-12"><?= 'Hola, ' . $user['username'] .  '. ¡Elige tu siguiente reto!'?></h1>
+    <h1 class="col-12"><?= 'Hola, ' . $_SESSION['user']['username'] .  '. ¡Elige tu siguiente reto!'?></h1>
     <section class="welcome-area col-12">
       <div class="col-5">
         <div class="slider-wrapper">

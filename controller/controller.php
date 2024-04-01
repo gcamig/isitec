@@ -181,3 +181,7 @@ function getUserInfo($username){
   return getUserInfoDB($username);
 }
 
+function insertCourse($course)
+{
+  return insertCourseDB($course);
+}

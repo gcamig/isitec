@@ -234,3 +234,26 @@ function getUserInfoDB($username)
     return $result;
   }
 }
+
+function insertCourseDB($course)  
+{
+  $result = false;
+  $conn = getDBConnection();
+  if (verifyExistentCourse($course) == true) $result = "User or email already exist";
+  else
+  {
+    $sql = "INSERT INTO users (mail, username, passHash, userFirstName, userLastName, creationDate, removeDate, lastSignIn, active, activationCode) VALUES (:mail, :username ,:passHash, :userFirstName, :userLastName, now(), null, null,0,:activationCode)";
+    try {
+      $resultat = $conn->prepare($sql);
+      $resultat->execute([':mail' => $course[''], ':username' => $username, ':passHash' => $pass, ':userFirstName' => $userFirstName, ':userLastName' => $userLastName, ':activationCode' => $activationCode]);
+
+      if ($resultat) {
+        $result = true;
+      }
+    } catch (PDOException $e) {
+      echo "";
+    } finally {
+      return $result;
+    }
+  }
+}

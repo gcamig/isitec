@@ -14,11 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       } else if ($result != false) {
         //TODO: CAMBIAR EN FUNCION DE LO QUE NECESITE EL HOME
         session_start();
-        $_SESSION['mail'] = $result['mail'];
-        $_SESSION['username'] = $result['username'];
-        $_SESSION['userFirstName'] = $result['userFirstName'];
-        $_SESSION['userLastName'] = $result['userLastName'];
-  
+        $_SESSION['username'] = $result['username'];  
         header('Location: ./view/home.php');
         exit();
       }
