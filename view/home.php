@@ -30,7 +30,7 @@ chdir("..");
       <nav class="nav-content">
         <div>
           <ul>
-            <li><a href="index.html"><ion-icon name="home"></ion-icon></a></li>
+            <li><a href="/view/home.php"><ion-icon name="home"></ion-icon></a></li>
             <li><a href="user-courses.html"><ion-icon name="school"></ion-icon></ion-icon></a></li>
             <li><a href="saved-courses.html"><ion-icon name="heart"></ion-icon></a></li>
             <li><a href="settings.html"><ion-icon name="settings"></ion-icon></a></li>
