@@ -216,3 +216,21 @@ function updatePasswordDB($mail, $firstPass)
     return $result;
   }
 }
+
+function getUserInfoDB($username)
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "SELECT * FROM `users` WHERE `username`=:username";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute([':username' => $username]);
+    if ($usuaris->rowCount() == 1) {
+      $result = $usuaris->fetch(PDO::FETCH_ASSOC);
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}

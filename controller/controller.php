@@ -177,3 +177,7 @@ function confirmationEmailBodyConstructor(){
   return $body;
 }
 
+function getUserInfo($username){
+  return getUserInfoDB($username);
+}
+

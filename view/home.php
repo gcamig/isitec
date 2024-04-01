@@ -1,3 +1,18 @@
+<?php
+chdir("..");
+  require_once "controller/controller.php";
+  if (!isset($_COOKIE['PHPSESSID'])) {
+    header('Location: /controller/logout.php');
+    exit();
+  }
+  else 
+  {
+    session_start();
+    $user = getUserInfo($_SESSION['username']);
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +39,14 @@
         <div>
           <ul>
             <li><a href="contact.html"><ion-icon name="mail"></ion-icon></a></li>
-            <li><a href="login.html"><ion-icon name="log-out"></ion-icon></a></li>
+            <li><a href="/controller/logout.php"><ion-icon name="log-out"></ion-icon></a></li>
           </ul>
         </div>
       </nav>
   </section>
 
   <main>
-    <h1 class="col-12">Hola, User. ¡Elige tu siguiente reto!</h1>
+    <h1 class="col-12"><?= 'Hola, ' . $user['username'] .  '. ¡Elige tu siguiente reto!'?></h1>
     <section class="welcome-area col-12">
       <div class="col-5">
         <div class="slider-wrapper">

@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       if (is_string($result)) {
         $msgError = $result;
       } else if ($result != false) {
+        //TODO: CAMBIAR EN FUNCION DE LO QUE NECESITE EL HOME
         session_start();
         $_SESSION['mail'] = $result['mail'];
         $_SESSION['username'] = $result['username'];
@@ -44,12 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     //mirem si el registre s'ha completat correctament
     if(isset($_GET["register"])) $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
     if(isset($_GET["verificationMail"]))$_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
-    // if ($_GET["register"] == "success") {
-    //   $msgError = "<div class='error-box'>Registre correcte</div>";
-    // }
-    // if ($_GET["verificationMail"] == "success"){
-    //   $msgError = "<div class='error-box'>Correu verificat correctament</div>";
-    // }
   }
 }
 
