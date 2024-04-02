@@ -15,67 +15,189 @@ chdir("..");
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Home Page</title>
-  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/output.css" />
+  <link rel="stylesheet" type="text/css" href="/css/home.css" />
 </head>
-<body id="screen">
-  <section class="left-side-panel">
-    <div class="nav-title">
-      <img src="./img/white.jpeg" alt="Cetisi icon">
-      <hr>
-      <h2>Cetisi</h2>
-    </div>
-    <hr>
-      <nav class="nav-content">
-        <div>
-          <ul>
-            <li><a href="/view/home.php"><ion-icon name="home"></ion-icon></a></li>
-            <li><a href="/view/course_creation.php"><ion-icon name="school"></ion-icon></ion-icon></a></li>
-            <li><a href="saved-courses.html"><ion-icon name="heart"></ion-icon></a></li>
-            <li><a href="settings.html"><ion-icon name="settings"></ion-icon></a></li>
-          </ul>
-        </div>
-        <div>
-          <ul>
-            <li><a href="contact.html"><ion-icon name="mail"></ion-icon></a></li>
-            <li><a href="/controller/logout.php"><ion-icon name="log-out"></ion-icon></a></li>
-          </ul>
-        </div>
-      </nav>
-  </section>
 
-  <main>
-    <h1 class="col-12"><?= 'Hola, ' . $_SESSION['user']['username'] .  '. ¡Elige tu siguiente reto!'?></h1>
-    <section class="welcome-area col-12">
-      <div class="col-5">
-        <div class="slider-wrapper">
-          <div class="slider">
-            <img id src="https://images.unsplash.com/photo-1464013778555-8e723c2f01f8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <img id src="https://images.unsplash.com/photo-1500073584060-670c36a703f1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <img id src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=2117&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+<body class="academia" id="screen">
+  <header class="fixed z-10 w-full">
+    <nav class="navbar navbar-top-academia">
+      <div class="nav-container w-full">
+        <a class="" href="/index.html">
+          <figure>
+            <img class="" src="/img/logo-name.png" alt="Cetisi" />
+            <figcaption class="cetisi-community-badge">Academia</figcaption>
+          </figure>
+        </a>
+        <div class="menu">
+          <div class="mr-auto pl-3">
+            <ul>
+              <li class="nav-item-divider pr-1"></li>
+              <li><a href="/index.html">Inicio</a></li>
+              <li><a href="/about.html">Mi academia</a></li>
+              <li><a href="./catalog.php">Cursos</a></li>
+            </ul>
           </div>
-          <div class="slider-prev">
-            <a class="prev" href="#"><ion-icon name="arrow-back-outline"></ion-icon></a>
-          </div>
-          <div class="slider-next">
-            <a class="next" href="#"><ion-icon name="arrow-forward-outline"></ion-icon></a>
+          <div class="ml-auto">
+            <ul>
+              <li><ion-icon name="search-sharp"></ion-icon></li>
+              <li class="nav-item-divider p-2"></li>
+              <li><ion-icon name="notifications-sharp"></ion-icon></li>
+              <li class="nav-item-divider p-2"></li>
+              <li><ion-icon name="person"></ion-icon></li>
           </div>
         </div>
       </div>
-      <div class="level-card col-2">
-        
+    </nav>
+  </header>
+  <main class="container">
+    <div class="contenido-central flex-col">
+      <h1>Hola, User First Name. ¿Qué quieres aprender?</h1>
+      <div class="row mb-4">
+        <!-- TODO: Carousel -->
       </div>
-    </section>
-    
-    <h2>Featured Courses</h2>
-    <footer>
-      <p>&copy; 2024 Cetisi. All rights reserved.</p>
-    </footer>
+      <section class="w-full">
+        <!-- Seccion 1 -->
+        <div class="row items-baseline mt-5">
+          <div class="columns-md">
+            <h3 class="title flex items-baseline">Descubre los últimos cursos
+              <a class="ver-mas" href="#">
+                <span>Ver más</span>
+                <ion-icon class="ml-2" name="chevron-forward"></ion-icon>
+              </a>
+            </h3>
+          </div>
+        </div>
+        <div class="w-full" style="min-height: 351px;">
+          <div class="swiper swiper-horizontal swiper-backface-hidden">
+            <!-- TODO: Carousel con "Tarjetas de los últimos cursos" -->
+            <div class="swipe-wrapper flex"
+              style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+              <!-- Swiper wrapper -->
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center"
+                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center"
+                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center"
+                    style="background-image: url();">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center"
+                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div>
+              <!-- Swiper buttons -->
+            </div>
+            <div>
+              <!-- Swiper pagination -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
-  <script src="/js/carousel.js"></script>
-  <script src="/js/background.js"></script>
+
+  <!-- <script src="script.js"></script> -->
+  <!-- <script src="background.js"></script> -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
