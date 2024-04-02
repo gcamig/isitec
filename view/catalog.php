@@ -32,7 +32,23 @@
               <li class="nav-item-divider p-2"></li>
               <li><ion-icon name="notifications-sharp"></ion-icon></li>
               <li class="nav-item-divider p-2"></li>
-              <li><ion-icon name="person"></ion-icon></li>
+              <li id="dropdown-trigger" class="relative">
+                <ion-icon name="person"></ion-icon>
+                <div class="user-dropdown absolute hidden" style="width: 200px; background: #fff;">
+                  <div class="dropdown-arrow"></div>
+                  <div class="flex flex-col p-5">
+                    <h4>Username</h4>
+                    <small><a style="color: #6938ef;" href="profile">Editar perfil</a></small>
+                  </div>
+                  <div class="px-5 py-3">
+                    <a href="support">Centro de ayuda</a>
+                  </div>
+                  <div class="p-5">
+                    <a style="color: #6938ef;" href="">Cerrar Sesión</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -40,37 +56,38 @@
   </header>
   <main class="container">
     <div class="contenido-central flex-col">
-    <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
-                <a href="#" class="c-card mb-3">
-                  <figure alt="" name="" class="card-img flex justify- items-center"
-                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
-                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
-                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
-                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                  </figure>
-                  <div class="card-content">
-                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
-                  </div>
-                  <div class="card-footer w-full p-3">
-                    <div class="course-rating px-2 flex">
-                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
-                      <div class="test-aptitude-info ml-2 flex gap-2">
-                        <small class="flex gap-1">
-                          <ion-icon name="time"></ion-icon>
-                          <span>30m</span>
-                        </small>
-                        ·
-                        <small class="total">30 preguntas</small>
-                      </div>
-                    </div>
-                  </div>
-                </a>
+      <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+        <a href="#" class="c-card mb-3">
+          <figure alt="" name="" class="card-img flex justify- items-center"
+            style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
+            <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+              src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+              onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+          </figure>
+          <div class="card-content">
+            <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+          </div>
+          <div class="card-footer w-full p-3">
+            <div class="course-rating px-2 flex">
+              <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+              <div class="test-aptitude-info ml-2 flex gap-2">
+                <small class="flex gap-1">
+                  <ion-icon name="time"></ion-icon>
+                  <span>30m</span>
+                </small>
+                ·
+                <small class="total">30 preguntas</small>
               </div>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </main>
 
   <!-- <script src="script.js"></script> -->
   <!-- <script src="background.js"></script> -->
+  <script src="/js/user-dropdown.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
