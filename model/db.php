@@ -274,3 +274,21 @@ function verifyExistentCourse($courseTitle)
     return $result;
   }
 }
+
+function getCoursesDB()
+{
+  $result = false;
+  $conn = getDBConnection();
+  $sql = "SELECT * FROM `courses`";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute();
+    if ($usuaris->rowCount() > 0) {
+      $result = $usuaris->fetchAll(PDO::FETCH_ASSOC);
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}

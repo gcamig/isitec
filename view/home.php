@@ -46,7 +46,9 @@ chdir("..");
               <li><ion-icon name="search-sharp"></ion-icon></li>
               <li class="nav-item-divider p-2"></li>
               <li><ion-icon name="notifications-sharp"></ion-icon></li>
-              <li class="nav-item-divider p-2"></li>
+              <li class="nav-item-divider p-2">
+                <a href="./course_creation.php"></a>
+              </li>
               <li><ion-icon name="person"></ion-icon></li>
           </div>
         </div>

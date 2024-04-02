@@ -1,3 +1,26 @@
+<?php
+  chdir("..");
+  require_once "controller/controller.php";
+  if (!isset($_COOKIE['PHPSESSID'])) {
+    header('Location: /controller/logout.php');
+    exit();
+  }
+  else 
+  {
+    session_start();
+    $_SESSION['user'] = getUserInfo($_SESSION['username']);
+    if($_SERVER["REQUEST_METHOD"] == "GET")
+    {    
+      $courses = getCourses();
+    }
+    else
+    {
+      //entramos por post(entramos por el search)
+      // $courses = getCourseByFilter();
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,35 +63,9 @@
   </header>
   <main class="container">
     <div class="contenido-central flex-col">
-    <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
-                <a href="#" class="c-card mb-3">
-                  <figure alt="" name="" class="card-img flex justify- items-center"
-                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
-                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
-                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
-                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
-                  </figure>
-                  <div class="card-content">
-                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
-                  </div>
-                  <div class="card-footer w-full p-3">
-                    <div class="course-rating px-2 flex">
-                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
-                      <div class="test-aptitude-info ml-2 flex gap-2">
-                        <small class="flex gap-1">
-                          <ion-icon name="time"></ion-icon>
-                          <span>30m</span>
-                        </small>
-                        ·
-                        <small class="total">30 preguntas</small>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-    </div>
+      <!-- usar este div para los cursos -->
+  <?php foreach($courses as $course) echo(showCourseHTML($course)); ?>
   </main>
-
   <!-- <script src="script.js"></script> -->
   <!-- <script src="background.js"></script> -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
