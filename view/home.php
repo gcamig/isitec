@@ -1,15 +1,13 @@
 <?php
 chdir("..");
-  require_once "controller/controller.php";
-  if (!isset($_COOKIE['PHPSESSID'])) {
-    header('Location: /controller/logout.php');
-    exit();
-  }
-  else 
-  {
-    session_start();
-    $_SESSION['user'] = getUserInfo($_SESSION['username']);
-  }
+require_once "controller/controller.php";
+if (!isset($_COOKIE['PHPSESSID'])) {
+  header('Location: /controller/logout.php');
+  exit();
+} else {
+  session_start();
+  $_SESSION['user'] = getUserInfo($_SESSION['username']);
+}
 
 ?>
 
@@ -45,7 +43,7 @@ chdir("..");
             <ul>
               <li><ion-icon name="search-sharp"></ion-icon></li>
               <li class="nav-item-divider p-2"></li>
-              <li><ion-icon name="notifications-sharp"></ion-icon></li>
+              <li><a href="./course_creation.php"><ion-icon name="notifications-sharp"></ion-icon></a></li>
               <li class="nav-item-divider p-2"></li>
               <li><ion-icon name="person"></ion-icon></li>
           </div>
@@ -131,8 +129,7 @@ chdir("..");
               </div>
               <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
                 <a href="#" class="c-card mb-3">
-                  <figure alt="" name="" class="card-img flex justify- items-center"
-                    style="background-image: url();">
+                  <figure alt="" name="" class="card-img flex justify- items-center" style="background-image: url();">
                     <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
                       src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
                       onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">

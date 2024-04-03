@@ -275,7 +275,7 @@ function verifyExistentCourse($courseTitle)
   }
 }
 
-function getCoursesDB()
+function getCoursesDB() /* TODO: Podría devolver null en lugar de false, ya que si no hay cursos y intentas mostrarlos sale error del php */
 {
   $result = false;
   $conn = getDBConnection();
