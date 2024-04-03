@@ -1,5 +1,6 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
+
 require 'vendor/autoload.php';
 require_once "model/db.php";
 
@@ -15,7 +16,7 @@ function insertUser($user)
 
 function generateActivationCode()
 {
-  return hash("sha256",rand(0, 9999));
+  return hash("sha256", rand(0, 9999));
 }
 
 function generateResetPassCode($mail)
@@ -42,7 +43,7 @@ function sendEmail($user, $type)
   $mail->SetFrom('support@cetisi.cat', 'Soporte Cetisi');
   $mail->Subject = ($type == "verification") ? 'Verificación de correo' : 'Restablecer contraseña';
   $mail->isHTML(true);
-  $mail->Body = mailBodyConstructor($user,$type);
+  $mail->Body = mailBodyConstructor($user, $type);
   //Destinatari
   $address = $user['email'];
   $mail->AddAddress($address);
@@ -56,10 +57,10 @@ function sendEmail($user, $type)
   }
 }
 
-function mailBodyConstructor($user,$type)
+function mailBodyConstructor($user, $type)
 {
-  if($type == "verification"){
-  //TODO: CAMBIAR EL CUERPO COMO DICE EN EL WORD
+  if ($type == "verification") {
+    //TODO: CAMBIAR EL CUERPO COMO DICE EN EL WORD
     $verificationLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
     $body = "
           <html>
@@ -73,9 +74,9 @@ function mailBodyConstructor($user,$type)
           </body>
           </html>
       ";
-  }else if($type == "password"){
+  } else if ($type == "password") {
     $passwordLink = 'http://localhost/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
-      $body = "
+    $body = "
       <html>
       <body>
         <p>Hola,</p>
@@ -90,40 +91,48 @@ function mailBodyConstructor($user,$type)
       </body>
       </html>";
   }
-    return $body;
+  return $body;
 }
 
 function verifyAccount($code, $mail)
 {
   //TODO:añadir en el if para comprobar que no este validado ya.
-  if($code == getActivationCode($mail)) return true;
-  else return false;
+  if ($code == getActivationCode($mail))
+    return true;
+  else
+    return false;
 }
 
-function updateActive($mail){
+function updateActive($mail)
+{
   updateActiveDB($mail);
 }
 
-function verifyExistentUser($mail){
+function verifyExistentUser($mail)
+{
   $user = [
     'email' => $mail,
     'username' => '',
   ];
   return verifyExistentUserDB($user);
 }
-function verifyResetPassCode($mail, $resetPassCode){
+function verifyResetPassCode($mail, $resetPassCode)
+{
   return verifyResetPassCodeDB($mail, $resetPassCode);
 }
 
-function verifyTimeLeft($mail, $resetPassCode){
+function verifyTimeLeft($mail, $resetPassCode)
+{
   return verifyTimeLeftDB($mail, $resetPassCode);
 }
 
-function updatePassword($mail, $firstPass){
+function updatePassword($mail, $firstPass)
+{
   return updatePasswordDB($mail, $firstPass);
 }
 
-function sendConfirmationEmail($email){
+function sendConfirmationEmail($email)
+{
   $mail = new PHPMailer(true);
   $mail->IsSMTP();
   //Configuració del servidor de Correu
@@ -156,7 +165,8 @@ function sendConfirmationEmail($email){
   }
 }
 
-function confirmationEmailBodyConstructor(){
+function confirmationEmailBodyConstructor()
+{
   $body = '
   <html>
   <body>
@@ -177,7 +187,8 @@ function confirmationEmailBodyConstructor(){
   return $body;
 }
 
-function getUserInfo($username){
+function getUserInfo($username)
+{
   return getUserInfoDB($username);
 }
 
@@ -193,11 +204,11 @@ function getCourses()
 
 function showCourseHTML($course)
 {
-  $courseHTML = '<div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+  $courseHTML = '<div class="swiper-slide" style="width: 300px; margin-right: 50px;">
                 <a href="#" class="c-card mb-3">
                   <figure alt="" name="" class="card-img flex justify- items-center">
                     <img style="max-width: 60px; height:auto" class="img-fluid" src="/';
-  $courseHTML .= $course["caratula"];      
+  $courseHTML .= $course["caratula"];
   $courseHTML .= '"/>
                   </figure>
                   <div class="card-content">
@@ -207,7 +218,7 @@ function showCourseHTML($course)
                   </div>
                   <div class="card-footer w-full p-3">
                     <div class="course-rating px-2 flex">
-                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8; font-size: 10px;">course</span>
                       <div class="test-aptitude-info ml-2 flex gap-2">
                         <small class="flex gap-1">
                           <ion-icon name="time"></ion-icon>
@@ -219,7 +230,6 @@ function showCourseHTML($course)
                     </div>
                   </div>
                 </a>
-              </div>
-    </div>';
-    return $courseHTML;
+              </div>';
+  return $courseHTML;
 }

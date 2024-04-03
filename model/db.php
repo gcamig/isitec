@@ -8,7 +8,7 @@ function getDBConnection()
   $connString = 'mysql:host=localhost;port=3306;dbname=isitec;charset=utf8';
   $user = 'root';
   $pass = '';
-  $db = null; 
+  $db = null;
   try {
     $db = new PDO($connString, $user, $pass, [PDO::ATTR_PERSISTENT => True]);
   } catch (PDOException $e) {
@@ -28,13 +28,13 @@ function loginUserDB($userOrEmail, $pass)
     $usuaris->execute([':userOrEmail' => $userOrEmail]);
     if ($usuaris->rowCount() == 1) {
       $dadesUsuari = $usuaris->fetch(PDO::FETCH_ASSOC);
-      if($dadesUsuari['active'] == 1){
+      if ($dadesUsuari['active'] == 1) {
         if (password_verify($pass, $dadesUsuari['passHash'])) {
           $result = $dadesUsuari;
           updateLastSignIn($userOrEmail);
         } else
           $result = "Wrong password";
-      }else 
+      } else
         $result = "User not activated";
     } else
       $result = "User or email does not exists";
@@ -235,17 +235,17 @@ function getUserInfoDB($username)
   }
 }
 
-function insertCourseDB($course)  
+function insertCourseDB($course)
 {
   $result = false;
   $conn = getDBConnection();
-  if (verifyExistentCourse($course['title']) == true) $result = "User or email already exist";
-  else
-  {
+  if (verifyExistentCourse($course['title']) == true)
+    $result = "User or email already exist";
+  else {
     $sql = "INSERT INTO courses (title, description, hashtags, publishDate,founder, caratula) VALUES (:title, :description ,:hashtags, now(), :founder, :caratula);";
     try {
       $resultat = $conn->prepare($sql);
-      $resultat->execute(['title'=> $course['title'], ':description' => $course['description'], ':hashtags' => $course['hashtags'], ':founder' => $course['founder'], ':caratula' => $course['caratula']]);
+      $resultat->execute(['title' => $course['title'], ':description' => $course['description'], ':hashtags' => $course['hashtags'], ':founder' => $course['founder'], ':caratula' => $course['caratula']]);
       if ($resultat) {
         $result = true;
       }
@@ -275,7 +275,7 @@ function verifyExistentCourse($courseTitle)
   }
 }
 
-function getCoursesDB()
+function getCoursesDB() /* TODO: Podría devolver null en lugar de false, ya que si no hay cursos y intentas mostrarlos sale error del php */
 {
   $result = false;
   $conn = getDBConnection();

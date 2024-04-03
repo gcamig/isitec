@@ -78,18 +78,18 @@ body {
   padding-bottom: .5rem;
 }
 
-.contenido-central {
-  padding-top: 0;
-  background: #fff;
-}
-
 .nav-container, .contenido-central {
   display: flex;
   align-items: center;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 20px;
+  padding: 0 25px;
+}
+
+.contenido-central {
+  padding-top: 20px;
+  background: #fff;
 }
 
 .navbar>div, .menu, .menu ul {
@@ -183,14 +183,6 @@ main {
   padding: 20px 0;
   margin-top: 75px;
   min-height: calc(100vh - 81.6px);
-}
-
-.contenido-central {
-  display: flex;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
 }
 
 .ver-mas {

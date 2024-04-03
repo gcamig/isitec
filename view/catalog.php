@@ -23,6 +23,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <title>Home Page</title>
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
+  <link rel="stylesheet" type="text/css" href="/css/catalog.css" />
 </head>
 
 <body class="academia" id="screen">
@@ -48,7 +49,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <ul>
               <li><ion-icon name="search-sharp"></ion-icon></li>
               <li class="nav-item-divider p-2"></li>
-              <li><ion-icon name="notifications-sharp"></ion-icon></li>
+              <li><a href="./course_creation.php"><ion-icon name="notifications-sharp"></ion-icon></a></li>
               <li class="nav-item-divider p-2"></li>
               <li id="dropdown-trigger" class="relative">
                 <ion-icon name="person"></ion-icon>
@@ -73,13 +74,17 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     </nav>
   </header>
   <main class="container">
-    <div class="contenido-central flex-col">
-      <!-- usar este div para los cursos -->
-      <?php foreach ($courses as $course)
-        echo (showCourseHTML($course)); ?>
+    <div class="contenido-central flex flex-row-reverse">
+      <aside>mama</aside>
+      <div class="courses-container flex flex-wrap">
+        <!-- usar este div para los cursos -->
+        <?php foreach ($courses as $course)
+          echo (showCourseHTML($course)); ?>
+      </div>
+
+
   </main>
-  <!-- <script src="script.js"></script> -->
-  <!-- <script src="background.js"></script> -->
+
   <script src="/js/user-dropdown.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
