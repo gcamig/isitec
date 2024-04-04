@@ -98,33 +98,35 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   </header>
   <main class="container">
     <div class="contenido-central">
-      <form class="w-full flex flex-col justify-center items-center"
-        action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="post" enctype="multipart/form-data">
-        <div class="form-group flex flex-col">
-          <label for="titulo">Título del Curso:</label>
-          <input type="text" id="titulo" name="title" required>
-        </div>
+      <div class="contenido-central">
+        <form class="w-full flex flex-col justify-center items-center"
+          action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="post" enctype="multipart/form-data">
+          <div class="form-group flex flex-col">
+            <label for="titulo">Título del Curso:</label>
+            <input type="text" id="titulo" name="title" required>
+          </div>
 
-        <div class="form-group flex flex-col hidden">
-          <label for="descripcion">Descripción del Curso:</label>
-          <textarea id="descripcion" name="description" rows="4" required></textarea>
-        </div>
+          <div class="form-group flex flex-col hidden">
+            <label for="descripcion">Descripción del Curso:</label>
+            <textarea id="descripcion" name="description" rows="4" required></textarea>
+          </div>
 
-        <div class="form-group hidden">
-          <label for="etiquetas">Etiquetas:</label>
-          <input type="text" id="etiquetas" name="etiquetas" placeholder="#etiqueta1 #etiqueta2 #etiqueta3">
-        </div>
+          <div class="form-group hidden">
+            <label for="etiquetas">Etiquetas:</label>
+            <input type="text" id="etiquetas" name="etiquetas" placeholder="#etiqueta1 #etiqueta2 #etiqueta3">
+          </div>
 
-        <div class="form-group hidden">
-          <label for="caratula">Carátula de Portada:</label>
-          <input type="file" id="caratula" name="caratula" accept="image/*" required>
-        </div>
+          <div class="form-group hidden">
+            <label for="caratula">Carátula de Portada:</label>
+            <input type="file" id="caratula" name="caratula" accept="image/*" required>
+          </div>
 
-        <div class="form-group">
-          <div>Siguiente</div>
-          <button id="submit-button">Crear curso</button>
-        </div>
-      </form>
+          <div class="form-group">
+            <div>Siguiente</div>
+            <button id="submit-button">Crear curso</button>
+          </div>
+        </form>
+      </div>
     </div>
   </main>
 </body>

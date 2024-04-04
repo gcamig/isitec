@@ -87,6 +87,21 @@ body {
   padding: 0 25px;
 }
 
+.title-container h1 {
+  font-size: 2rem;
+}
+
+.title-container a {
+  font-size: 1.25rem;
+  color: #fff;
+  background: #6938ef;
+  border-radius: 5px;
+}
+
+.title-container a:hover {
+  background: #5b2fd6;
+}
+
 .contenido-central {
   padding-top: 20px;
 }

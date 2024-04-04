@@ -31,53 +31,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 </head>
 
 <body class="academia" id="screen">
-  <header class="fixed z-10 w-full">
-    <nav class="navbar navbar-top-academia">
-      <div class="nav-container w-full">
-        <a class="" href="./home.php">
-          <figure>
-            <img class="" src="/img/logo-name.png" alt="Cetisi" />
-            <figcaption class="cetisi-community-badge">Academia</figcaption>
-          </figure>
-        </a>
-        <div class="menu">
-          <div class="mr-auto pl-3">
-            <ul>
-              <li class="nav-item-divider pr-1"></li>
-              <li><a href="./home.php">Inicio</a></li>
-              <li><a href="./user_space.php">Mi academia</a></li>
-              <li><a href="./catalog.php">Cursos</a></li>
-            </ul>
-          </div>
-          <div class="ml-auto">
-            <ul>
-              <li><ion-icon name="search-sharp"></ion-icon></li>
-              <li class="nav-item-divider p-2"></li>
-              <li><a href="./course_creation.php"><ion-icon name="notifications-sharp"></ion-icon></a></li>
-              <li class="nav-item-divider p-2"></li>
-              <li id="dropdown-trigger" class="relative">
-                <ion-icon name="person"></ion-icon>
-                <div class="user-dropdown absolute hidden" style="width: 200px; background: #fff;">
-                  <div class="dropdown-arrow"></div>
-                  <div class="flex flex-col p-5">
-                    <h4>Username</h4>
-                    <small><a style="color: #6938ef;" href="profile">Editar perfil</a></small>
-                  </div>
-                  <div class="px-5 py-3">
-                    <a href="support">Centro de ayuda</a>
-                  </div>
-                  <div class="p-5">
-                    <a style="color: #6938ef;" href="/controller/logout.php">Cerrar Sesión</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <?php include "model/header.php"; ?>
   <main class="container">
+    <div class="title-container flex justify-between items-center p-6">
+      <h1>Elije un curso</h1>
+      <a class="mr-6 px-4 py-1" href="./course_creation.php">Crear</a>
+    </div>
+    <hr>
     <div class="contenido-central flex flex-row">
       <div class="courses-container flex flex-wrap">
         <!-- usar este div para los cursos -->
@@ -105,10 +65,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                 <span>Categorías</span>
               </div>
               <div>
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                   <ul>
                     <li>
-                      <?php foreach ($tags as $tag) echo (showTagsHTML($tag)); ?>
+                      <?php foreach ($tags as $tag)
+                        echo (showTagsHTML($tag)); ?>
                       <input type="submit" value="Filtrar">
                       <input type="submit" name="reset" value="Reiniciar filtro">
                     </li>
