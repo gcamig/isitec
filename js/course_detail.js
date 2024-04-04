@@ -21,4 +21,5 @@
         videoMiniatura.style.display = 'block';
         videoPopup.style.display = 'none';
     }
+
 // });
