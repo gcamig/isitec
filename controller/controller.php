@@ -263,3 +263,37 @@ function isFounder($username, $title)
 {
   return isFounderDB($username, $title);
 }
+
+function insertVideo($video)
+{
+  return insertVideoDB($video);
+}
+
+function getVideosByCourse($courseID)
+{
+  return getVideosByCourseDB($courseID);
+}
+
+function showVideosHTML($video)
+{
+  $name = explode('.', $video['videoName'])[0];
+  return '<div class="single_video">
+      <video src="/' . $video['video'] . '" class="videoMiniatura" onclick="openVideoPopup(this)"></video>
+      <h3 class="video_name">' . $name . '</h3>
+    </div>
+
+    <div class="video-popup" id="videoPopup">
+      <span id="closeBtn" onclick="closeVideoPopup()">&times;</span>
+      <video src="/' . $video['video'] . '" controls class="videoCompleto"></video>
+    </div>';
+}
+
+function insertLike($courseId)
+{
+  insertLikeDB($courseId);
+}
+
+function insertDislike($courseId)
+{
+  insertDislikeDB($courseId);
+}

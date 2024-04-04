@@ -35,6 +35,13 @@ CREATE TABLE tags (
     tag VARCHAR(40) UNIQUE
 );
 
+CREATE TABLE videos (
+    idvideo INT AUTO_INCREMENT PRIMARY KEY,
+    idcourse INT,
+    video VARCHAR(255) UNIQUE,
+    videoName VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE course_tags (
     idcourse INT,
     idtag INT,
@@ -42,3 +49,11 @@ CREATE TABLE course_tags (
     FOREIGN KEY (idcourse) REFERENCES courses(idcourse),
     FOREIGN KEY (idtag) REFERENCES tags(idtag)
 );
+
+-- CREATE TABLE course_videos (
+--     idcourse INT,
+--     idvideo INT,
+--     PRIMARY KEY (idcourse, idvideo),
+--     FOREIGN KEY (idcourse) REFERENCES courses(idcourse),
+--     FOREIGN KEY (idvideo) REFERENCES videos(idvideo)
+-- );
