@@ -9,6 +9,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php');
+
   } else {
     //entramos por post(entramos por el search)
     // $courses = getCourseByFilter();
@@ -21,6 +22,22 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 
 <head>
   <title>Home Page</title>
+  <style>
+        .file-upload-panel {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .file-upload-panel:hover {
+            background-color: #f0f0f0;
+        }
+
+        .file-upload-input {
+            display: none;
+        }
+    </style>
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
@@ -78,21 +95,39 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       <section class="course-title flex flex-row w-full h">
         <div class="flex flex-col w-full">
           <div class="flex flex-row w-3/5">
-            <h1><?echo $course['title'] ?></h1>
-            <div><?echo $course['score'] ?></div>
+            <h1><?php echo $course['title'] ?></h1>
+            <div><?php echo $course['score'] ?></div>
           </div>
           <div>
-            <p><?echo $course['description'] ?></p>
+            <p><?php echo $course['description'] ?></p>
           </div>
         </div>
-        <?php echo '<div class="course-image w-2/5"
-        style="background-image: url(' . $course['caratula'] . ');"></div>'
+        <?php echo $img = '<div class="course-image w-2/5"
+        style="background-image: url(/' . $course['caratula'] . ');"></div>';
         ?>
-        <!-- <div class="course-image w-2/5"
-          style="background-image: url('/media/227cc135b7e0448eca29a3a4dd8cf6235944d4cbadc2e5f53830aada8e86ac3d.png');">
-        </div> -->
-      </section>
+        <!-- BOTON DE LIKE DISLIKE Y BOTON DE AÑADIR CURSOS -->
+        <?php
+        if(!isFounder($_SESSION['username'], $course['title']))
+        {
+          echo '<button class="btn-position">👍</button>';
+          echo '<button class="btn-position">👎</button>';
+        }else echo '<button class="btn-position">Afegir Videos</button>';
 
+        
+
+        ?>   
+      </section>
+      <div class="file-upload-panel" onclick="document.getElementById('fileInput').click();">
+          Arrastra y suelta imágenes o haz clic para seleccionar archivos
+          <input type="file" id="fileInput" class="file-upload-input" multiple>
+      </div>
+
+      <script>
+          document.getElementById('fileInput').addEventListener('change', function() {
+              // Aquí puedes añadir la lógica para manejar los archivos seleccionados
+              console.log(this.files);
+          });
+      </script>
       <section class="course-content">
 
       </section>
