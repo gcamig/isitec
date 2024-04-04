@@ -248,3 +248,8 @@ function showTagsHTML($tag)
   $tagHTML .= '<br></input>';
   return $tagHTML;
 }
+
+function getCourseByHashTags($hashtags)
+{
+  return getCourseByHashTagsDB($hashtags);
+}

@@ -338,3 +338,32 @@ function getTagsDB()
     return $result;
   }
 }
+
+function getCourseByHashTagsDB($hashtags)
+{
+  $result = [];
+  $conn = getDBConnection();
+  $sql = "SELECT c.idcourse, c.title, c.description, c.publishDate, c.founder, c.caratula, c.nlikes, c.nDislikes, c.score,
+                   (SELECT GROUP_CONCAT(t.tag) 
+                    FROM tags t
+                    JOIN course_tags ct ON t.idtag = ct.idtag
+                    WHERE ct.idcourse = c.idcourse) AS tags
+            FROM courses c
+            JOIN course_tags ct ON c.idcourse = ct.idcourse
+            JOIN tags t ON ct.idtag = t.idtag
+            WHERE t.tag IN ('" . implode("','", $hashtags) . "')
+            GROUP BY c.idcourse, c.title, c.description, c.publishDate, c.founder, c.caratula, c.nlikes, c.nDislikes, c.score";
+  try
+  {
+    $courses = $conn->prepare($sql);
+    $courses->execute();
+    if ($courses->rowCount() > 0) {
+      $result = $courses->fetchAll(PDO::FETCH_ASSOC);
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+  
+}

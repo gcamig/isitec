@@ -11,7 +11,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     $courses = getCourses();
     $tags = getTags();
   } else {
+    $tags = getTags();
     $hashtags = isset($_POST['hashtags']) ? $_POST['hashtags'] : [];
+    $courses = getCourseByHashTags($hashtags);
+    isset($_POST['reset']) ? $courses = getCourses() : '';
     //entramos por post(entramos por el search)
     // $courses = getCourseByFilter();
   }
@@ -108,6 +111,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                     <li>
                       <?php foreach ($tags as $tag) echo (showTagsHTML($tag)); ?>
                       <input type="submit" value="Filtrar">
+                      <input type="submit" name="reset" value="Reiniciar filtro">
                     </li>
                   </ul>
                 </form>
