@@ -206,11 +206,7 @@ function showCourseHTML($course)
 {
   $courseHTML = '<div class="swiper-slide" style="width: 250px; margin-right: 25px;">
                 <a href="./course_detail.php?title=' . $course["title"] . '" class="c-card mb-6">
-                  <figure alt="" name="" class="card-img flex justify- items-center">
-                    <img style="max-width: 60px; height:auto" class="img-fluid" src="/';
-  $courseHTML .= $course["caratula"];
-  $courseHTML .= '"/>
-                  </figure>
+                  <div style="background-image: url(/' . $course["caratula"] . '); background-repeat: no-repeat; background-style: contain" alt="" name="" class="card-img flex justify- items-center"></div>
                   <div class="card-content">
                     <h3 class="card-title w-full px-3 pt-3">';
   $courseHTML .= $course["title"];
