@@ -242,13 +242,40 @@ function insertCourseDB($course)
   if (verifyExistentCourse($course['title']) == true)
     $result = "User or email already exist";
   else {
-    $sql = "INSERT INTO courses (title, description, hashtags, publishDate,founder, caratula) VALUES (:title, :description ,:hashtags, now(), :founder, :caratula);";
+    $sql = "INSERT INTO courses (title, description, publishDate, founder, caratula) VALUES (:title, :description, now(), :founder, :caratula);";
     try {
       $resultat = $conn->prepare($sql);
-      $resultat->execute(['title' => $course['title'], ':description' => $course['description'], ':hashtags' => $course['hashtags'], ':founder' => $course['founder'], ':caratula' => $course['caratula']]);
-      if ($resultat) {
-        $result = true;
+      $resultat->execute([
+        'title' => $course['title'],
+        ':description' => $course['description'],
+        ':founder' => $course['founder'],
+        ':caratula' => $course['caratula']]);
+
+      $courseId = $conn->lastInsertId();
+      $hashtags = explode('#', $course['hashtags']);
+      foreach ($hashtags as $tag)
+      {
+        $tag = trim($tag);
+        $sql = "SELECT idtag FROM tags WHERE tag = :tag";
+        $resultat = $conn->prepare($sql);
+        $resultat->execute([':tag' => $tag]);
+        $row = $resultat->fetch(PDO::FETCH_ASSOC);
+        if($row)
+        {
+          $tagId = $row['idtag'];
+        }else {
+          $sql = "INSERT INTO tags (tag) VALUES (:tag)";
+          $resultat = $conn->prepare($sql);
+          $resultat->execute([':tag' => $tag]);
+
+          $tagId = $conn->lastInsertId();
+        }
+
+        $sql = "INSERT INTO course_tags (idcourse, idtag) VALUES (:idcourse, :idtag)";
+        $resultat = $conn->prepare($sql);
+        $resultat->execute([':idcourse' => $courseId, ':idtag' => $tagId]);
       }
+      $result = true;
     } catch (PDOException $e) {
       echo "";
     } finally {
@@ -261,7 +288,7 @@ function verifyExistentCourse($courseTitle)
 {
   $result = false;
   $conn = getDBConnection();
-  $sql = "SELECT * FROM `courses` WHERE `title`=:courseTitle";
+  $sql = "SELECT COUNT(*) as count FROM courses WHERE title = :title";
   try {
     $usuaris = $conn->prepare($sql);
     $usuaris->execute([':courseTitle' => $courseTitle]);
