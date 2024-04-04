@@ -8,11 +8,23 @@
     background-size: contain;
 }
 
+#btn-add {
+    padding: 10px 20px;
+    background: #6938ef;
+    color: white;
+    border-radius: 5px;
+
+    &:hover {
+        background: #4f1cd7;
+    }
+}
+
 .file-upload-panel {
     border: 2px dashed #ccc;
     padding: 20px;
     text-align: center;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .file-upload-panel:hover {
