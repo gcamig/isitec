@@ -1,0 +1,9 @@
+.course-title {
+    height: 20vh;
+}
+
+.course-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -23,7 +23,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <title>Home Page</title>
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
-  <link rel="stylesheet" type="text/css" href="/css/catalog.css" />
+  <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
 </head>
 
 <body class="academia" id="screen">
@@ -74,19 +74,19 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     </nav>
   </header>
   <main class="container">
-    <div class="contenido-central flex flex-row">
-      <section class="course-title">
-        <div>
-          <div>
+    <div class="contenido-central flex flex-col">
+      <section class="course-title flex flex-row w-full h">
+        <div class="flex flex-col w-full">
+          <div class="flex flex-row w-3/5">
             <h1>Titulo del curso</h1>
-            <div><!-- Valoración --></div>
+            <div>3/10</div>
           </div>
           <div>
             <p>Description</p>
           </div>
         </div>
-        <div>
-          <!-- Videos -->
+        <div class="course-image w-2/5"
+          style="background-image: url('/media/227cc135b7e0448eca29a3a4dd8cf6235944d4cbadc2e5f53830aada8e86ac3d.png');">
         </div>
       </section>
 
