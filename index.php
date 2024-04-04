@@ -5,7 +5,7 @@ $msgError = "";
 $errorBox = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { {
-  if (!isset($_POST["resetPassMail"])) {
+    if (!isset($_POST["resetPassMail"])) {
       $user = $_POST["user"];
       $pass = $_POST["password"];
       $result = loginUser($user, $pass);
@@ -14,13 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       } else if ($result != false) {
         //TODO: CAMBIAR EN FUNCION DE LO QUE NECESITE EL HOME
         session_start();
-        $_SESSION['username'] = $result['username'];  
+        $_SESSION['username'] = $result['username'];
         header('Location: ./view/home.php');
         exit();
       }
-    }else {
-      if(verifyExistentUser($_POST["resetPassMail"]) == true)
-      {
+    } else {
+      if (verifyExistentUser($_POST["resetPassMail"]) == true) {
         $user = [
           'email' => $_POST["resetPassMail"],
           'resetPassCode' => generateResetPassCode($_POST["resetPassMail"])
@@ -31,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     }
   }
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-  
+
   if (isset($_COOKIE['PHPSESSID'])) {
     header('Location: ./view/home.php');
     exit();
@@ -39,8 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   // si el $_Get es empty sabem que hem entrar per primera vegada sino vol dir que venim desde el registre
   if (!empty($_GET)) {
     //mirem si el registre s'ha completat correctament
-    if(isset($_GET["register"])) $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
-    if(isset($_GET["verificationMail"]))$_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
+    if (isset($_GET["register"]))
+      $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
+    if (isset($_GET["verificationMail"]))
+      $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
   }
 }
 
@@ -69,7 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     <h1>Login</h1>
     <?= $msgError ?>
     <!-- Reset password -->
-    <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+    <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>"
+      method="POST">
       <div class="input-box" id="input-email">
         <label for="email"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="resetPassMail" name="resetPassMail" required="true" placeholder="">
@@ -78,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       </div>
       <button class="button-86" id="reset-pass-form-button">Submit</button>
     </form>
-    
+
     <!-- Fi reset password -->
     <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="input-box" id="input-usr">
@@ -100,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       <p id="toggle-area-text">Forgot password?</p>
       <strong id="toggle-form">Click here.</strong>
     </div>
-      
+
     <div class="change-form">
       <p>Don't have an account?</p>
       <a href="./view/register.php">Sign Up</a>

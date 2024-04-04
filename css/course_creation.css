@@ -1,0 +1,39 @@
+.form-group {
+  &.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  &.inactive {
+    display: none;
+  }
+}
+
+.form-group label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 75%;
+  padding: 10px;
+  font-size: 1.5rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.form-group button,
+.form-group div {
+  background: #6938ef;
+  user-select: none;
+  border-radius: 5px;
+}
+
+.form-group button:hover,
+.form-group div:hover {
+  background: #4f1ad1;
+}
