@@ -339,3 +339,7 @@ main {
 .ow-card .test-aptitude-info small {
   font-size: 11.01px;
 }
+
+@media (min-width: 768px) {
+  
+}
