@@ -37,3 +37,21 @@
 .form-group div:hover {
   background: #4f1ad1;
 }
+
+main {
+  margin-top: 0;
+}
+
+.contenido-central {
+  height: 100vh;
+}
+
+@media (max-width: 1030px) {
+  main{
+    margin-top: 10vh;
+  }
+
+  .contenido-central {
+    height: auto;
+  }
+}

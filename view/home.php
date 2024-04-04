@@ -27,10 +27,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <title>Home Page</title>
+  <title>Inicio | Cetisi</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Cetisi">
+  <meta name="description" content="Programming courses website by Cetisi">
+  <meta name="keywords" content="programming, courses, learn, education, web, development">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./img/logo-white.png">
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
 </head>
@@ -38,13 +44,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 <body class="academia" id="screen">
   <?php include "model/header.php"; ?>
   <main class="container">
-    <div class="title-container flex justify-between items-start p-6">
+    <div class="title-container flex justify-between items-center p-6">
       <?php echo "<h1>Hola, $firstName. ¿Que quieres aprender?</h1>"; ?>
       <a class="mr-6 px-4 py-1" href="./course_creation.php">Crear</a>
     </div>
     <hr>
     <div class="items-start contenido-central flex flex-row">
-      <div class=" courses-container flex flex-wrap justify-items-baseline">
+      <div class=" courses-container flex flex-wrap justify-center">
         <!-- usar este div para los cursos -->
         <?php foreach ($courses as $course)
           echo (showCourseHTML($course)); ?>

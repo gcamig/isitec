@@ -204,9 +204,9 @@ function getCourses()
 
 function showCourseHTML($course)
 {
-  $courseHTML = '<div class="swiper-slide" style="width: 250px; margin-right: 25px;">
+  $courseHTML = '<div class="swiper-slide" style="margin-right: 25px;">
                 <a href="./course_detail.php?title=' . $course["title"] . '" class="c-card mb-6">
-                  <div style="background-image: url(/' . $course["caratula"] . '); background-repeat: no-repeat; background-style: contain" alt="" name="" class="card-img flex justify- items-center"></div>
+                  <div style="background-image: url(/' . $course["caratula"] . '); background-repeat: no-repeat; background-size: contain" alt="" name="" class="card-img flex justify- items-center"></div>
                   <div class="card-content">
                     <h3 class="card-title w-full px-3 pt-3">';
   $courseHTML .= $course["title"];

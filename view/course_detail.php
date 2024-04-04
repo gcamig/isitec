@@ -7,7 +7,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 } else {
   session_start();
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php'); 
+    isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php');
     $videos = getVideosByCourse($course['idcourse']);
   } else {
     //entramos por post(entramos al añadir video o dar like)
@@ -16,17 +16,17 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     //queda verificar a que es igual el submit para saber si entramos aqui o no
     //sino entraremos siempre
     if (isset($_POST["submit"]) && $_POST["submit"] == "Añadir") {
-            $videoName = $_FILES["video"]["name"];
-            $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
-            $target_file = "media/". $videoHashName;
-            $uploadOk = 1;
-            $videoFileType = strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
+      $videoName = $_FILES["video"]["name"];
+      $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
+      $target_file = "media/" . $videoHashName;
+      $uploadOk = 1;
+      $videoFileType = strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
 
       // Comprobar si es un archivo de video
       $allowedTypes = array('mp4', 'avi', 'mov', 'flv', 'wmv', 'mpeg');
-      if(!in_array($videoFileType, $allowedTypes)) {
-          echo "Solo se permiten archivos de video: mp4, avi, mov, flv, wmv, mpeg.";
-          $uploadOk = 0;
+      if (!in_array($videoFileType, $allowedTypes)) {
+        echo "Solo se permiten archivos de video: mp4, avi, mov, flv, wmv, mpeg.";
+        $uploadOk = 0;
       }
       // Comprobar si el archivo ya existe
       // if (file_exists($target_file)) {
@@ -36,26 +36,26 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 
       // Comprobar el tamaño del archivo (en este ejemplo, 100MB)
       if ($_FILES["video"]["size"] > 100000000) {
-          echo "Lo siento, tu archivo es demasiado grande.";
-          $uploadOk = 0;
+        echo "Lo siento, tu archivo es demasiado grande.";
+        $uploadOk = 0;
       }
 
       $video = [
-        'videoName' => $videoName,       
+        'videoName' => $videoName,
         'video' => $target_file,
         'courseID' => $course['idcourse']
       ];
-      
-      $video['videoName']=="" ? $insert = false : $insert = insertVideo($video);
+
+      $video['videoName'] == "" ? $insert = false : $insert = insertVideo($video);
       // Si $uploadOk es 0, significa que ocurrió un error
       if ($uploadOk == 0 && $insert == false) {
         //mensaje de error de archivo no valido
-          echo "Lo siento, tu archivo no fue subido.";
+        echo "Lo siento, tu archivo no fue subido.";
       } else {
         //todo: modificar esto no hacen falta los echo
-          move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
+        move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
       }
-    } else if(isset($_POST["rating"])) {
+    } else if (isset($_POST["rating"])) {
       $_POST["rating"] == "👍" ? insertLike($course['idcourse']) : insertDislike($course['idcourse']);
     }
   }
@@ -63,10 +63,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <title>Home Page</title>
+  <title>Detalle | Cetisi</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Cetisi">
+  <meta name="description" content="Programming courses website by Cetisi">
+  <meta name="keywords" content="programming, courses, learn, education, web, development">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./img/logo-white.png">
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
@@ -74,93 +80,49 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 </head>
 
 <body class="academia" id="screen">
-  <header class="fixed z-10 w-full">
-    <nav class="navbar navbar-top-academia">
-      <div class="nav-container w-full">
-        <a class="" href="./home.php">
-          <figure>
-            <img class="" src="/img/logo-name.png" alt="Cetisi" />
-            <figcaption class="cetisi-community-badge">Academia</figcaption>
-          </figure>
-        </a>
-        <div class="menu">
-          <div class="mr-auto pl-3">
-            <ul>
-              <li class="nav-item-divider pr-1"></li>
-              <li><a href="./home.php">Inicio</a></li>
-              <li><a href="./user_space.php">Mi academia</a></li>
-              <li><a href="./catalog.php">Cursos</a></li>
-            </ul>
-          </div>
-          <div class="ml-auto">
-            <ul>
-              <li><ion-icon name="search-sharp"></ion-icon></li>
-              <li class="nav-item-divider p-2"></li>
-              <li><a href="./course_creation.php"><ion-icon name="notifications-sharp"></ion-icon></a></li>
-              <li class="nav-item-divider p-2"></li>
-              <li id="dropdown-trigger" class="relative">
-                <ion-icon name="person"></ion-icon>
-                <div class="user-dropdown absolute hidden" style="width: 200px; background: #fff;">
-                  <div class="dropdown-arrow"></div>
-                  <div class="flex flex-col p-5">
-                    <h4>Username</h4>
-                    <small><a style="color: #6938ef;" href="profile">Editar perfil</a></small>
-                  </div>
-                  <div class="px-5 py-3">
-                    <a href="support">Centro de ayuda</a>
-                  </div>
-                  <div class="p-5">
-                    <a style="color: #6938ef;" href="">Cerrar Sesión</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+  <?php include "model/header.php"; ?>
   <main class="container">
     <div class="contenido-central flex flex-col">
-      <section class="course-title flex flex-row w-full h">
-        <div class="flex flex-col w-full">
-          <div class="flex flex-row w-3/5">
-            <h1><?php echo $course['title'] ?></h1>
-            <div><?php echo $course['score'] ?></div>
-          </div>
+      <section class="course-title flex flex-row w-full mb-5">
+        <div class="flex flex-col w-3/5 p-4">
+          <h1>
+            <?php echo $course['title'] ?>
+          </h1>
+          <p>
+            <?php echo $course['description'] ?>
+          </p>
           <div>
-            <p><?php echo $course['description'] ?></p>
+            <?php echo $course['score'] ?>
           </div>
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <?php
+            if (isFounder($_SESSION['username'], $course['title'])) {
+              echo '<input type="submit" name="rating" value="👍">';
+              echo '<input type="submit" name="rating" value="👎">';
+              echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
+            }
+            ;
+            ?>
+          </form>
         </div>
-        <?php echo $img = '<div class="course-image w-2/5"
-        style="background-image: url(/' . $course['caratula'] . ');"></div>';
+        <?php echo '<div class="course-image w-2/5"
+        style="background-size: cover; background-image: url(/' . $course['caratula'] . ');"></div>';
         ?>
-        <!-- BOTON DE LIKE DISLIKE Y BOTON DE AÑADIR CURSOS -->
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-          <?php
-          if(isFounder($_SESSION['username'], $course['title']))
-          {
-            echo '<input type="submit" name="rating" value="👍">';
-            echo '<input type="submit" name="rating" value="👎">';
-            echo'<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
-          };
-          ?>  
-        </form>
-      
-        </section>
-        <!-- subir archivos + boton  -->
-        <?php if(isFounder($_SESSION['username'], $course['title'])): ?>
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-              <div class="file-upload-panel" onclick="document.getElementById('fileInput').click();">
-                  Subir nuevos videos
-                  <input type="file" name="video" id="fileInput" class="file-upload-input">
-              </div>
-              <input type="submit" name="submit" value="Añadir">
-              <?php echo'<input type="hidden" name="courseID" value ="' . $course['title'] . '">'; ?>
+      </section>
+      <!-- subir archivos + boton  -->
+      <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+          <div class="file-upload-panel" onclick="document.getElementById('fileInput').click();">
+            Subir nuevos videos
+            <input type="file" name="video" id="fileInput" class="file-upload-input">
+          </div>
+          <input type="submit" name="submit" value="Añadir">
+          <?php echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">'; ?>
         <?php endif; ?>
-      <section class="course-content">
-        <?php foreach ($videos as $video) echo (showVideosHTML($video)); ?>
-        <!-- <div class="single_video">
+        <section class="course-content">
+          <?php foreach ($videos as $video)
+            echo (showVideosHTML($video)); ?>
+          <!-- <div class="single_video">
             <video src="/media/d7d33e241b3c57b753bbe1cf25cf359a17e0947bb6bf4a2d3e2c4de39715498a.mp4" class="videoMiniatura" onclick="openVideoPopup(this)"></video>
             <h3 class="video_name">Video name</h3>
         </div>
@@ -169,8 +131,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <span id="closeBtn" onclick="closeVideoPopup()">&times;</span>
             <video src="/media/d7d33e241b3c57b753bbe1cf25cf359a17e0947bb6bf4a2d3e2c4de39715498a.mp4" controls class="videoCompleto"></video>
         </div> -->
-        
-      </section>
+
+        </section>
   </main>
   <script src="/js/course_detail.js"></script>
   <script src="/js/user-dropdown.js"></script>

@@ -40,10 +40,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <title>Home Page</title>
+  <title>Crear curso | Cetisi</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Cetisi">
+  <meta name="description" content="Programming courses website by Cetisi">
+  <meta name="keywords" content="programming, courses, learn, education, web, development">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./img/logo-white.png">
   <link rel="stylesheet" type="text/css" href="/css/output.css">
   <link rel="stylesheet" type="text/css" href="/css/home.css">
   <link rel="stylesheet" type="text/css" href="/css/course_creation.css">
@@ -51,29 +57,29 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 
 <body class="overflow-y-hidden">
   <?php include "model/header.php"; ?>
-  <main class="mt-0">
-    <div class="contenido-central flex items-center h-screen">
+  <main>
+    <div class="contenido-central flex items-center">
       <form class="w-full flex gap-4 flex-col" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>"
         method="post" enctype="multipart/form-data">
 
         <div class="form-group active">
           <label for="titulo">Título del Curso</label>
-          <input type="text" id="titulo" name="title">
+          <input type="text" id="titulo" required name="title">
         </div>
 
         <div class="form-group hidden">
           <label for="descripcion">Descripción del Curso</label>
-          <textarea id="descripcion" name="description" rows="4"></textarea>
+          <textarea id="descripcion" name="description" required rows="4"></textarea>
         </div>
 
         <div class="form-group hidden">
           <label for="etiquetas">Tags</label>
-          <input type="text" id="etiquetas" name="etiquetas" placeholder="#etiqueta1#etiqueta2#etiqueta3">
+          <input type="text" id="etiquetas" name="etiquetas" required placeholder="#etiqueta1#etiqueta2#etiqueta3">
         </div>
 
         <div class="form-group hidden">
           <label for="caratula">Portada</label>
-          <input type="file" id="caratula" name="caratula" accept="image/*">
+          <input type="file" id="caratula" name="caratula" required accept="image/*">
         </div>
 
         <div class="form-group flex flex-row justify-center gap-3">

@@ -72,3 +72,13 @@
     font-size: 24px;
     cursor: pointer;
 }
+
+.course-title h1 {
+  font-size: 50px;
+}
+
+@media (max-width: 768px) {
+  .contenido-central {
+    flex-direction: column;
+  }
+}

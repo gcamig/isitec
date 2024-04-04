@@ -15,10 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
     showStep(currentStep - 1);
   });
 
-  submitBtn.addEventListener('click', function () {
-    alert('Form submitted!');
-  });
-
   function showStep(step) {
     console.log('showStep', step);
     steps[currentStep].classList.remove('active');
@@ -35,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (currentStep === steps.length - 2) {
+      
       nextBtn.classList.add('hidden');
       submitBtn.classList.remove('hidden');
     } else {

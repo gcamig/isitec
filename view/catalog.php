@@ -18,61 +18,22 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <title>Home Page</title>
+  <title>Catálogo | Cetisi</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Cetisi">
+  <meta name="description" content="Programming courses website by Cetisi">
+  <meta name="keywords" content="programming, courses, learn, education, web, development">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./img/logo-white.png"> 
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
 </head>
 
 <body class="academia" id="screen">
-  <header class="fixed z-10 w-full">
-    <nav class="navbar navbar-top-academia">
-      <div class="nav-container w-full">
-        <a class="" href="./home.php">
-          <figure>
-            <img class="" src="/img/logo-name.png" alt="Cetisi" />
-            <figcaption class="cetisi-community-badge">Academia</figcaption>
-          </figure>
-        </a>
-        <div class="menu">
-          <div class="mr-auto pl-3">
-            <ul>
-              <li class="nav-item-divider pr-1"></li>
-              <li><a href="./home.php">Inicio</a></li>
-              <li><a href="./user_space.php">Mi academia</a></li>
-              <li><a href="./catalog.php">Cursos</a></li>
-            </ul>
-          </div>
-          <div class="ml-auto">
-            <ul>
-              <li><ion-icon name="search-sharp"></ion-icon></li>
-              <li class="nav-item-divider p-2"></li>
-              <li><a href="./course_creation.php"><ion-icon name="notifications-sharp"></ion-icon></a></li>
-              <li class="nav-item-divider p-2"></li>
-              <li id="dropdown-trigger" class="relative">
-                <ion-icon name="person"></ion-icon>
-                <div class="user-dropdown absolute hidden" style="width: 200px; background: #fff;">
-                  <div class="dropdown-arrow"></div>
-                  <div class="flex flex-col p-5">
-                    <h4>Username</h4>
-                    <small><a style="color: #6938ef;" href="profile">Editar perfil</a></small>
-                  </div>
-                  <div class="px-5 py-3">
-                    <a href="support">Centro de ayuda</a>
-                  </div>
-                  <div class="p-5">
-                    <a style="color: #6938ef;" href="/controller/logout.php">Cerrar Sesión</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+<?php include "model/header.php"; ?>
   <main class="container">
     <div class="contenido-central flex-col items-center">
       <h1>Hola, User First Name. ¿Qué quieres aprender?</h1>
@@ -179,7 +140,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                   <ul>
                     <li>
                       <?php foreach ($tags as $tag)
-                        echo (showTagsHTML($tag)); ?>
+                        echo (showTagsHTML($tag, $hashtags)); ?>
                     </li>
                   </ul>
                 </form>

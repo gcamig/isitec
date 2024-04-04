@@ -54,7 +54,7 @@ body {
 }
 
 .container {
-  width: 100%;
+  max-width: 1200px;
   padding-right: 15px;
   padding-left: 15px;
   padding-top: 0;
@@ -273,7 +273,7 @@ main {
 
 .swiper-slide {
   flex-shrink: 0;
-  width: 100%;
+  width: 250px;
   height: 100%;
   position: relative;
   transition-property: transform;
@@ -389,6 +389,52 @@ main {
   border: 1px solid #7d7d7d;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1030px) {
+  .contenido-central {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .contenido-central .aside {
+    width: 100%;
+  }
+
+  .contenido-central .courses-container {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    width: 100%;
+  }
+
+  .navbar {
+    height: 10vh;
+  }
+
+  nav figure img {
+    height: 50%;
+    object-fit: contain;
+  }
+
+  .menu li a {
+    font-size: 2rem;
+  }
+
+  nav ion-icon {
+    font-size: 3rem;
+  }
+
+  main {
+    margin-top: 10vh;
+  }
+}
+
+@media (max-width: 992px) {
   
+}
+
+@media (max-width: 1028px) {
+  .contenido-central {
+    flex-direction: column-reverse;
+  }
 }

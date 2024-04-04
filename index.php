@@ -50,13 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
 <html lang="es">
 
 <head>
-  <title>Login | Isitec</title>
+  <title>Login | Cetisi</title>
   <meta charset="utf-8">
-  <meta name="author" content="author">
-  <meta name="description" content="description">
+  <meta name="author" content="Cetisi">
+  <meta name="description" content="Programming courses website by Cetisi">
+  <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./css/common.css">
   <link rel="icon" href="./img/logo-white.png">
+  <link rel="stylesheet" href="./css/common.css">
 </head>
 
 <body id="screen">

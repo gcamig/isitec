@@ -3,7 +3,7 @@ $firstName = $_SESSION['user']['userFirstName'];
 $userfullname = $firstName . " " . $_SESSION['user']['userLastName'];
 echo <<<HTML
 <header class="fixed z-10 w-full">
-    <nav class="navbar navbar-top-academia">
+    <nav class="navbar navbar-top-academia flex items-center">
         <div class="nav-container w-full">
             <a class="" href="./home.php">
                 <figure>
@@ -16,13 +16,13 @@ echo <<<HTML
                     <ul>
                         <li class="nav-item-divider pr-1"></li>
                         <li><a href="./home.php">Inicio</a></li>
-                        <li><a href="./user_space.php">Mi academia</a></li>
-                        <li><a href="./catalog.php">Cursos</a></li>
+                        <!-- <li><a href="./user_space.php">Mi academia</a></li>
+                        <li><a href="./catalog.php">Cursos</a></li> -->
                     </ul>
                 </div>
                 <div class="ml-auto">
                     <ul>
-                        <li><ion-icon name="information-circle-sharp" style="font-size:30px;"></ion-icon></li>
+                        <li><ion-icon name="information-circle-sharp"></ion-icon></li>
                         <li class="nav-item-divider p-2"></li>
                         <li id="dropdown-trigger" class="relative">
                             <ion-icon name="person"></ion-icon>
