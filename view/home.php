@@ -90,7 +90,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         </div>
       </aside>
   </main>
-
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="/img/logo-black.png" alt="Cetisi logo">
+      </div>
+      <div class="footer-info">
+        <p>© 2021 Cetisi, Inc. All rights reserved</p>
+      </div>
+    </div>
+  </footer>
   <script src="/js/user-dropdown.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
