@@ -1,10 +1,10 @@
 <?php
 function getDBConnection()
 {
-  /*$connString = 'mysql:host=172.21.0.222;port=3306;dbname=ddb218593;charset=utf8';
+  /* $connString = 'mysql:host=172.21.0.222;port=3306;dbname=ddb218593;charset=utf8';
   $user = 'ddb218593';
   $pass = 'Cetisi1234';
-  $db = null;*/
+  $db = null; */
   $connString = 'mysql:host=localhost;port=3306;dbname=isitec;charset=utf8';
   $user = 'root';
   $pass = '';
