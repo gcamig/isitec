@@ -30,7 +30,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <header class="fixed z-10 w-full">
     <nav class="navbar navbar-top-academia">
       <div class="nav-container w-full">
-        <a class="" href="/index.html">
+        <a class="" href="./home.php">
           <figure>
             <img class="" src="/img/logo-name.png" alt="Cetisi" />
             <figcaption class="cetisi-community-badge">Academia</figcaption>
