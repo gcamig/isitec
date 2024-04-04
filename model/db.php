@@ -456,7 +456,7 @@ function getVideosByCourseDB($courseID)
 function insertLikeDB($courseId)
 {
     $conn = getDBConnection();
-    $sql = "UPDATE `courses` SET nlikes = nlikes + 1, score = (nlikes / (nlikes + nDislikes)) * 5 WHERE idcourse = :idcourse";
+    $sql = "UPDATE `courses` SET nlikes = nlikes + 1, score = ROUND((nlikes / (nlikes + nDislikes)) * 5,1) WHERE idcourse = :idcourse";
     try {
         $stmp = $conn->prepare($sql);
         $res = $stmp->execute([':idcourse' => $courseId]);
@@ -469,11 +469,51 @@ function insertLikeDB($courseId)
 function insertDislikeDB($courseId)
 {
     $conn = getDBConnection();
-    $sql = "UPDATE `courses` SET nDislikes = nDislikes + 1, score = (nlikes / (nlikes + nDislikes)) * 5 WHERE idcourse = :idcourse";
+    $sql = "UPDATE `courses` SET nDislikes = nDislikes + 1, score = ROUND((nlikes / (nlikes + nDislikes)) * 5,1) WHERE idcourse = :idcourse";
     try {
         $stmp = $conn->prepare($sql);
         $stmp->execute([':idcourse' => $courseId]);
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
+    }
+}
+
+function getCourseHashTagsDB($courseId)
+{
+    $result = [];
+    $conn = getDBConnection();
+    $sql = "SELECT idtag FROM `course_tags` WHERE idcourse = :idcourse";
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':idcourse' => $courseId]);
+        if ($stmt->rowCount() > 0) {
+            $hashtags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($hashtags as $tag) {
+                $result[] = getTagNameById($tag['idtag']);
+            }
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    } finally {
+        return $result;
+    }
+}
+
+function getTagNameById($tagId)
+{
+    $result = '';
+    $conn = getDBConnection();
+    $sql = "SELECT tag FROM `tags` WHERE idtag = :idtag";
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':idtag' => $tagId]);
+        if ($stmt->rowCount() > 0) {
+            $tag = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $tag['tag'];
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    } finally {
+        return $result;
     }
 }
