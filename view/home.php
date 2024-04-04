@@ -6,7 +6,9 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   exit();
 } else {
   session_start();
-
+  $hashtags = [];
+  $username = $_SESSION['user']['username'];
+  $userfullname = $_SESSION['user']['userFirstName'] . " " . $_SESSION['user']['userLastName'];
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $courses = getCourses();
@@ -16,7 +18,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     $tags = getTags();
     $hashtags = isset($_POST['hashtags']) ? $_POST['hashtags'] : [];
     $hashtags == [] ? $courses = getCourses() : $courses = getCourseByHashTags($hashtags);
-    isset($_POST['reset']) ? $courses = getCourses() : '';
+    if (isset($_POST['reset'])) {
+      $courses = getCourses();
+      $hashtags = [];
+    }
   }
 }
 ?>
