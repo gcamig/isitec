@@ -24,14 +24,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <title>Home Page</title>
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
-  <link rel="stylesheet" type="text/css" href="/css/catalog.css" />
 </head>
 
 <body class="academia" id="screen">
   <header class="fixed z-10 w-full">
     <nav class="navbar navbar-top-academia">
       <div class="nav-container w-full">
-        <a class="" href="/index.html">
+        <a class="" href="./home.php">
           <figure>
             <img class="" src="/img/logo-name.png" alt="Cetisi" />
             <figcaption class="cetisi-community-badge">Academia</figcaption>
@@ -64,7 +63,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                     <a href="support">Centro de ayuda</a>
                   </div>
                   <div class="p-5">
-                    <a style="color: #6938ef;" href="">Cerrar Sesión</a>
+                    <a style="color: #6938ef;" href="/controller/logout.php">Cerrar Sesión</a>
                   </div>
                 </div>
               </li>
@@ -75,31 +74,105 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     </nav>
   </header>
   <main class="container">
-    <div class="contenido-central flex flex-row">
-      <div class="courses-container flex flex-wrap">
-        <!-- usar este div para los cursos -->
-        <?php foreach ($courses as $course)
-          echo (showCourseHTML($course)); ?>
+    <div class="contenido-central flex-col">
+      <h1>Hola, User First Name. ¿Qué quieres aprender?</h1>
+      <div class="row mb-4">
+        <!-- TODO: Carousel -->
       </div>
-
-      <aside class="aside">
-        <div>
-          <!-- Borrar filtros -->
-        </div>
-        <form>
-          <h3>Filtrar</h3>
-          <div class="searchbox">
-            <form action="search">
-              <input class="ais-SearchBox-input" type="search" placeholder="Buscar por nombre" autocomplete="off"
-                autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-label="Search">
-            </form>
+      <section class="w-full">
+        <!-- Seccion 1 -->
+        <div class="row items-baseline mt-5">
+          <div class="columns-md">
+            <h3 class="title flex items-baseline">Descubre los últimos cursos
+              <a class="ver-mas" href="#">
+                <span>Ver más</span>
+                <ion-icon class="ml-2" name="chevron-forward"></ion-icon>
+              </a>
+            </h3>
           </div>
-        </form>
-        <div class="dynamic-widgets-c">
-          <div class="dynamic-widgets">
-            <div class="widget">
-              <div>
-                <span>Categorías</span>
+        </div>
+        <div class="w-full" style="min-height: 351px;">
+          <div class="swiper swiper-horizontal swiper-backface-hidden">
+            <!-- TODO: Carousel con "Tarjetas de los últimos cursos" -->
+            <div class="swipe-wrapper flex"
+              style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); transition-delay: 0ms;">
+              <!-- Swiper wrapper -->
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center"
+                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center"
+                    style="background-image: url('https://cdn.openwebinars.net/static/academy/img/bg-card-test-aptitude.jpg');">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide" style="width: 247.5px; margin-right: 50px;">
+                <a href="#" class="c-card mb-3">
+                  <figure alt="" name="" class="card-img flex justify- items-center" style="background-image: url();">
+                    <img style="max-width: 60px; height:auto" class="img-fluid" data-pagespeed-url-hash="299358230"
+                      src="https://cdn.openwebinars.net/media/academy/leveltest/php-logo.svg"
+                      onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);">
+                  </figure>
+                  <div class="card-content">
+                    <h3 class="card-title w-full px-3 pt-3">Test de aptitud PHP</h3>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="course-rating px-2 flex">
+                      <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8;">test</span>
+                      <div class="test-aptitude-info ml-2 flex gap-2">
+                        <small class="flex gap-1">
+                          <ion-icon name="time"></ion-icon>
+                          <span>30m</span>
+                        </small>
+                        ·
+                        <small class="total">30 preguntas</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </div>
               <div>
                 <form action="">
@@ -111,9 +184,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                 </form>
               </div>
             </div>
+            <div>
+              <!-- Swiper buttons -->
+            </div>
+            <div>
+              <!-- Swiper pagination -->
+            </div>
           </div>
         </div>
-      </aside>
+      </section>
+    </div>
   </main>
 
   <script src="/js/user-dropdown.js"></script>
