@@ -105,29 +105,30 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <input type="text" id="titulo" name="title" required>
         </div>
 
-        <div class="form-group flex flex-col">
+        <div class="form-group flex flex-col hidden">
           <label for="descripcion">Descripción del Curso:</label>
           <textarea id="descripcion" name="description" rows="4" required></textarea>
         </div>
 
-        <div class="form-group">
+        <div class="form-group hidden">
           <label for="etiquetas">Etiquetas:</label>
           <input type="text" id="etiquetas" name="etiquetas" placeholder="#etiqueta1 #etiqueta2 #etiqueta3">
         </div>
 
-        <div class="form-group">
+        <div class="form-group hidden">
           <label for="caratula">Carátula de Portada:</label>
           <input type="file" id="caratula" name="caratula" accept="image/*" required>
         </div>
 
         <div class="form-group">
-          <input type="submit" value="Enviar">
+          <button id="submit-button">Siguiente</button>
         </div>
       </form>
     </div>
   </main>
 </body>
 <script src="/js/user-dropdown.js"></script>
+<script src="/js/form_steps.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
