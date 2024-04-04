@@ -204,8 +204,8 @@ function getCourses()
 
 function showCourseHTML($course)
 {
-  $courseHTML = '<div class="swiper-slide" style="width: 300px; margin-right: 50px;">
-                <a href="#" class="c-card mb-3">
+  $courseHTML = '<div class="swiper-slide" style="width: 250px; margin-right: 25px;">
+                <a href="./course_detail.php" class="c-card mb-6">
                   <figure alt="" name="" class="card-img flex justify- items-center">
                     <img style="max-width: 60px; height:auto" class="img-fluid" src="/';
   $courseHTML .= $course["caratula"];

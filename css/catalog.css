@@ -1,0 +1,15 @@
+.contenido-central .aside {
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: relative;
+    height: auto;
+    width: inherit;
+    right: auto;
+    overflow: visible;
+}
+
+.contenido-central .courses-container {
+    margin: auto;
+    width: 75%;
+}

@@ -75,45 +75,24 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   </header>
   <main class="container">
     <div class="contenido-central flex flex-row">
-      <div class="courses-container flex flex-wrap">
-        <!-- usar este div para los cursos -->
-        <?php foreach ($courses as $course)
-          echo (showCourseHTML($course)); ?>
-      </div>
-
-      <aside class="aside">
+      <section class="course-title">
         <div>
-          <!-- Borrar filtros -->
-        </div>
-        <form>
-          <h3>Filtrar</h3>
-          <div class="searchbox">
-            <form action="search">
-              <input class="ais-SearchBox-input" type="search" placeholder="Buscar por nombre" autocomplete="off"
-                autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-label="Search">
-            </form>
+          <div>
+            <h1>Titulo del curso</h1>
+            <div><!-- Valoración --></div>
           </div>
-        </form>
-        <div class="dynamic-widgets-c">
-          <div class="dynamic-widgets">
-            <div class="widget">
-              <div>
-                <span>Categorías</span>
-              </div>
-              <div>
-                <form action="">
-                  <ul>
-                    <li>
-                      <input type="checkbox" id="categoria">
-                      <label for="categoria">Ejemplo</label>
-                    </li>
-                  </ul>
-                </form>
-              </div>
-            </div>
+          <div>
+            <p>Description</p>
           </div>
         </div>
-      </aside>
+        <div>
+          <!-- Videos -->
+        </div>
+      </section>
+
+      <section class="course-content">
+
+      </section>
   </main>
 
   <script src="/js/user-dropdown.js"></script>
