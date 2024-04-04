@@ -94,7 +94,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <?php echo $course['description'] ?>
           </p>
           <div>
-            <?php echo $course['score'] ?>
+            <?php echo '<ion-icon name="star"></ion-icon>' . ' '. $course['score'] ?>
           </div>
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <?php
