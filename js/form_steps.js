@@ -1,50 +1,46 @@
+document.addEventListener('DOMContentLoaded', function () {
+  var steps = document.querySelectorAll('.form-group');
+  var currentStep = 0;
+  var nextBtn = document.getElementById('btn-next');
+  var prevBtn = document.getElementById('btn-prev');
+  var submitBtn = document.getElementById('btn-submit');
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const form = document.querySelector("form");
-//   const formGroups = form.querySelectorAll(".form-group");
-//   const submitButton = form.querySelector("#submit-button");
-//   let currentStep = 0;
+  nextBtn.addEventListener('click', function () {
+    console.log('next button clicked');
+    showStep(currentStep + 1);
 
-//   function showStep(step) {
-//     formGroups[currentStep].classList.add("hidden");
-//     formGroups[step].classList.remove("hidden");
-//     currentStep = step;
+  });
 
-//     if (currentStep === formGroups.length - 1) {
-//       submitButton.textContent = "Submit";
-//       submitButton.addEventListener("click", submitForm);
-//     } else {
-//       submitButton.textContent = "Next";
-//       submitButton.removeEventListener("click", submitForm);
-//     }
-//   }
+  prevBtn.addEventListener('click', function () {
+    showStep(currentStep - 1);
+  });
 
-//   function submitForm(e) {
-//     e.preventDefault();
-//     showStep(currentStep + 1);
-//   }
-
-//   submitButton.addEventListener("click", submitForm);
-// });
-
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  const formGroups = form.querySelectorAll(".form-group");
-  const submitButton = form.querySelector("#submit-button");
-  let currentStep = 0;
+  submitBtn.addEventListener('click', function () {
+    alert('Form submitted!');
+  });
 
   function showStep(step) {
-    formGroups[currentStep].classList.add("hidden");
-    formGroups[step].classList.remove("hidden");
+    console.log('showStep', step);
+    steps[currentStep].classList.remove('active');
+    steps[currentStep].classList.add('hidden');
+
+    steps[step].classList.remove('hidden');
+    steps[step].classList.add('active');
     currentStep = step;
 
-    if (currentStep === formGroups.length - 1) {
-      submitButton.textContent = "Crear";
+    if (currentStep === 0) {
+      prevBtn.classList.add('hidden');
+    } else {
+      prevBtn.classList.remove('hidden');
+    }
+
+    if (currentStep === steps.length - 2) {
+      nextBtn.classList.add('hidden');
+      submitBtn.classList.remove('hidden');
+    } else {
+      nextBtn.classList.remove('hidden');
+      nextBtn.classList.add('active');
+      submitBtn.classList.add('hidden');
     }
   }
-
-  submitButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    showStep(currentStep + 1);
-  });
 });

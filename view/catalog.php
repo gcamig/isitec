@@ -74,7 +74,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     </nav>
   </header>
   <main class="container">
-    <div class="contenido-central flex-col">
+    <div class="contenido-central flex-col items-center">
       <h1>Hola, User First Name. ¿Qué quieres aprender?</h1>
       <div class="row mb-4">
         <!-- TODO: Carousel -->
@@ -178,7 +178,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                 <form action="">
                   <ul>
                     <li>
-                    <?php foreach ($tags as $tag) echo (showTagsHTML($tag)); ?>
+                      <?php foreach ($tags as $tag)
+                        echo (showTagsHTML($tag)); ?>
                     </li>
                   </ul>
                 </form>

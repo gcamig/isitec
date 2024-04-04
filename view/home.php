@@ -6,8 +6,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   exit();
 } else {
   session_start();
-  $username = $_SESSION['user']['username'];
-  $userfullname = $_SESSION['user']['userFirstName'] . " " . $_SESSION['user']['userLastName'];
+
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $courses = getCourses();
@@ -35,13 +34,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 <body class="academia" id="screen">
   <?php include "model/header.php"; ?>
   <main class="container">
-    <div class="title-container flex justify-between items-center p-6">
-      <?php echo "<h1>Hola $username</h1>"; ?>
+    <div class="title-container flex justify-between items-start p-6">
+      <?php echo "<h1>Hola, $firstName. ¿Que quieres aprender?</h1>"; ?>
       <a class="mr-6 px-4 py-1" href="./course_creation.php">Crear</a>
     </div>
     <hr>
-    <div class="contenido-central flex flex-row">
-      <div class="courses-container flex flex-wrap">
+    <div class="items-start contenido-central flex flex-row">
+      <div class=" courses-container flex flex-wrap justify-items-baseline">
         <!-- usar este div para los cursos -->
         <?php foreach ($courses as $course)
           echo (showCourseHTML($course)); ?>
