@@ -28,7 +28,6 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <title>Home Page</title>
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
-  <link rel="stylesheet" type="text/css" href="/css/catalog.css" />
 </head>
 
 <body class="academia" id="screen">
@@ -47,14 +46,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       </div>
 
       <aside class="aside">
-        <div>
-          <!-- Borrar filtros -->
-        </div>
         <form>
-          <h3>Filtrar</h3>
           <div class="searchbox">
             <form action="search">
-              <input class="ais-SearchBox-input" type="search" placeholder="Buscar por nombre" autocomplete="off"
+              <input class="searchBox-input" type="search" placeholder="Buscar por nombre" autocomplete="off"
                 autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-label="Search">
             </form>
           </div>
@@ -71,8 +66,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                     <li>
                       <?php foreach ($tags as $tag)
                         echo (showTagsHTML($tag)); ?>
-                      <input type="submit" value="Filtrar">
-                      <input type="submit" name="reset" value="Reiniciar filtro">
+                      <div class="filters">
+                        <input type="submit" value="Filtrar">
+                        <input type="submit" name="reset" value="Reiniciar filtro">
+                      </div>
                     </li>
                   </ul>
                 </form>
