@@ -205,25 +205,26 @@ function getCourses()
 function showCourseHTML($course)
 {
   $tags = getCourseHashTags($course['idcourse']);
-  $courseHTML = '<div class="swiper-slide" style="width: 250px; margin-right: 25px;">
+  $courseHTML = '<div class="swiper-slide" style="margin-right: 25px;">
                 <a href="./course_detail.php?title=' . $course["title"] . '" class="c-card mb-6">
-                  <div style="background-image: url(/' . $course["caratula"] . '); background-repeat: no-repeat; background-size: contain" alt="" name="" class="card-img flex justify- items-center"></div>
+                  <div style="background-image: url(/' . $course["caratula"] . '); background-repeat: no-repeat;" alt="" name="" class="card-img flex justify- items-center"></div>
                   <div class="card-content">
                     <h3 class="card-title w-full px-3 pt-3">';
   $courseHTML .= $course["title"];
-  $courseHTML .= '</h3> 
-                  </div>
-                  <div class="card-footer w-full p-3">';
-
+  $courseHTML .= '</h3>
+                  <div class="w-full p-2">';
   foreach ($tags as $tag) {
     $courseHTML .= '<div>#' . $tag . '</div>';
   }
-  $courseHTML .= '
-                    <div class="course-rating px-2 flex">
+  $courseHTML .= '</div>
+                  </div>
+                  <div class="card-footer w-full p-3">
+                    <div class="w-full course-rating px-2 flex">
                       <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8; font-size: 10px;">course</span>
-                      <div class="test-aptitude-info ml-2 flex gap-2">
-                        <small class="flex gap-1">' . $course['score'] . '                  
-                        <ion-icon name="star"></ion-icon></small>                
+                      <div class="w-full test-aptitude-info ml-2 flex items-center justify-between gap-2">
+                        <small class="w-full flex gap-1 items-center"><ion-icon name="star"></ion-icon>
+                        ' . $course['score'] . '                  
+                        </small>                
                       </div>
                     </div>
                   </div>
