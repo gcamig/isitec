@@ -61,7 +61,7 @@ function mailBodyConstructor($user, $type)
 {
   if ($type == "verification") {
     //TODO: CAMBIAR EL CUERPO COMO DICE EN EL WORD
-    $verificationLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
+    $verificationLink = 'http://cetisi.cat/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
     $body = "
           <html>
           <body>
@@ -75,7 +75,7 @@ function mailBodyConstructor($user, $type)
           </html>
       ";
   } else if ($type == "password") {
-    $passwordLink = 'http://localhost/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
+    $passwordLink = 'http://cetisi.cat/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
     $body = "
       <html>
       <body>
