@@ -100,7 +100,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     <div class="contenido-central">
       <div class="contenido-central">
         <form class="w-full flex flex-col justify-center items-center"
-          action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="post" enctype="multipart/form-data">
+          action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST" enctype="multipart/form-data">
           <div class="form-group flex flex-col">
             <label for="titulo">Título del Curso:</label>
             <input type="text" id="titulo" name="title" required>
@@ -122,8 +122,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           </div>
 
           <div class="form-group">
-            <div>Siguiente</div>
-            <button id="submit-button">Crear curso</button>
+            
+            <input type="submit" id="submit-button">Crear curso</input>
           </div>
         </form>
       </div>
