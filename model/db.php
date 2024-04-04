@@ -456,7 +456,7 @@ function getVideosByCourseDB($courseID)
 function insertLikeDB($courseId)
 {
     $conn = getDBConnection();
-    $sql = "UPDATE `courses` SET nlikes = nlikes + 1, score = (nlikes / (nlikes + nDislikes)) * 5 WHERE idcourse = :idcourse";
+    $sql = "UPDATE `courses` SET nlikes = nlikes + 1, score = ROUND((nlikes / (nlikes + nDislikes)) * 5,1) WHERE idcourse = :idcourse";
     try {
         $stmp = $conn->prepare($sql);
         $res = $stmp->execute([':idcourse' => $courseId]);
@@ -469,7 +469,7 @@ function insertLikeDB($courseId)
 function insertDislikeDB($courseId)
 {
     $conn = getDBConnection();
-    $sql = "UPDATE `courses` SET nDislikes = nDislikes + 1, score = (nlikes / (nlikes + nDislikes)) * 5 WHERE idcourse = :idcourse";
+    $sql = "UPDATE `courses` SET nDislikes = nDislikes + 1, score = ROUND((nlikes / (nlikes + nDislikes)) * 5,1) WHERE idcourse = :idcourse";
     try {
         $stmp = $conn->prepare($sql);
         $stmp->execute([':idcourse' => $courseId]);
