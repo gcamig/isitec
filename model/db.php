@@ -367,3 +367,21 @@ function getCourseByHashTagsDB($hashtags)
   }
   
 }
+
+function getCourseByIdBD($title)
+{
+  $result = [];
+  $conn = getDBConnection();
+  $sql = "SELECT * FROM `courses` WHERE title = :title";
+  try {
+    $usuaris = $conn->prepare($sql);
+    $usuaris->execute([':title' => $title]);
+    if ($usuaris->rowCount() == 1) {
+      $result = $usuaris->fetch(PDO::FETCH_ASSOC);
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}
