@@ -27,7 +27,7 @@ echo <<<HTML
                             <div class="user-dropdown absolute hidden" style="width: 200px; background: #fff;">
                                 <div class="dropdown-arrow"></div>
                                 <div class="flex flex-col p-5">
-                                    <h4>Username</h4>
+                                    <h1>$username</h1>
                                     <small><a style="color: #6938ef;" href="profile">Editar perfil</a></small>
                                 </div>
                                 <div class="px-5 py-3">

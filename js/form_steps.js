@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentStep = step;
 
     if (currentStep === formGroups.length - 1) {
-      submitButton.textContent = "Submit";
+      submitButton.textContent = "Crear";
     }
   }
 
