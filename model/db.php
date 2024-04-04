@@ -252,8 +252,8 @@ function insertCourseDB($course)
         ':caratula' => $course['caratula']]);
 
       $courseId = $conn->lastInsertId();
-      $hashtags = substr($hashtags, 1);
       $hashtags = explode('#', $course['hashtags']);
+      array_shift($hashtags);
       foreach ($hashtags as $tag)
       {
         $tag = trim($tag);
