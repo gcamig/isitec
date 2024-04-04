@@ -264,26 +264,28 @@ function insertCourseDB($course)
 
             $courseId = $conn->lastInsertId();
             $hashtags = explode('#', $course['hashtags']);
-            array_shift($hashtags);
+            // array_shift($hashtags);
             foreach ($hashtags as $tag) {
-                $tag = trim($tag);
-                $sql = "SELECT idtag FROM tags WHERE tag = :tag";
-                $resultat = $conn->prepare($sql);
-                $resultat->execute([':tag' => $tag]);
-                $row = $resultat->fetch(PDO::FETCH_ASSOC);
-                if ($row) {
-                    $tagId = $row['idtag'];
-                } else {
-                    $sql = "INSERT INTO tags (tag) VALUES (:tag)";
+                if($tag != ""){
+                    $tag = trim($tag);
+                    $sql = "SELECT idtag FROM tags WHERE tag = :tag";
                     $resultat = $conn->prepare($sql);
                     $resultat->execute([':tag' => $tag]);
-
-                    $tagId = $conn->lastInsertId();
+                    $row = $resultat->fetch(PDO::FETCH_ASSOC);
+                    if ($row) {
+                        $tagId = $row['idtag'];
+                    } else {
+                        $sql = "INSERT INTO tags (tag) VALUES (:tag)";
+                        $resultat = $conn->prepare($sql);
+                        $resultat->execute([':tag' => $tag]);
+    
+                        $tagId = $conn->lastInsertId();
+                    }
+    
+                    $sql = "INSERT INTO course_tags (idcourse, idtag) VALUES (:idcourse, :idtag)";
+                    $resultat = $conn->prepare($sql);
+                    $resultat->execute([':idcourse' => $courseId, ':idtag' => $tagId]);
                 }
-
-                $sql = "INSERT INTO course_tags (idcourse, idtag) VALUES (:idcourse, :idtag)";
-                $resultat = $conn->prepare($sql);
-                $resultat->execute([':idcourse' => $courseId, ':idtag' => $tagId]);
             }
             $result = true;
         } catch (PDOException $e) {
@@ -411,5 +413,67 @@ function isFounderDB($username, $title)
         echo "Error: " . $e->getMessage();
     } finally {
         return $result;
+    }
+}
+
+function insertVideoDB($video)
+{
+    $result = false;
+    $conn = getDBConnection();
+    $sql = "INSERT INTO `videos` (`video`, `videoName`, `idcourse`) VALUES ( :video, :videoName, :idcourse);";
+    try {
+      $stmp = $conn->prepare($sql);
+      $rslt = $stmp->execute([
+        ':video' => $video['video'],
+        ':videoName' => $video['videoName'],
+        ':idcourse' => $video['courseID']]);
+        if($rslt) $result = true;
+    }catch (PDOException $e) {
+        echo "";
+    } finally {
+        return $result;
+    }
+}
+
+function getVideosByCourseDB($courseID)
+{
+    $result = [];
+    $conn = getDBConnection();
+    $sql = "SELECT * FROM `videos` WHERE idcourse = :idcourse";
+    try {
+        $videos = $conn->prepare($sql);
+        $videos->execute([':idcourse' => $courseID]);
+        if ($videos->rowCount() > 0) {
+            $result = $videos->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (PDOException $e) {
+        echo "";
+    } finally {
+        return $result;
+    }
+}
+
+function insertLikeDB($courseId)
+{
+    $conn = getDBConnection();
+    $sql = "UPDATE `courses` SET nlikes = nlikes + 1, score = (nlikes / (nlikes + nDislikes)) * 5 WHERE idcourse = :idcourse";
+    try {
+        $stmp = $conn->prepare($sql);
+        $res = $stmp->execute([':idcourse' => $courseId]);
+        
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+function insertDislikeDB($courseId)
+{
+    $conn = getDBConnection();
+    $sql = "UPDATE `courses` SET nDislikes = nDislikes + 1, score = (nlikes / (nlikes + nDislikes)) * 5 WHERE idcourse = :idcourse";
+    try {
+        $stmp = $conn->prepare($sql);
+        $stmp->execute([':idcourse' => $courseId]);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 }

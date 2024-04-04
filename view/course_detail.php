@@ -7,11 +7,15 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 } else {
   session_start();
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php');
-
+    isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php'); 
+    $videos = getVideosByCourse($course['idcourse']);
   } else {
     //entramos por post(entramos al añadir video o dar like)
-    if (isset($_POST["submit"])) {
+    $course = getCourseById($_POST['courseID']);
+    $videos = getVideosByCourse($course['idcourse']);
+    //queda verificar a que es igual el submit para saber si entramos aqui o no
+    //sino entraremos siempre
+    if (isset($_POST["submit"]) && $_POST["submit"] == "Añadir") {
             $videoName = $_FILES["video"]["name"];
             $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
             $target_file = "media/". $videoHashName;
@@ -36,17 +40,24 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           $uploadOk = 0;
       }
 
+      $video = [
+        'videoName' => $videoName,       
+        'video' => $target_file,
+        'courseID' => $course['idcourse']
+      ];
+      
+      $video['videoName']=="" ? $insert = false : $insert = insertVideo($video);
       // Si $uploadOk es 0, significa que ocurrió un error
-      if ($uploadOk == 0) {
+      if ($uploadOk == 0 && $insert == false) {
+        //mensaje de error de archivo no valido
           echo "Lo siento, tu archivo no fue subido.";
       } else {
-          if (move_uploaded_file($_FILES["video"]["tmp_name"], $target_file)) {
-              echo "El archivo ". htmlspecialchars(basename($_FILES["video"]["name"])). " ha sido subido.";
-          } else {
-              echo "Lo siento, hubo un error al subir tu archivo.";
-          }
+        //todo: modificar esto no hacen falta los echo
+          move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
       }
-    } 
+    } else if(isset($_POST["rating"])) {
+      $_POST["rating"] == "👍" ? insertLike($course['idcourse']) : insertDislike($course['idcourse']);
+    }
   }
 }
 ?>
@@ -125,30 +136,43 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         style="background-image: url(/' . $course['caratula'] . ');"></div>';
         ?>
         <!-- BOTON DE LIKE DISLIKE Y BOTON DE AÑADIR CURSOS -->
-        <?php
-        if(!isFounder($_SESSION['username'], $course['title']))
-        {
-          echo '<button class="btn-position">👍</button>';
-          echo '<button class="btn-position">👎</button>';
-        };
-        ?>  
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+          <?php
+          if(isFounder($_SESSION['username'], $course['title']))
+          {
+            echo '<input type="submit" name="rating" value="👍">';
+            echo '<input type="submit" name="rating" value="👎">';
+            echo'<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
+          };
+          ?>  
+        </form>
       
         </section>
         <!-- subir archivos + boton  -->
         <?php if(isFounder($_SESSION['username'], $course['title'])): ?>
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
               <div class="file-upload-panel" onclick="document.getElementById('fileInput').click();">
-                  haz clic para seleccionar los videos a subir
+                  Subir nuevos videos
                   <input type="file" name="video" id="fileInput" class="file-upload-input">
               </div>
               <input type="submit" name="submit" value="Añadir">
-          </form>
+              <?php echo'<input type="hidden" name="courseID" value ="' . $course['title'] . '">'; ?>
         <?php endif; ?>
       <section class="course-content">
+        <?php foreach ($videos as $video) echo (showVideosHTML($video)); ?>
+        <!-- <div class="single_video">
+            <video src="/media/d7d33e241b3c57b753bbe1cf25cf359a17e0947bb6bf4a2d3e2c4de39715498a.mp4" class="videoMiniatura" onclick="openVideoPopup(this)"></video>
+            <h3 class="video_name">Video name</h3>
+        </div>
 
+        <div class="video-popup" id="videoPopup">
+            <span id="closeBtn" onclick="closeVideoPopup()">&times;</span>
+            <video src="/media/d7d33e241b3c57b753bbe1cf25cf359a17e0947bb6bf4a2d3e2c4de39715498a.mp4" controls class="videoCompleto"></video>
+        </div> -->
+        
       </section>
   </main>
-  <script src="/js/selectFile.js"></script>
+  <script src="/js/course_detail.js"></script>
   <script src="/js/user-dropdown.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
