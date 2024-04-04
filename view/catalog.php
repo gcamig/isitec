@@ -104,8 +104,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                 <form action="">
                   <ul>
                     <li>
-                      <input type="checkbox" id="categoria">
-                      <label for="categoria">Ejemplo</label>
+                      <a href=""></a>
                     </li>
                   </ul>
                 </form>
