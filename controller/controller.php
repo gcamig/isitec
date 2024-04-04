@@ -233,3 +233,17 @@ function showCourseHTML($course)
               </div>';
   return $courseHTML;
 }
+
+function getTags()
+{
+  return getTagsDB();
+}
+
+function showTagsHTML($tag)
+{
+  $tagHTML = '<input type="checkbox" name="hashtags[]" value="';
+  $tagHTML .= $tag["tag"];
+  $tagHTML .= '">';
+  $tagHTML .= $tag["tag"];
+  $tagHTML .= '</input>';
+}

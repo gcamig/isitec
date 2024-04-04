@@ -9,6 +9,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $courses = getCourses();
+    $tags = getTags();
   } else {
     //entramos por post(entramos por el search)
     // $courses = getCourseByFilter();
@@ -104,7 +105,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                 <form action="">
                   <ul>
                     <li>
-                      <a href=""></a>
+                    <?php foreach ($tags as $tag) echo (showTagsHTML($tag)); ?>
                     </li>
                   </ul>
                 </form>

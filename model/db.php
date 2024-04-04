@@ -309,10 +309,28 @@ function getCoursesDB()
   $conn = getDBConnection();
   $sql = "SELECT * FROM `courses`";
   try {
-    $usuaris = $conn->prepare($sql);
-    $usuaris->execute();
-    if ($usuaris->rowCount() > 0) {
-      $result = $usuaris->fetchAll(PDO::FETCH_ASSOC);
+    $courses = $conn->prepare($sql);
+    $courses->execute();
+    if ($courses->rowCount() > 0) {
+      $result = $courses->fetchAll(PDO::FETCH_ASSOC);
+    }
+  } catch (PDOException $e) {
+    echo "";
+  } finally {
+    return $result;
+  }
+}
+
+function getTagsDB()
+{
+  $result = [];
+  $conn = getDBConnection();
+  $sql = "SELECT tag FROM tags"; 
+  try {
+    $tags = $conn->prepare($sql);
+    $tags->execute();
+    if ($tags->rowCount() > 0) {
+      $result = $tags->fetchAll(PDO::FETCH_ASSOC);
     }
   } catch (PDOException $e) {
     echo "";
