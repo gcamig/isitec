@@ -11,12 +11,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     $courses = getCourses();
     $tags = getTags();
   } else {
+    //entramos por post(toca verificar los filtros)
     $tags = getTags();
     $hashtags = isset($_POST['hashtags']) ? $_POST['hashtags'] : [];
-    $courses = getCourseByHashTags($hashtags);
+    $hashtags == [] ? $courses = getCourses() : $courses = getCourseByHashTags($hashtags);
     isset($_POST['reset']) ? $courses = getCourses() : '';
-    //entramos por post(entramos por el search)
-    // $courses = getCourseByFilter();
   }
 }
 ?>
