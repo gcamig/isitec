@@ -243,7 +243,8 @@ function showTagsHTML($tag)
 {
   $tagHTML = '<input type="checkbox" name="hashtags[]" value="';
   $tagHTML .= $tag["tag"];
-  $tagHTML .= '">';
+  $tagHTML .= '"> ';
   $tagHTML .= $tag["tag"];
-  $tagHTML .= '</input>';
+  $tagHTML .= '<br></input>';
+  return $tagHTML;
 }

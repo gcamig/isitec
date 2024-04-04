@@ -9,7 +9,9 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $courses = getCourses();
+    $tags = getTags();
   } else {
+    $hashtags = isset($_POST['hashtags']) ? $_POST['hashtags'] : [];
     //entramos por post(entramos por el search)
     // $courses = getCourseByFilter();
   }
@@ -101,10 +103,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                 <span>Categorías</span>
               </div>
               <div>
-                <form action="">
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                   <ul>
                     <li>
-                      <a href=""></a>
+                      <?php foreach ($tags as $tag) echo (showTagsHTML($tag)); ?>
+                      <input type="submit" value="Filtrar">
                     </li>
                   </ul>
                 </form>
