@@ -19,7 +19,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         'title' => $_POST["title"],
         'description' => $_POST["description"],
         'hashtags' => $_POST["etiquetas"],
-        'founder' => $_SESSION['user']['username'],
+        'founder' => $_SESSION['username'],
         'caratula' => $caratula_destino
       ];
       $rslt = insertCourse($course);

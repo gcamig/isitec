@@ -6,6 +6,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   exit();
 } else {
   session_start();
+  $username = $_SESSION['user']['username'];
+  $userfullname = $_SESSION['user']['userFirstName'] . " " . $_SESSION['user']['userLastName'];
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $courses = getCourses();
@@ -34,7 +36,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <?php include "model/header.php"; ?>
   <main class="container">
     <div class="title-container flex justify-between items-center p-6">
-      <h1>Elije un curso</h1>
+      <?php echo "<h1>Hola $username</h1>"; ?>
       <a class="mr-6 px-4 py-1" href="./course_creation.php">Crear</a>
     </div>
     <hr>
