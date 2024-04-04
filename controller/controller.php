@@ -258,3 +258,8 @@ function getCourseById($title)
 {
   return getCourseByIdBD($title);
 }
+
+function isFounder($username, $title)
+{
+  return isFounderDB($username, $title);
+}
