@@ -75,7 +75,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   </header>
   <main class="container">
     <div class="contenido-central flex flex-row-reverse">
-      <aside>mama</aside>
+      <aside>mamahuevo</aside>
       <div class="courses-container flex flex-wrap">
         <!-- usar este div para los cursos -->
         <?php foreach ($courses as $course)
