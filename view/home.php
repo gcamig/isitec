@@ -70,7 +70,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                   <ul>
                     <li>
                       <?php foreach ($tags as $tag)
-                        echo (showTagsHTML($tag)); ?>
+                        echo (showTagsHTML($tag, $hashtags)); ?>
                       <div class="filters">
                         <input type="submit" value="Filtrar">
                         <input type="submit" name="reset" value="Reiniciar filtro">
