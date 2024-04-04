@@ -121,7 +121,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         </div>
 
         <div class="form-group">
-          <button id="submit-button">Siguiente</button>
+          <div>Siguiente</div>
+          <button id="submit-button">Crear curso</button>
         </div>
       </form>
     </div>

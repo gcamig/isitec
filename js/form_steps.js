@@ -12,11 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (currentStep === formGroups.length - 1) {
       submitButton.textContent = "Submit";
+      submitButton.addEventListener("click", submitForm);
+    } else {
+      submitButton.textContent = "Next";
+      submitButton.removeEventListener("click", submitForm);
     }
   }
 
-  submitButton.addEventListener("click", function (e) {
+  function submitForm(e) {
     e.preventDefault();
     showStep(currentStep + 1);
-  });
+  }
+
+  submitButton.addEventListener("click", submitForm);
 });
