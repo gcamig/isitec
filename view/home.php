@@ -10,7 +10,6 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   $hashtags = [];
   $username = $_SESSION['user']['username'];
   $userfullname = $_SESSION['user']['userFirstName'] . " " . $_SESSION['user']['userLastName'];
-  
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $courses = getCourses();
     $tags = getTags();

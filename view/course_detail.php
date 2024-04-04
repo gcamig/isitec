@@ -121,6 +121,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <input id="btn-add" type="submit" name="submit" value="Añadir">
           <?php echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">'; ?>
         <?php endif; ?>
+        <hr>
         <section class="course-content">
           <?php foreach ($videos as $video)
             echo (showVideosHTML($video)); ?>

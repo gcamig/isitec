@@ -48,13 +48,13 @@
 }
 
 .single_video{
-    margin: 2em;
+    margin: 1em;
     /* width: ; */
-    border: black 1px solid;
+
 
 }
 .videoMiniatura {
-    width: 250px;
+    width: 700px;
     cursor: pointer;
     display: block !important;
 }
