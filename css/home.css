@@ -389,6 +389,26 @@ main {
   border: 1px solid #7d7d7d;
 }
 
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #bebebe;
+  border-top: #6938ef 2px solid;
+  padding: 10px 0;
+  height: 75px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.footer-container .footer-logo img {
+  height: 50px;
+}
+
 @media (max-width: 1030px) {
   .contenido-central {
     flex-direction: column-reverse;
@@ -430,7 +450,6 @@ main {
 }
 
 @media (max-width: 992px) {
-  
 }
 
 @media (max-width: 1028px) {

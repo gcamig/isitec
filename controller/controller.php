@@ -212,7 +212,7 @@ function showCourseHTML($course)
                     <h3 class="card-title w-full px-3 pt-3">';
   $courseHTML .= $course["title"];
   $courseHTML .= '</h3>
-                  <div class="w-full p-2 flex flex-nowrap">';
+                  <div class="w-full p-2 overflow-hidden float-left" style="height: 50px">';
   foreach ($tags as $tag) {
     $courseHTML .= '<div>#' . $tag . '</div>';
   }
