@@ -6,13 +6,47 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   exit();
 } else {
   session_start();
-  $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php');
 
   } else {
-    //entramos por post(entramos por el search)
-    // $courses = getCourseByFilter();
+    //entramos por post(entramos al añadir video o dar like)
+    if (isset($_POST["submit"])) {
+            $videoName = $_FILES["video"]["name"];
+            $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
+            $target_file = "media/". $videoHashName;
+            $uploadOk = 1;
+            $videoFileType = strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
+
+      // Comprobar si es un archivo de video
+      $allowedTypes = array('mp4', 'avi', 'mov', 'flv', 'wmv', 'mpeg');
+      if(!in_array($videoFileType, $allowedTypes)) {
+          echo "Solo se permiten archivos de video: mp4, avi, mov, flv, wmv, mpeg.";
+          $uploadOk = 0;
+      }
+      // Comprobar si el archivo ya existe
+      // if (file_exists($target_file)) {
+      //     echo "Lo siento, el archivo ya existe.";
+      //     $uploadOk = 0;
+      // }
+
+      // Comprobar el tamaño del archivo (en este ejemplo, 100MB)
+      if ($_FILES["video"]["size"] > 100000000) {
+          echo "Lo siento, tu archivo es demasiado grande.";
+          $uploadOk = 0;
+      }
+
+      // Si $uploadOk es 0, significa que ocurrió un error
+      if ($uploadOk == 0) {
+          echo "Lo siento, tu archivo no fue subido.";
+      } else {
+          if (move_uploaded_file($_FILES["video"]["tmp_name"], $target_file)) {
+              echo "El archivo ". htmlspecialchars(basename($_FILES["video"]["name"])). " ha sido subido.";
+          } else {
+              echo "Lo siento, hubo un error al subir tu archivo.";
+          }
+      }
+    } 
   }
 }
 ?>
@@ -22,25 +56,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 
 <head>
   <title>Home Page</title>
-  <style>
-        .file-upload-panel {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .file-upload-panel:hover {
-            background-color: #f0f0f0;
-        }
-
-        .file-upload-input {
-            display: none;
-        }
-    </style>
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
+  <link rel="stylesheet" type="text/css" href="/css/selectFile.css" />
 </head>
 
 <body class="academia" id="screen">
@@ -111,28 +130,25 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         {
           echo '<button class="btn-position">👍</button>';
           echo '<button class="btn-position">👎</button>';
-        }else echo '<button class="btn-position">Afegir Videos</button>';
-
-        
-
-        ?>   
-      </section>
-      <div class="file-upload-panel" onclick="document.getElementById('fileInput').click();">
-          Arrastra y suelta imágenes o haz clic para seleccionar archivos
-          <input type="file" id="fileInput" class="file-upload-input" multiple>
-      </div>
-
-      <script>
-          document.getElementById('fileInput').addEventListener('change', function() {
-              // Aquí puedes añadir la lógica para manejar los archivos seleccionados
-              console.log(this.files);
-          });
-      </script>
+        };
+        ?>  
+      
+        </section>
+        <!-- subir archivos + boton  -->
+        <?php if(isFounder($_SESSION['username'], $course['title'])): ?>
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+              <div class="file-upload-panel" onclick="document.getElementById('fileInput').click();">
+                  haz clic para seleccionar los videos a subir
+                  <input type="file" name="video" id="fileInput" class="file-upload-input">
+              </div>
+              <input type="submit" name="submit" value="Añadir">
+          </form>
+        <?php endif; ?>
       <section class="course-content">
 
       </section>
   </main>
-
+  <script src="/js/selectFile.js"></script>
   <script src="/js/user-dropdown.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
