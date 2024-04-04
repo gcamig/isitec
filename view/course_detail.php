@@ -54,9 +54,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       } else {
         //todo: modificar esto no hacen falta los echo
           move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
+          $videos = getVideosByCourse($course['idcourse']);
       }
     } else if(isset($_POST["rating"])) {
       $_POST["rating"] == "👍" ? insertLike($course['idcourse']) : insertDislike($course['idcourse']);
+      $course = getCourseById($_POST['courseID']);
     }
   }
 }

@@ -204,6 +204,7 @@ function getCourses()
 
 function showCourseHTML($course)
 {
+  $tags = getCourseHashTags($course['idcourse']);
   $courseHTML = '<div class="swiper-slide" style="width: 250px; margin-right: 25px;">
                 <a href="./course_detail.php?title=' . $course["title"] . '" class="c-card mb-6">
                   <figure alt="" name="" class="card-img flex justify- items-center">
@@ -216,16 +217,17 @@ function showCourseHTML($course)
   $courseHTML .= $course["title"];
   $courseHTML .= '</h3> 
                   </div>
-                  <div class="card-footer w-full p-3">
+                  <div class="card-footer w-full p-3">';
+
+  foreach ($tags as $tag) {
+    $courseHTML .= '<div>#' . $tag . '</div>';
+  }
+  $courseHTML .= '
                     <div class="course-rating px-2 flex">
                       <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8; font-size: 10px;">course</span>
                       <div class="test-aptitude-info ml-2 flex gap-2">
-                        <small class="flex gap-1">
-                          <ion-icon name="time"></ion-icon>
-                          <span>30m</span>
-                        </small>        
-                        ·
-                        <small class="total">30 preguntas</small>
+                        <small class="flex gap-1">' . $course['score'] . '                  
+                        <ion-icon name="star"></ion-icon></small>                
                       </div>
                     </div>
                   </div>
@@ -237,6 +239,11 @@ function showCourseHTML($course)
 function getTags()
 {
   return getTagsDB();
+}
+
+function getCourseHashTags($courseId)
+{
+  return getCourseHashTagsDB($courseId);
 }
 
 function showTagsHTML($tag, $tagsSeleccionados)
