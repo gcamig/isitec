@@ -8,7 +8,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   session_start();
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $courses = getCourses();
+    isset($_GET['title']) ? $course = getCourseById($_GET['title']) : header('Location: /view/home.php');
   } else {
     //entramos por post(entramos por el search)
     // $courses = getCourseByFilter();
@@ -78,16 +78,19 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       <section class="course-title flex flex-row w-full h">
         <div class="flex flex-col w-full">
           <div class="flex flex-row w-3/5">
-            <h1>Titulo del curso</h1>
-            <div>3/10</div>
+            <h1><?echo $course['title'] ?></h1>
+            <div><?echo $course['score'] ?></div>
           </div>
           <div>
-            <p>Description</p>
+            <p><?echo $course['description'] ?></p>
           </div>
         </div>
-        <div class="course-image w-2/5"
+        <?php echo '<div class="course-image w-2/5"
+        style="background-image: url(' . $course['caratula'] . ');"></div>'
+        ?>
+        <!-- <div class="course-image w-2/5"
           style="background-image: url('/media/227cc135b7e0448eca29a3a4dd8cf6235944d4cbadc2e5f53830aada8e86ac3d.png');">
-        </div>
+        </div> -->
       </section>
 
       <section class="course-content">

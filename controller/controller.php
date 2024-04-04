@@ -205,7 +205,7 @@ function getCourses()
 function showCourseHTML($course)
 {
   $courseHTML = '<div class="swiper-slide" style="width: 250px; margin-right: 25px;">
-                <a href="./course_detail.php" class="c-card mb-6">
+                <a href="./course_detail.php?title=' . $course["title"] . '" class="c-card mb-6">
                   <figure alt="" name="" class="card-img flex justify- items-center">
                     <img style="max-width: 60px; height:auto" class="img-fluid" src="/';
   $courseHTML .= $course["caratula"];
@@ -252,4 +252,9 @@ function showTagsHTML($tag)
 function getCourseByHashTags($hashtags)
 {
   return getCourseByHashTagsDB($hashtags);
+}
+
+function getCourseById($title)
+{
+  return getCourseByIdBD($title);
 }
