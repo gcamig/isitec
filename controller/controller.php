@@ -239,11 +239,12 @@ function getTags()
   return getTagsDB();
 }
 
-function showTagsHTML($tag)
+function showTagsHTML($tag, $tagsSeleccionados)
 {
+  $checked = in_array($tag["tag"], $tagsSeleccionados) ? 'checked' : '';
   $tagHTML = '<input type="checkbox" name="hashtags[]" value="';
-  $tagHTML .= $tag["tag"];
-  $tagHTML .= '"> ';
+  $tagHTML .= $tag["tag"] . '" ' . $checked;
+  $tagHTML .= '> ';
   $tagHTML .= $tag["tag"];
   $tagHTML .= '<br></input>';
   return $tagHTML;

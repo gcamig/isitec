@@ -6,6 +6,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   exit();
 } else {
   session_start();
+  $hashtags = [];
   $username = $_SESSION['user']['username'];
   $userfullname = $_SESSION['user']['userFirstName'] . " " . $_SESSION['user']['userLastName'];
   $_SESSION['user'] = getUserInfo($_SESSION['username']);
@@ -17,7 +18,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     $tags = getTags();
     $hashtags = isset($_POST['hashtags']) ? $_POST['hashtags'] : [];
     $hashtags == [] ? $courses = getCourses() : $courses = getCourseByHashTags($hashtags);
-    isset($_POST['reset']) ? $courses = getCourses() : '';
+    if(isset($_POST['reset']))
+    {
+      $courses = getCourses();
+      $hashtags = [];
+    }
   }
 }
 ?>
@@ -71,7 +76,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                   <ul>
                     <li>
                       <?php foreach ($tags as $tag)
-                        echo (showTagsHTML($tag)); ?>
+                        echo (showTagsHTML($tag, $hashtags)); ?>
                       <input type="submit" value="Filtrar">
                       <input type="submit" name="reset" value="Reiniciar filtro">
                     </li>
