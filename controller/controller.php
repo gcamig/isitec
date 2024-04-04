@@ -282,7 +282,7 @@ function getVideosByCourse($courseID)
 function showVideosHTML($video)
 {
   $name = explode('.', $video['videoName'])[0];
-  return '<div class="single_video">
+  return '<div class="single_video flex flex-col justify-center items-center gap-3" >
       <video src="/' . $video['video'] . '" class="videoMiniatura" onclick="openVideoPopup(this)"></video>
       <h3 class="video_name">' . $name . '</h3>
     </div>
