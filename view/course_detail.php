@@ -98,7 +98,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           </div>
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <?php
-            if (isFounder($_SESSION['username'], $course['title'])) {
+            if (!isFounder($_SESSION['username'], $course['title'])) {
               echo '<input type="submit" name="rating" value="👍">';
               echo '<input type="submit" name="rating" value="👎">';
               echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
