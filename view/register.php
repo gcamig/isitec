@@ -36,14 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 
 <head>
-  <title>Sign Up | Isitec</title>
+  <title>Sign Up | Cetisi</title>
   <meta charset="utf-8">
-  <meta name="author" content="author">
+  <meta name="author" content="Cetisi">
   <meta name="description" content="description">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/img/icon-white.png">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/register.css">
-  <link rel="icon" href="/img/logo-white.png">
+  
 </head>
 
 <body id="screen">
