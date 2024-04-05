@@ -17,7 +17,7 @@ body {
 
 body {
   z-index: 1;
-  font-family: system-ui;
+  font-family: "Lato", sans-serif;
   background: #333;
   color: white;
   /* background-image: url("https://images.unsplash.com/photo-1705448082121-dd6888a685d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
@@ -42,7 +42,8 @@ body {
   text-decoration: none;
   padding: 10px 30px;
   border-radius: 10px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .change-form a:hover {
@@ -89,9 +90,11 @@ body {
   }
 
   &.highlight {
-    background-image: linear-gradient(to left,
-        rgba(0, 0, 0, 0.2) 50%,
-        transparent 50%);
+    background-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.2) 50%,
+      transparent 50%
+    );
     background-position: 100% 100%;
     background-repeat: no-repeat;
     background-size: 200% 6rem;
@@ -129,7 +132,7 @@ form {
 .input-box {
   position: relative;
   display: flex;
-  
+
   &.invalid {
     outline: 1px solid red;
     border-radius: 10px;
@@ -137,7 +140,8 @@ form {
 }
 
 input {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(77, 77, 77, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(77, 77, 77, 0.3) 0px 18px 36px -18px inset;
   border: none;
   border-radius: 0 10px 10px 0;
   background: none;
@@ -168,8 +172,8 @@ span {
   transition: transform 500ms;
 }
 
-input:focus~span,
-input:valid~span {
+input:focus ~ span,
+input:valid ~ span {
   transform: translate(-3rem, -1.5rem) scale(0.8);
 }
 
@@ -196,12 +200,12 @@ input:valid~span {
 
 .button-86::after,
 .button-86::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   right: 0;
   z-index: -99999;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
 .button-86::before {
@@ -240,7 +244,8 @@ input:valid~span {
   transform: translate(0, 5%);
 }
 
-.login-form, .reset-password-form {
+.login-form,
+.reset-password-form {
   position: relative;
   &.active {
     display: flex;
@@ -261,7 +266,7 @@ input:valid~span {
   text-decoration: underline;
 }
 
-#toggle-area-text{
+#toggle-area-text {
   margin-right: 5px;
 }
 
@@ -274,7 +279,6 @@ input:valid~span {
     justify-content: center;
     align-items: center;
   }
-
 
   .form-box {
     height: fit-content;
