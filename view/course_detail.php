@@ -82,7 +82,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 </head>
 
 <body class="academia" id="screen">
-  <?php include "model/header.php"; ?>
+  <?php include "/components/header.php"; ?>
   <main class="container">
     <div class="contenido-central flex flex-col">
       <section class="course-title flex flex-row w-full mb-5">

@@ -56,7 +56,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 </head>
 
 <body class="overflow-y-hidden">
-  <?php include "model/header.php"; ?>
+  <?php include "/components/header.php"; ?>
   <main>
     <div class="contenido-central flex items-center">
       <form class="w-full flex gap-4 flex-col" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>"
