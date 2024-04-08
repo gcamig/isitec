@@ -60,40 +60,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?= $errorBox ?>
     <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="sign-up-grid">
-        <div class="form-group" id="input-usr">
-          <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
-          <input type="text" id="user" name="username" required placeholder="">
-          <span>Username</span>
-          <p id="userError" class="hidden"></p>
+
+        <div class="form-group">
+          <div class="info-group" id="input-usr">
+            <label for="usr"><ion-icon name="at-outline"></ion-icon></ion-icon></label>
+            <input type="text" id="user" name="username" required placeholder="">
+            <span>Username</span>
+            <p id="userError" class="hidden"></p>
+          </div>
         </div>
-        <div class="form-group hidden" id="input-email">
-          <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
-          <input type="text" id="email" name="email" required placeholder="">
-          <span>Email</span>
-          <p id="emailError" class="hidden"></p>
+
+        <div class="form-group hidden">
+          <div class="info-group" id="input-email">
+            <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
+            <input type="text" id="email" name="email" required placeholder="">
+            <span>Email</span>
+            <p id="emailError" class="hidden"></p>
+          </div>
         </div>
         <div class="form-group hidden">
-          <input type="text" id="firstname" name="firstname" required placeholder="">
-          <span>First Name</span>
+          <div class="info-group">
+            <label for="firstName"><ion-icon name="person"></ion-icon></label>
+            <input type="text" id="firstname" name="firstname" required placeholder="">
+            <span>First Name</span>
+          </div>
+          <div class="info-group">
+            <label for="lastname"><ion-icon name="person"></ion-icon></label>
+            <input type="text" id="lastname" name="lastname" required placeholder="">
+            <span>Last Name</span>
+          </div>
         </div>
         <div class="form-group hidden">
-          <input type="text" id="lastname" name="lastname" required placeholder="">
-          <span>Last Name</span>
-        </div>
-        <div class="form-group hidden" id="input-pwd">
-          <label for="pwd"><ion-icon name="lock-closed-outline"></ion-icon></label>
-          <input type="password" id="pwd" name="password" required placeholder="">
-          <span>Password</span>
-          <p id="error" class="hidden"></p>
-        </div>
-        <div class="form-group hidden" id="input-pwd-verif">
-          <label for="veri-pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
-          <input type="password" id="pswd-verif" name="veri-pswd" required placeholder="">
-          <span>Verify Password</span>
-          <p id="verifError" class="hidden"></p>
+          <div class="info-group" id="input-pwd">
+            <label for="pwd"><ion-icon name="lock-closed-outline"></ion-icon></label>
+            <input type="password" id="pwd" name="password" required placeholder="">
+            <span>Password</span>
+            <p id="error" class="hidden"></p>
+          </div>
+          <div class="info-group" id="input-pwd-verif">
+            <label for="veri-pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
+            <input type="password" id="pswd-verif" name="veri-pswd" required placeholder="">
+            <span>Verify Password</span>
+            <p id="verifError" class="hidden"></p>
+          </div>
         </div>
       </div>
-      <div class="form-group flex flex-row justify-center gap-3">
+      <div class="buttons flex flex-row justify-center gap-3">
         <div id="btn-prev" class="px-4 py-1 text-white hidden">Anterior</div>
         <div id="btn-next" class="px-4 py-1 text-white">Siguiente</div>
 

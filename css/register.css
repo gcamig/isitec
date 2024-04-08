@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-.sign-up-grid {
+.sign-up-area {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,74 +22,79 @@
 
 .form-group {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.info-group {
+  position: relative;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+  & span {
+    position: absolute;
+    top: 0;
+    left: 1;
+  }
 }
 
-input{
+input {
   padding: 0.8rem;
   font-size: 1rem;
   color: #fff;
 }
 
-label{
+label {
   padding: 0.8rem;
   font-size: 1rem;
 }
 
-span{
+span {
   font-size: 0.8rem;
 }
 
-#verifError, #userError, #error, #emailError {
+#verifError,
+#userError,
+#error,
+#emailError {
   position: absolute;
   font-size: 0.7rem;
   color: #d20000;
   top: 55px;
   right: 5px;
 
-  &.active{
+  &.active {
     display: block;
   }
 
-  &.inactive{
+  &.inactive {
     display: none;
   }
 }
 
-.input-box:nth-child(3) input,
-.input-box:nth-child(4) input {
-  border-radius: 10px;
-}
-
-.input-box:nth-child(3) span,
-.input-box:nth-child(4) span {
-  left: 20px;
-}
-
-input:focus~span,
-input:valid~span {
+input:focus ~ span,
+input:valid ~ span {
   transform: translate(-3rem, -1.2rem) scale(0.8);
 }
 
-.input-box:nth-child(3) input:focus~span,
-.input-box:nth-child(3) input:valid~span,
-.input-box:nth-child(4) input:focus~span,
-.input-box:nth-child(4) input:valid~span {
+.input-box:nth-child(3) input:focus ~ span,
+.input-box:nth-child(3) input:valid ~ span,
+.input-box:nth-child(4) input:focus ~ span,
+.input-box:nth-child(4) input:valid ~ span {
   transform: translate(-1rem, -1.2rem) scale(0.8);
 }
 
-.form-group, #btn-submit, .form-group div {
+.info-group,
+#btn-submit,
+.info-group div {
   &.active {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  }
-  &.inactive {
-    display: none;
   }
 }
 
@@ -97,12 +102,13 @@ input:valid~span {
   display: none;
 }
 
-.form-group div {
+.buttons:first-child,
+.buttons:nth-child(2) {
   background: #6938ef;
   user-select: none;
   border-radius: 5px;
 }
 
-.form-group div:hover {
+.buttons:hover {
   background: #4f1ad1;
 }
