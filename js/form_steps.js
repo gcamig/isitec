@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     currentStep = step;
 
     if (currentStep === 0) {
+      prevBtn.classList.remove('active');
       prevBtn.classList.add('hidden');
     } else {
       prevBtn.classList.remove('hidden');

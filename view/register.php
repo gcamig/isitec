@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta name="description" content="description">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/img/icon-white.png">
+  <link rel="stylesheet" href="/css/output.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/register.css">
 
@@ -59,44 +60,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?= $errorBox ?>
     <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="sign-up-grid">
-        <div class="input-box" id="input-usr">
+        <div class="form-group" id="input-usr">
           <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
           <input type="text" id="user" name="username" required placeholder="">
           <span>Username</span>
-          <p id="userError" class="inactive"></p>
+          <p id="userError" class="hidden"></p>
         </div>
-        <div class="input-box hidden" id="input-email">
+        <div class="form-group hidden" id="input-email">
           <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
           <input type="text" id="email" name="email" required placeholder="">
           <span>Email</span>
-          <p id="emailError" class="inactive"></p>
+          <p id="emailError" class="hidden"></p>
         </div>
-        <div class="input-box hidden">
+        <div class="form-group hidden">
           <input type="text" id="firstname" name="firstname" required placeholder="">
           <span>First Name</span>
         </div>
-        <div class="input-box hidden">
+        <div class="form-group hidden">
           <input type="text" id="lastname" name="lastname" required placeholder="">
           <span>Last Name</span>
         </div>
-        <div class="input-box hidden" id="input-pwd">
+        <div class="form-group hidden" id="input-pwd">
           <label for="pwd"><ion-icon name="lock-closed-outline"></ion-icon></label>
           <input type="password" id="pwd" name="password" required placeholder="">
           <span>Password</span>
-          <p id="error" class="inactive"></p>
+          <p id="error" class="hidden"></p>
         </div>
-        <div class="input-box hidden" id="input-pwd-verif">
+        <div class="form-group hidden" id="input-pwd-verif">
           <label for="veri-pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
           <input type="password" id="pswd-verif" name="veri-pswd" required placeholder="">
           <span>Verify Password</span>
-          <p id="verifError" class="inactive"></p>
+          <p id="verifError" class="hidden"></p>
         </div>
       </div>
       <div class="form-group flex flex-row justify-center gap-3">
-        <div id="btn-prev" class="px-4 py-1 text-white">Anterior</div>
+        <div id="btn-prev" class="px-4 py-1 text-white hidden">Anterior</div>
         <div id="btn-next" class="px-4 py-1 text-white">Siguiente</div>
 
-        <button class="button-86" id="btn-submit">Sign Up</button>
+        <button id="btn-submit" class="px-4 py-1 text-white hidden button-86">Crear</button>
       </div>
     </form>
     <div class="change-form">

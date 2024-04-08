@@ -1,5 +1,5 @@
 .form-box {
-  width: 400px;
+  width: 500px;
   justify-content: space-around;
   gap: 0;
 }
@@ -14,12 +14,18 @@
 }
 
 .sign-up-grid {
-  display: grid;
-  width: 80%;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 input{
@@ -75,26 +81,28 @@ input:valid~span {
   transform: translate(-1rem, -1.2rem) scale(0.8);
 }
 
-.input-box:nth-child(1) {
-  grid-area: 1 / 1 / 2 / 3;
+.form-group, #btn-submit, .form-group div {
+  &.active {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  &.inactive {
+    display: none;
+  }
 }
 
-.input-box:nth-child(2) {
-  grid-area: 2 / 1 / 3 / 3;
+.hidden {
+  display: none;
 }
 
-.input-box:nth-child(3) {
-  grid-area: 3 / 1 / 4 / 2;
+.form-group div {
+  background: #6938ef;
+  user-select: none;
+  border-radius: 5px;
 }
 
-.input-box:nth-child(4) {
-  grid-area: 3 / 2 / 4 / 3;
-}
-
-.input-box:nth-child(5) {
-  grid-area: 4 / 1 / 5 / 3;
-}
-
-.input-box:nth-child(6) {
-  grid-area: 5 / 1 / 6 / 3;
+.form-group div:hover {
+  background: #4f1ad1;
 }

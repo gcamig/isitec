@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="./img/logo-white.png">
+  <link rel="stylesheet" href="./css/output.css">
   <link rel="stylesheet" href="./css/common.css">
 </head>
 
