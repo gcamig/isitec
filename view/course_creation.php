@@ -72,9 +72,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <textarea id="descripcion" name="description" required rows="4"></textarea>
         </div>
 
-        <div class="form-group hidden">
-          <label for="etiquetas">Tags</label>
-          <input type="text" id="etiquetas" name="etiquetas" required placeholder="#etiqueta1#etiqueta2#etiqueta3">
+        <div>
+          <!-- Tags selection -->
+          <label for="etiquetas">Etiquetas</label>
+          <div class="tags-container flex flex-wrap gap-2">
+            <?php
+            $tags = getTags();
+            foreach ($tags as $tag) {
+              echo "<div class='tag' data-tag='$tag'>$tag</div>";
+            }
+            ?>
         </div>
 
         <div class="form-group hidden">
@@ -88,7 +95,6 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 
           <button id="btn-submit" class="px-4 py-1 text-white hidden">Crear</button>
         </div>
-
       </form>
     </div>
   </main>
