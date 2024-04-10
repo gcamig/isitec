@@ -72,7 +72,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <textarea id="descripcion" name="description" required rows="4"></textarea>
         </div>
 
-        <div>
+        <div class="form-group hidden">
           <!-- Tags selection -->
           <label for="etiquetas">Etiquetas</label>
           <div class="tags-container flex flex-wrap gap-2">
@@ -82,18 +82,18 @@ if (!isset($_COOKIE['PHPSESSID'])) {
               echo "<input class='tag' data-tag='$tag'>$tag</input>";
             }
             ?>
+          </div>
         </div>
-
         <div class="form-group hidden">
           <label for="caratula">Portada</label>
           <input type="file" id="caratula" name="caratula" required accept="image/*">
         </div>
 
-        <div class="form-group flex flex-row justify-center gap-3">
-          <div id="btn-prev" class="px-4 py-1 text-white">Anterior</div>
+        <div class="buttons flex flex-row justify-center gap-3">
+          <div id="btn-prev" class="px-4 py-1 text-white hidden">Anterior</div>
           <div id="btn-next" class="px-4 py-1 text-white">Siguiente</div>
 
-          <button id="btn-submit" class="px-4 py-1 text-white hidden">Crear</button>
+          <button id="btn-submit" class="px-4 py-1 text-white hidden button-86">Crear</button>
         </div>
       </form>
     </div>

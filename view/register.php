@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="btn-prev" class="px-4 py-1 text-white hidden">Anterior</div>
         <div id="btn-next" class="px-4 py-1 text-white">Siguiente</div>
 
-        <button id="btn-submit" class="px-4 py-1 text-white hidden button-86">Crear</button>
+        <button id="btn-submit" class="px-4 py-1 text-white hidden">Crear</button>
       </div>
     </form>
     <div class="change-form">

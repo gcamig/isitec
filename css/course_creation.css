@@ -26,24 +26,24 @@
   border-radius: 5px;
 }
 
-.form-group button,
-.form-group div {
-  background: #6938ef;
-  user-select: none;
-  border-radius: 5px;
-}
-
-.form-group button:hover,
-.form-group div:hover {
-  background: #4f1ad1;
-}
-
 main {
   margin-top: 0;
 }
 
 .contenido-central {
   height: 100vh;
+}
+
+.buttons div,
+.buttons button {
+  background: #6938ef;
+  user-select: none;
+  border-radius: 5px;
+}
+
+.buttons div:hover
+.buttons button:hover{
+  background: #4f1ad1;
 }
 
 @media (max-width: 1030px) {
