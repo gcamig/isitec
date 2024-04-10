@@ -13,8 +13,6 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     //entramos por post(entramos al añadir video o dar like)
     $course = getCourseById($_POST['courseID']);
     $videos = getVideosByCourse($course['idcourse']);
-    //queda verificar a que es igual el submit para saber si entramos aqui o no
-    //sino entraremos siempre
     if (isset($_POST["submit"]) && $_POST["submit"] == "Añadir") {
       $videoName = $_FILES["video"]["name"];
       $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
@@ -59,6 +57,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     } else if (isset($_POST["rating"])) {
       $_POST["rating"] == "👍" ? insertLike($course['idcourse']) : insertDislike($course['idcourse']);
       $course = getCourseById($_POST['courseID']);
+    } else if (isset($_POST["delete"])) {
+      deleteCourse($course['idcourse']);
+      header('Location: /view/home.php');
+      exit();
     }
   }
 }

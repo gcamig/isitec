@@ -264,9 +264,9 @@ function insertCourseDB($course)
       ]);
 
       $courseId = $conn->lastInsertId();
-      $hashtags = explode('#', $course['hashtags']);
+      // $hashtags = explode('#', $course['hashtags']);
       // array_shift($hashtags);
-      foreach ($hashtags as $tag) {
+      foreach ($course['hashtags'] as $tag) {
         if ($tag != "") {
           $tag = trim($tag);
           $sql = "SELECT idtag FROM tags WHERE tag = :tag";
@@ -518,4 +518,35 @@ function getTagNameById($tagId)
   } finally {
     return $result;
   }
+}
+
+function deleteCourseDB($courseId)
+{
+  $conn = getDBConnection();
+  if(deleteCourseTagsDB($courseId) == true)
+  {
+    $sql = "DELETE FROM `courses` WHERE idcourse = :idcourse";
+    try {
+      $stmt = $conn->prepare($sql);
+      $stmt->execute([':idcourse' => $courseId]);
+    } catch (PDOException $e) {
+      echo "";
+    }
+  }
+}
+
+function deleteCourseTagsDB($courseId)
+{
+  $conn = getDBConnection();
+  $sql = "DELETE FROM `course_tags` WHERE idcourse = :idcourse";
+  try {
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([':idcourse' => $courseId]);
+    if ($stmt->rowCount() > 0) {
+      return true;
+    }
+  } catch (PDOException $e) {
+    echo "";
+  }
+  return false;
 }

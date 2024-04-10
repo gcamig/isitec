@@ -211,13 +211,13 @@ function showCourseHTML($course)
                   <div class="card-content">
                     <h3 class="card-title w-full px-3 pt-3">';
   $courseHTML .= $course["title"];
-  $courseHTML .= '</h3>
-                  <div class="w-full p-2 overflow-hidden float-left" style="height: 50px">';
-  foreach ($tags as $tag) {
-    $courseHTML .= '<div>#' . $tag . '</div>';
-  }
+  $courseHTML .= '</h3>';
+                  // <div class="w-full p-2 overflow-hidden float-left" style="height: 50px">';
+  // foreach ($tags as $tag) {
+  //   $courseHTML .= '<div>#' . $tag . '</div>';
+  // }
+  // </div>
   $courseHTML .= '</div>
-                  </div>
                   <div class="card-footer w-full p-3">
                     <div class="w-full course-rating px-2 flex">
                       <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8; font-size: 10px;">course</span>
@@ -301,4 +301,9 @@ function insertLike($courseId)
 function insertDislike($courseId)
 {
   insertDislikeDB($courseId);
+}
+
+function deleteCourse($courseId)
+{
+  deleteCourseDB($courseId);
 }
