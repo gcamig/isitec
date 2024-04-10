@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $firstName = $_SESSION['user']['userFirstName'];
 $userfullname = $firstName . " " . $_SESSION['user']['userLastName'];
 echo <<<HTML
