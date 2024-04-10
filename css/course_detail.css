@@ -1,5 +1,5 @@
 .course-title {
-    height: 20vh;
+    min-height: 20vh;
 }
 
 .course-image {
@@ -87,7 +87,7 @@
 }
 
 .course-title h1 {
-  font-size: 50px;
+  font-size: 20px;
 }
 
 @media (max-width: 768px) {
