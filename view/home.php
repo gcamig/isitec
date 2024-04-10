@@ -80,7 +80,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                   <div class="filters">
                       <input type="submit" value="Filtrar">
                       <input type="submit" name="reset" value="Reiniciar filtro">
-                    </div>
+                  </div>
                 </form>
               </div>
             </div>
