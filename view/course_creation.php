@@ -79,7 +79,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <?php
             $tags = getTags();
             foreach ($tags as $tag) {
-              echo "<div class='tag' data-tag='$tag'>$tag</div>";
+              echo "<input class='tag' data-tag='$tag'>$tag</input>";
             }
             ?>
         </div>
