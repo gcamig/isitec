@@ -1,4 +1,4 @@
-// document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     function openVideoPopup(element) {
         const videoPopup = document.getElementById('videoPopup');
         const videoCompleto = document.querySelector('.videoCompleto');
@@ -21,5 +21,4 @@
         videoMiniatura.style.display = 'block';
         videoPopup.style.display = 'none';
     }
-
-// });
+});

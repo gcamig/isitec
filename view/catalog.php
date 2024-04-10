@@ -33,7 +33,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
 </head>
 
 <body class="academia" id="screen">
-  <?php include "/components/header.php"; ?>
+  <?php include "components/header.php"; ?>
   <main class="container">
     <div class="contenido-central flex-col items-center">
       <h1>Hola, User First Name. ¿Qué quieres aprender?</h1>
