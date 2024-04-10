@@ -115,6 +115,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
           <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <input id="btn-del" type="submit" name="delete" value="Eliminar Curso">
+            <input type="hidden" name="courseID" value="<?php echo $course['title'] ?>">
           </form>
         <?php endif; ?>
     </div>
