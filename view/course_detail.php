@@ -13,8 +13,6 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     //entramos por post(entramos al añadir video o dar like)
     $course = getCourseById($_POST['courseID']);
     $videos = getVideosByCourse($course['idcourse']);
-    //queda verificar a que es igual el submit para saber si entramos aqui o no
-    //sino entraremos siempre
     if (isset($_POST["submit"]) && $_POST["submit"] == "Añadir") {
       $videoName = $_FILES["video"]["name"];
       $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
@@ -59,6 +57,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     } else if (isset($_POST["rating"])) {
       $_POST["rating"] == "👍" ? insertLike($course['idcourse']) : insertDislike($course['idcourse']);
       $course = getCourseById($_POST['courseID']);
+    } else if (isset($_POST["delete"])) {
+      deleteCourse($course['idcourse']);
+      header('Location: /view/home.php');
+      exit();
     }
   }
 }
@@ -125,17 +127,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         <section class="course-content">
           <?php foreach ($videos as $video)
             echo (showVideosHTML($video)); ?>
-          <!-- <div class="single_video">
-            <video src="/media/d7d33e241b3c57b753bbe1cf25cf359a17e0947bb6bf4a2d3e2c4de39715498a.mp4" class="videoMiniatura" onclick="openVideoPopup(this)"></video>
-            <h3 class="video_name">Video name</h3>
-        </div>
-
-        <div class="video-popup" id="videoPopup">
-            <span id="closeBtn" onclick="closeVideoPopup()">&times;</span>
-            <video src="/media/d7d33e241b3c57b753bbe1cf25cf359a17e0947bb6bf4a2d3e2c4de39715498a.mp4" controls class="videoCompleto"></video>
-        </div> -->
-
         </section>
+        <hr>
+        <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
+          <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            <input id="btn-del" type="submit" name="delete" value="Eliminar Curso">
+          </form>
+        <?php endif; ?>
   </main>
   <script src="/js/course_detail.js"></script>
   <script src="/js/user-dropdown.js"></script>

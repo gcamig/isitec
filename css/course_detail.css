@@ -19,6 +19,16 @@
     }
 }
 
+#btn-del{
+    padding: 10px 20px;
+    background: #ef3838;
+    color: white;
+    border-radius: 5px;
+
+    &:hover {
+        background: #d71c1c;
+    }
+}
 .file-upload-panel {
     border: 2px dashed #ccc;
     padding: 20px;

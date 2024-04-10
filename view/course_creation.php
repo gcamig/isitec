@@ -18,7 +18,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       $course = [
         'title' => $_POST["title"],
         'description' => $_POST["description"],
-        'hashtags' => $_POST["etiquetas"],
+        'hashtags' => $_POST["tags"],
         'founder' => $_SESSION['user']['username'],
         'caratula' => $caratula_destino
       ];
@@ -79,7 +79,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <?php
             $tags = getTags();
             foreach ($tags as $tag) {
-              echo '<input type="checkbox" id="' . $tag["tag"] . '" class="tag" data-tag="' . $tag["tag"] . '"><label for="' . $tag["tag"] . '">' . $tag["tag"] . '</label>';
+              echo '<input type="checkbox" name="tags[]" value="' . $tag["tag"] . '" id="' . $tag["tag"] . '" class="tag" data-tag="' . $tag["tag"] . '"><label for="' . $tag["tag"] . '">' . $tag["tag"] . '</label>';
             }
             ?>
           </div>
