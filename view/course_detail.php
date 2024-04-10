@@ -112,6 +112,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         style="background-size: cover; background-image: url(/' . $course['caratula'] . ');"></div>';
         ?>
       </section>
+      <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
+          <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            <input id="btn-del" type="submit" name="delete" value="Eliminar Curso">
+          </form>
+        <?php endif; ?>
     </div>
   </main>
   <script src="/js/course_detail.js"></script>
