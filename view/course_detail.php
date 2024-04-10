@@ -92,7 +92,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <h1 class="text-lg">
             <?php echo $course['title'] ?>
           </h1>
-          <p>
+          <p class="break-words">
             <?php echo $course['description'] ?>
           </p>
           <div>
