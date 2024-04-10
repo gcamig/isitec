@@ -15,7 +15,8 @@ CREATE TABLE users (
     activationDate DATETIME,
     activationCode CHAR(64),
     resetPassExpiry DATETIME,
-    resetPassCode CHAR(64)
+    resetPassCode CHAR(64),
+    profilePic VARCHAR(255)
 );
 
 CREATE TABLE courses (

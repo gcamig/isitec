@@ -1,4 +1,5 @@
 <?php
+session_start();
 $firstName = $_SESSION['user']['userFirstName'];
 $userfullname = $firstName . " " . $_SESSION['user']['userLastName'];
 echo <<<HTML
@@ -30,6 +31,7 @@ echo <<<HTML
                                 <div class="dropdown-arrow"></div>
                                 <div class="flex flex-col p-5">
                                     <h1>$userfullname</h1>
+                                    <a href="/view/profile.php">Editar perfil</a>
                                 </div>
                                 <div class="px-5 py-3">
                                     <a href="support">Centro de ayuda</a>
