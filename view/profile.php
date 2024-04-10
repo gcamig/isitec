@@ -1,5 +1,6 @@
 <?php
 chdir("..");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
