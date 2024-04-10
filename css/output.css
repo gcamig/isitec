@@ -680,6 +680,10 @@ video {
   display: none;
 }
 
+.max-h-96 {
+  max-height: 24rem;
+}
+
 .w-2\/5 {
   width: 40%;
 }
@@ -771,6 +775,10 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .overflow-y-hidden {

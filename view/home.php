@@ -73,16 +73,14 @@ if (!isset($_COOKIE['PHPSESSID'])) {
               </div>
               <div>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                  <ul>
-                    <li>
-                      <?php foreach ($tags as $tag)
-                        echo (showTagsHTML($tag, $hashtags)); ?>
-                      <div class="filters">
-                        <input type="submit" value="Filtrar">
-                        <input type="submit" name="reset" value="Reiniciar filtro">
-                      </div>
-                    </li>
+                  <ul class="tags-list overflow-y-auto">
+                    <?php foreach ($tags as $tag)
+                      echo (showTagsHTML($tag, $hashtags)); ?>
                   </ul>
+                  <div class="filters">
+                      <input type="submit" value="Filtrar">
+                      <input type="submit" name="reset" value="Reiniciar filtro">
+                    </div>
                 </form>
               </div>
             </div>

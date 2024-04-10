@@ -246,11 +246,11 @@ function getCourseHashTags($courseId)
 function showTagsHTML($tag, $tagsSeleccionados)
 {
   $checked = in_array($tag["tag"], $tagsSeleccionados) ? 'checked' : '';
-  $tagHTML = '<input type="checkbox" name="hashtags[]" value="';
+  $tagHTML = '<li><input type="checkbox" name="hashtags[]" value="';
   $tagHTML .= $tag["tag"] . '" ' . $checked;
   $tagHTML .= '> ';
   $tagHTML .= $tag["tag"];
-  $tagHTML .= '<br></input>';
+  $tagHTML .= '</input></li>';
   return $tagHTML;
 }
 

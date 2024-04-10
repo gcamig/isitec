@@ -79,7 +79,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <?php
             $tags = getTags();
             foreach ($tags as $tag) {
-              echo '<input class="tag" data-tag="' . $tag["tag"] . '">' . $tag["tag"] . '</input>';
+              echo '<input type="checkbox" id="' . $tag["tag"] . '" class="tag" data-tag="' . $tag["tag"] . '"><label for="' . $tag["tag"] . '">' . $tag["tag"] . '</label>';
             }
             ?>
           </div>
