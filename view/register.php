@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: ../index.php?register=success&verificationMail=n');
     exit();
   } else {
-    $msgError = $rslt;
+    $msgError = '<div class=" text-red-600 font-semibold">' . $result . '</div>';
   }
 }
 ?>
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <img src="/img/logo-name.png" alt="logo">
     </div>
     
-    <?= $errorBox ?>
+    <?= $msgError ?>
     <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="sign-up-grid">
 

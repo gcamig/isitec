@@ -73,7 +73,7 @@ function mailBodyConstructor($user, $type)
           </html>
       ";
   } else if ($type == "password") {
-    $passwordLink = 'http://localhost/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
+    $passwordLink = 'http://localhost/view/reset_password.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
     $body = "
       <html>
       <body>
@@ -82,10 +82,8 @@ function mailBodyConstructor($user, $type)
         <p>Si no hiciste esta solicitud, puedes ignorar este mensaje.</p>
         <p>Para restablecer tu contraseña, haz clic en el siguiente botón:</p>
         <a href='" . $passwordLink . "' style='display:inline-block;background-color:#4CAF50;color:white;padding:14px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:4px 2px;cursor:pointer;border-radius:10px;'>Restablecer Contraseña</a>
-        <p>Si el botón no funciona, puedes copiar y pegar el siguiente enlace en tu navegador:</p>
-        <p><a href='" . $passwordLink . "'>" . $passwordLink . "</a></p>
         <p>Gracias,</p>
-        <p>Tu equipo de soporte</p>
+        <p>Equipo Cetisi</p>
       </body>
       </html>";
   }

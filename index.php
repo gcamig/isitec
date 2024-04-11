@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       $pass = $_POST["password"];
       $result = loginUser($user, $pass);
       if (is_string($result)) {
-        $msgError = $result;
+        $msgError = '<div class=" text-red-600 font-semibold">' . $result . '</div>';
       } else if ($result != false) {
         //TODO: CAMBIAR EN FUNCION DE LO QUE NECESITE EL HOME
         session_start();
@@ -39,9 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   if (!empty($_GET)) {
     //mirem si el registre s'ha completat correctament
     if (isset($_GET["register"]))
-      $_GET["register"] == "success" ? $msgError = "<div class='error-box'>Registre correcte</div>" : '';
+      $_GET["register"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Registre correcte</div>" : "<div class='error-box text-red-600 font-semibold'>Hi ha hagut un error en el registre</div>";
     if (isset($_GET["verificationMail"]))
-      $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box'>Correu verificat correctament</div>" : '';
+      $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Correu verificat correctament</div>" : "<div class='error-box text-red-600 font-semibold'>No s'ha pogut verificar el correu</div>";
+    if (isset($_GET["resetPass"]))
+      $_GET["resetPass"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Contrasenya modificada correctament</div>" : "<div class='error-box text-red-600 font-semibold'>Error al cambiar la contrasenya</div>";
   }
 }
 
@@ -118,5 +120,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   <script src="./js/typing.js"></script>
   <script src="./js/modal.js"></script>
 </body>
-
 </html>
