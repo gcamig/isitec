@@ -1,6 +1,17 @@
 <?php
 chdir("..");
 session_start();
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if(isset($_POST['submit'])) {
+    //significa que le hemos dado a guardar cambios
+    $newUser = [
+      'firstName' => $_POST['first_name'],
+      'lastName' => $_POST['last_name'],
+      'email' => $_POST['email'],
+      'password' => $_POST['password']
+    ];
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,6 +25,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="./img/icon-white.png">
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
+  <link rel="stylesheet" type="text/css" href="/css/profile.css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -27,47 +39,48 @@ session_start();
             </li>
         </ul>
     </nav>
-    <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade p-4 show active">
-        <form class="ow-form">
+    <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade p-4 show active shadow">
+        <form class="ow-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
           <div>
-            <div>
-              <p>Imagen de perfil</p>
+            <div class="text-2xl my-2">
+              <p class="mb-3">Imagen de perfil</p>
               <hr>
             </div>
-            <div>
-              <img src="">
-              <div>
-                <button onclick="document.getElementById('myFiles').click()">Añadir archivos</button>
-                <input type="file" accept="*.jpg, *.jpeg, *.png" id="myFiles" name="" hidden>
+            <div class="my-4 flex flex-row ">
+              <img class=" size-40 rounded-full" src="/media/6858de99d6d381ec14e99972108cc4ac33298513fd0140614265a950f39caac0.png">
+              <div class="slctImg">
+                <button type="button" class="w-40 h-14" onclick="document.getElementById('myFiles').click()">Seleccionar Imagen</button>
+                <input type="file" accept="*.jpg, *.jpeg, *.png" id="myFiles" name="img" hidden>
               </div>
             </div>
-            <div>
-              <p>Informacion Personal</p>
+            <div class="text-2xl mt-5 mb-3">
+              <p class="mb-3">Informacion Personal</p>
               <hr>
             </div>
             <div>
-              <div>
-                <div>
+              <div class="flex flex-row">
+                <div class="flex flex-col">
                   <label>Nombre</label>
-                  <input type="text" required="required" id="profile.owner.first_name" name="profile.owner.first_name" placeholder="Escribe aquí tu nombre" class="form-control">
+                  <input type="text"   name="first_name" placeholder="Escribe aquí tu nombre" >
                 </div>
-                <div>
+                <div class="flex flex-col">
                 <label>Apellidos</label>
-                  <input type="text" required="required" id="profile.owner.first_name" name="profile.owner.first_name" placeholder="Escribe aquí tu nombre" class="form-control">
+                  <input type="text"  name="last_name" placeholder="Escribe aquí tus apellidos" >
                 </div>
               </div>
-              <div>
-                <div>
+              <div class="flex flex-row">
+                <div class="flex flex-col">
                   <label>Email</label>
-                  <input type="text" required="required" id="profile.owner.first_name" name="profile.owner.first_name" placeholder="Escribe aquí tu nombre" class="form-control">
+                  <input type="text"  name="email" placeholder="Escribe aquí tu email" >
                 </div>
-                <div>
+                <div class="flex flex-col">
                 <label>Contraseña</label>
-                  <input type="text" required="required" id="profile.owner.first_name" name="profile.owner.first_name" placeholder="Escribe aquí tu nombre" class="form-control">
+                  <input type="text"  name="password" placeholder="Escribe aquí tu contraseña" >
                 </div>
               </div>
             </div>
           </div>
+          <input type="submit" name="submit" value="Guardar Cambios" class="button">
         </form>
     </div> 
   </main>
