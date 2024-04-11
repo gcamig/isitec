@@ -23,9 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $newUser['img'] = $img_destino;
       move_uploaded_file($_FILES["img"]["tmp_name"], $img_destino);
     }
-    if ($newUser['firstName'] == '' || $newUser['lastName'] == '' || $newUser['email'] == '') {
-      $errorMsg = 'No puedes dejar los campos del perfil bacios';
-    } else {
+    if($newUser['firstName']=='' || $newUser['lastName']=='' || $newUser['email']==''){
+      $errorMsg = '<div class=" text-red-600 font-semibold">No puedes dejar los campos del perfil bacios</div>';
+    }else
+    {    
       $_SESSION['user'] = updateUser($_SESSION['user']['username'], $newUser);
       header("Location: /view/profile.php");
       exit();

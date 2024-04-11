@@ -28,13 +28,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         header('Location: /view/home.php?createCourse=success');
         exit();
       } else
-        $msgError = $rslt;
+        $msgError = '<div class=" text-red-600 font-semibold">' . $rslt . '</div>';
       // insertCourse($course) == true ? header('Location: /view/home.php?createCourse=success') : header('Location: /view/course_creation.php?createCourse=fail');
     }
   } else {
     //entramos por get
     if (isset($_GET["createCourse"]))
-      $_GET["createCourse"] == "fail" ? $msgError = "<div class='error-box'>Course creation failed</div>" : '';
+      $_GET["createCourse"] == "fail" ? $msgError = "<div class=' text-red-600 font-semibold'>>Course creation failed</div>" : '';
   }
 }
 ?>

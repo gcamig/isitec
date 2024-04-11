@@ -1,7 +1,7 @@
 <?php
 chdir("..");
 require "controller/controller.php";
-
+$msgError='';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   if(!empty($_GET)){
     isset($_GET["code"]) ? $resetPassCode = $_GET["code"] : $resetPassCode ='';
@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(!verifyResetPassCode($mail, $resetPassCode) || !verifyTimeLeft($mail, $resetPassCode))
     {
       //todo: meter en la url una variable get para luego en el indice mostrar el error
-      header('Location: ../index.php?resetPass=error');
+      header('Location: /index.php?resetPass=error');
       exit();
     }
     else 
@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $firstPass = $_POST["firstPassword"];
       $scndPass = $_POST["scndPassword"];
     
-      if($firstPass != $scndPass) $msgError = "Las contraseñas no coinciden";
+      if($firstPass != $scndPass) $msgError = "<div class=' text-red-600 font-semibold'>Las contraseñas no coinciden</div>";
       else if(updatePassword($mail, $firstPass)){
         sendConfirmationEmail($mail);
         header('Location: ../index.php?resetPass=success');
@@ -30,6 +30,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
       }
     }
+  }else 
+  {
+    header('Location: ../index.php?resetPass=error');
+    exit();
   }
 }
 
@@ -62,6 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <section class="form-box">
     <h1>Reset Password</h1>
     <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+      <?= $msgError ?>
       <div class="input-box" id="input-lstPwd">
         <label for="firstPassword"><ion-icon name="lock-closed-outline"></ion-icon></label>
         <input type="password" id="firstPassword" name="firstPassword" required="true" placeholder="">

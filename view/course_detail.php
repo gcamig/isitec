@@ -50,7 +50,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       // Si $uploadOk es 0, significa que ocurrió un error
       if ($uploadOk == 0 && $insert == false) {
         //mensaje de error de archivo no valido
-        echo "Lo siento, tu archivo no fue subido.";
+        echo "<div class='text-red-600 font-semibold'> Lo siento, tu archivo no fue subido. </div>";
       } else {
         //todo: modificar esto no hacen falta los echo
         move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
