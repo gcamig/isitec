@@ -76,11 +76,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <meta name="description" content="Programming courses website by Cetisi">
   <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="./img/icon-white.png">
+  <link rel="icon" href="/img/icon-white.png">
   <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
-  <link rel="stylesheet" type="text/css" href="/css/selectFile.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="/css/selectFile.css" /> -->
   <link rel="stylesheet" type="text/css" href="/css/modal.css" />
 </head>
 
@@ -117,18 +117,31 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       <section>
         <div id="modal-container">
           <div class="modal-background">
-            <div class="modal">
-              <h2>I'm a Modal</h2>
-              <p>Hear me roar.</p>
+            <div class="modal z-40">
+              <h2>Añadir lección</h2>
+              <form id="lesson-form" class="flex flex-col gap-2" action="">
+                <input type="text" placeholder="Nombre de la lección">
+                <textarea placeholder="Descripción de la lección"></textarea>
+                <input type="file" id="file" name="file" accept="video/*">
+                <button>Añadir</button>
+              </form>
               <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
                 preserveAspectRatio="none">
-                <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+                <rect x="0" y="0" fill="none" width="100%" height="100%" rx="3" ry="3"></rect>
               </svg>
             </div>
           </div>
         </div>
-        <div class="w-full flex flex-row justify-end">
-          <div id="six" class="button">Sketch</div>
+        <script>
+          document.querySelector('.modal').addEventListener('click', function (event) {
+            console.log(event.target.tagName);
+            if (event.target.tagName !== 'INPUT') {
+              event.preventDefault();
+            }
+          });
+        </script>
+        <div class="w-full flex flex-row justify-end items-center gap-2">
+          <div id="six" class="button ">Añadir lección</div>
           <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
             <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
               enctype="multipart/form-data">
@@ -137,12 +150,20 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             </form>
           <?php endif; ?>
         </div>
+        <hr class="mt-2">
 
       </section>
 
 
     </div>
   </main>
+  <script>
+    document.querySelector('.modal').addEventListener('click', function (event) {
+      if (event.target.tagName !== 'input' && event.target.tagName !== 'label') {
+        event.stopPropagation();
+      }
+    });
+  </script>
   <script src="/js/lessons_modal.js"></script>
   <script src="/js/course_detail.js"></script>
   <script src="/js/user-dropdown.js"></script>

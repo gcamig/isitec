@@ -1,99 +1,118 @@
 .course-title {
-    min-height: 20vh;
+  min-height: 20vh;
 }
 
 .course-image {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-#btn-add {
-    padding: 10px 20px;
-    background: #6938ef;
-    color: white;
-    border-radius: 5px;
+#btn-add,
+#six {
+  padding: 10px 20px;
+  user-select: none;
+  background: #6938ef;
+  color: white;
+  border-radius: 5px;
 
-    &:hover {
-        background: #4f1cd7;
-    }
+  &:hover {
+    background: #4f1cd7;
+  }
 }
 
-#btn-del{
-    padding: 10px 20px;
-    background: #ef3838;
-    color: white;
-    border-radius: 5px;
+#btn-del {
+  padding: 10px 20px;
+  background: #ef3838;
+  color: white;
+  border-radius: 5px;
 
-    &:hover {
-        background: #d71c1c;
-    }
+  &:hover {
+    background: #d71c1c;
+  }
 }
+
+.modal input,
+.modal textarea {
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.modal button{
+  padding: 10px 20px;
+  user-select: none;
+  background: #6938ef;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    background: #4f1cd7;
+  }
+}
+
 .file-upload-panel {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 5px;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .file-upload-panel:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .file-upload-input {
-    display: none;
+  display: none;
 }
 
 .hidden-button {
-    opacity: 0;
-    position: absolute;
-    left: -9999px;
+  opacity: 0;
+  position: absolute;
+  left: -9999px;
 }
 
 .video_name {
-    text-align: center;
-    font-size: 1.5em;
-    
+  text-align: center;
+  font-size: 1.5em;
 }
 
-.single_video{
-    margin: 1em;
-    /* width: ; */
-
-
+.single_video {
+  margin: 1em;
+  /* width: ; */
 }
 .videoMiniatura {
-    width: 700px;
-    cursor: pointer;
-    display: block !important;
+  width: 700px;
+  cursor: pointer;
+  display: block !important;
 }
 
 .videoCompleto {
-    display: none;
-    width: 70%;
+  display: none;
+  width: 70%;
 }
 
 .video-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
 }
 
 #closeBtn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .course-title h1 {
@@ -107,5 +126,5 @@
 }
 
 .video-container {
-    position: relative;
+  position: relative;
 }
