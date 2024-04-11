@@ -7,12 +7,12 @@ const header = document.querySelector(".typeHeader");
 const url = window.location.href;
 
 if (url.includes("register")) {
-  title = "Welcome!";
-  sentence = "To join us login with your personal info.";
+  title = "Bienvenido!";
+  sentence = "Para unirte registrate con tus datos personales.";
 }
 else {
-  title = "Welcome back!";
-  sentence = "To keep connected with us please login with your personal info.";
+  title = "Bienvenido de nuevo!";
+  sentence = "Para mantenerte conectado, inicia sesión con tus datos personales.";
 }
 
 function typeSentence(sentence, index) {
