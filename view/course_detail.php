@@ -79,11 +79,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/img/icon-white.png">
-  <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
   <!-- <link rel="stylesheet" type="text/css" href="/css/selectFile.css" /> -->
   <link rel="stylesheet" type="text/css" href="/css/modal.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="academia" id="screen">
@@ -153,11 +153,15 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             </form>
           <?php endif; ?>
         </div>
-        <hr class="mt-2">
-
+        <hr class="m-4">
       </section>
-
-
+      <section class="w-full flex flex-row flex-wrap">
+        <!-- Dónde se muestran las tarjetas -->
+        <div class="lesson-card flex flex-col gap-4 p-5">
+          <h2>Nombre</h2>
+          <p>Descripción</p>
+        </div>
+      </section>
     </div>
   </main>
   <script>
