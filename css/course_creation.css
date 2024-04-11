@@ -65,6 +65,7 @@ input[type="checkbox"].tag:checked + label {
 
 .buttons div,
 .buttons button {
+  width: fit-content;
   background: #6938ef;
   user-select: none;
   border-radius: 5px;

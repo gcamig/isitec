@@ -89,7 +89,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <input type="file" id="caratula" name="caratula" required accept="image/*">
         </div>
 
-        <div class="buttons flex flex-row justify-center gap-3">
+        <div class="buttons flex flex-row justify-center items-center gap-3">
           <div id="btn-prev" class="px-4 py-1 text-white hidden">Anterior</div>
           <div id="btn-next" class="px-4 py-1 text-white">Siguiente</div>
 
