@@ -154,11 +154,9 @@ function sendConfirmationEmail($email)
 
   //Enviament
   $result = $mail->Send();
-  if (!$result) {
-    echo 'Error: ' . $mail->ErrorInfo;
-  } else {
-    echo "Correu enviat";
-  }
+  // if (!$result) {
+  //   echo 'Error: ' . $mail->ErrorInfo;
+  // } 
 }
 
 function confirmationEmailBodyConstructor()
