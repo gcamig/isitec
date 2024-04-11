@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <div class="info-group">
             <label for="lastname"><ion-icon name="person"></ion-icon></label>
-            <input type="text" id="lastname" name="lastname" required placeholder="">
+            <input type="text" id="lastname" name="lastname" placeholder="">
             <span>Apellido</span>
           </div>
         </div>
