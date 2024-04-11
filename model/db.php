@@ -33,15 +33,15 @@ function loginUserDB($userOrEmail, $pass)
                     $result = $dadesUsuari;
                     updateLastSignIn($userOrEmail);
                 } else {
-                    $result = "Wrong password";
+                    $result = "Contraseña incorrecta";
                 }
 
             } else {
-                $result = "User not activated";
+                $result = "El usuario no esta verificado";
             }
 
         } else {
-            $result = "User or email does not exists";
+            $result = "El usuario o el email no existen";
         }
 
     } catch (PDOException $e) {

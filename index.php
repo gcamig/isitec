@@ -75,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     <div class="flex justify-center items-center flex-col logo">
       <img src="/img/logo-name.png" alt="logo">
     </div>
-    <?= $msgError ?>
     <!-- Reset password -->
     <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>"
       method="POST">
@@ -90,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
 
     <!-- Fi reset password -->
     <form class="login-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+      <?= $msgError ?>  
       <div class="input-box" id="input-usr">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="usr" name="user" required="true" placeholder="">
