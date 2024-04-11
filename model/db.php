@@ -420,13 +420,14 @@ function insertVideoDB($video)
 {
     $result = false;
     $conn = getDBConnection();
-    $sql = "INSERT INTO `videos` (`video`, `videoName`, `idcourse`) VALUES ( :video, :videoName, :idcourse);";
+    $sql = "INSERT INTO `videos` (`video`, `videoName`, `idcourse`, `descripcion`) VALUES ( :video, :videoName, :idcourse, :descripcion);";
     try {
         $stmp = $conn->prepare($sql);
         $rslt = $stmp->execute([
             ':video' => $video['video'],
             ':videoName' => $video['videoName'],
             ':idcourse' => $video['courseID'],
+            ':descripcion' => $video['videoDescription'],
         ]);
         if ($rslt) {
             $result = true;
@@ -526,7 +527,7 @@ function deleteCourseDB($courseId)
 {
     $conn = getDBConnection();
     deleteCourseTagsDB($courseId);
-
+    deleteCourseVideoDB($courseId);
     $sql = "DELETE FROM `courses` WHERE idcourse = :idcourse";
     try {
         $stmt = $conn->prepare($sql);
@@ -541,6 +542,18 @@ function deleteCourseTagsDB($courseId)
 {
     $conn = getDBConnection();
     $sql = "DELETE FROM `course_tags` WHERE idcourse = :idcourse";
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':idcourse' => $courseId]);
+    } catch (PDOException $e) {
+        echo "";
+    }
+}
+
+function deleteCourseVideoDB($courseId)
+{
+    $conn = getDBConnection();
+    $sql = "DELETE FROM `videos` WHERE idcourse = :idcourse";
     try {
         $stmt = $conn->prepare($sql);
         $stmt->execute([':idcourse' => $courseId]);

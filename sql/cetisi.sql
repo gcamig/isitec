@@ -40,7 +40,9 @@ CREATE TABLE videos (
     idvideo INT AUTO_INCREMENT PRIMARY KEY,
     idcourse INT,
     video VARCHAR(255) UNIQUE,
-    videoName VARCHAR(100) NOT NULL
+    descripcion TEXT,
+    videoName VARCHAR(100) NOT NULL,
+    FOREIGN KEY (idcourse) REFERENCES courses(idcourse) on update cascade
 );
 
 CREATE TABLE course_tags (

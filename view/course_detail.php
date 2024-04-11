@@ -56,10 +56,15 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         $videos = getVideosByCourse($course['idcourse']);
       }
-    } else if (isset($_POST["rating"])) {
-      $_POST["rating"] == "👍" ? insertLike($course['idcourse']) : insertDislike($course['idcourse']);
+    } else if (isset($_POST["like"])) {
+      insertLike($course['idcourse']);
       $course = getCourseById($_POST['courseID']);
-    } else if (isset($_POST["delete"])) {
+
+    } else if(isset($_POST["dislike"])) {
+      insertDislike($course['idcourse']);
+      $course = getCourseById($_POST['courseID']);
+
+    }else if (isset($_POST["delete"])) {
       deleteCourse($course['idcourse']);
       header('Location: /view/home.php');
       exit();
@@ -101,16 +106,16 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <div>
             <?php echo '<ion-icon name="star"></ion-icon>' . ' ' . $course['score'] ?>
           </div>
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <?php
-            if (isFounder($_SESSION['username'], $course['title'])) {
-              echo '<input type="submit" name="rating" value=""><ion-icon name="thumbs-up"></ion-icon></input>';
-              echo '<input type="submit" name="rating" value=""><ion-icon name="thumbs-down"></ion-icon></input>';
-              echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
-            }
-            ;
-            ?>
-          </form>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="flex flex-row gap-3 items-center">  
+              <?php
+              if (isFounder($_SESSION['username'], $course['title'])) {
+                echo '<button type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
+                echo '<button type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
+                echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
+              }
+              ;
+              ?>
+            </form>
         </div>
         <?php echo '<div class="course-image w-2/5 rounded"
         style="background-size: cover; background-image: url(/' . $course['caratula'] . ');"></div>';
@@ -155,12 +160,17 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         </div>
         <hr class="m-4">
       </section>
-      <section class="w-full flex flex-row flex-wrap">
+      <section class="w-full flex flex-row flex-wrap gap-3">
         <!-- Dónde se muestran las tarjetas -->
-        <div class="lesson-card flex flex-col gap-4 p-5">
+        <?php foreach($videos as $video) echo showVideosHTML($video); ?>
+        <!-- goofy ah video -->
+        <!-- <div class="lesson-card flex flex-col gap-4 p-5">
           <h2>Nombre</h2>
           <p>Descripción</p>
-        </div>
+          <dialog class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 backdrop:backdrop-blur-[3px] backdrop:bg-lime-500">
+            <video class="border-[50px] border-red-500 rotate-[273deg]" controls src="/media/43d254d092703c38b4a04463ff7e08a482111cdcd715fb5d72e4093ab2b1a0b3.mp4"></video>
+          </dialog>
+        </div> -->
       </section>
     </div>
   </main>

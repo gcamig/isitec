@@ -281,16 +281,14 @@ function getVideosByCourse($courseID)
 
 function showVideosHTML($video)
 {
-  $name = explode('.', $video['videoName'])[0];
-  return '<div class="single_video flex flex-col justify-center items-center gap-3" >
-      <video src="/' . $video['video'] . '" class="videoMiniatura" onclick="openVideoPopup(this)"></video>
-      <h3 class="video_name">' . $name . '</h3>
-    </div>
-
-    <div class="video-popup" id="videoPopup">
-      <span id="closeBtn" onclick="closeVideoPopup()">&times;</span>
-      <video src="/' . $video['video'] . '" controls class="videoCompleto"></video>
-    </div>';
+  
+  return '<div class="lesson-card flex flex-col gap-4 p-5">
+  <h2>' . $video['videoName'] . '</h2>
+  <p>' . $video['descripcion'] . '</p>
+  <dialog class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 backdrop:backdrop-blur-[3px]">
+    <video controls src="/' . $video['video'] . '"></video>
+  </dialog>
+</div>';
 }
 
 function insertLike($courseId)
