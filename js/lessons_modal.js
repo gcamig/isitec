@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.button').forEach(function (button) {
+  document.querySelectorAll('.add-lesson-button').forEach(function (button) {
     button.addEventListener('click', function () {
       var buttonId = this.getAttribute('id');
       var modalContainer = document.getElementById('modal-container');

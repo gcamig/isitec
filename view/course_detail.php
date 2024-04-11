@@ -13,7 +13,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     //entramos por post(entramos al añadir video o dar like)
     $course = getCourseById($_POST['courseID']);
     $videos = getVideosByCourse($course['idcourse']);
-    
+
     if (isset($_POST["submit"])) {
       $videoName = $_FILES["file"]["name"];
       $videoHashName = hash('sha256', $_FILES["file"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
@@ -60,11 +60,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       insertLike($course['idcourse']);
       $course = getCourseById($_POST['courseID']);
 
-    } else if(isset($_POST["dislike"])) {
+    } else if (isset($_POST["dislike"])) {
       insertDislike($course['idcourse']);
       $course = getCourseById($_POST['courseID']);
 
-    }else if (isset($_POST["delete"])) {
+    } else if (isset($_POST["delete"])) {
       deleteCourse($course['idcourse']);
       header('Location: /view/home.php');
       exit();
@@ -95,29 +95,32 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <?php include "components/header.php"; ?>
   <main class="container">
     <div class="contenido-central flex flex-col">
+      <div class="details-container">
       <section class="course-title flex flex-row w-full mb-5">
-        <div class="flex flex-col w-3/5 p-4">
+        <div class="flex flex-col w-3/5 py-4 px-8 gap-5">
           <h1 class="text-lg">
             <?php echo $course['title'] ?>
           </h1>
           <p class="break-words">
             <?php echo $course['description'] ?>
           </p>
-          <div>
-            <?php echo '<ion-icon name="star"></ion-icon>' . ' ' . $course['score'] ?>
+          <div class="flex items-center gap-5">
+            <ion-icon style="font-size: 20px" name="star"></ion-icon>
+            <span style="font-size: 20px;"><?php echo $course['score'] ?></span>
           </div>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="flex flex-row gap-3 items-center">  
-              <?php
-              if (isFounder($_SESSION['username'], $course['title'])) {
-                echo '<button type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
-                echo '<button type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
-                echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
-              }
-              ;
-              ?>
-            </form>
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+            class="flex flex-row gap-3 items-center">
+            <?php
+            if (isFounder($_SESSION['username'], $course['title'])) {
+              echo '<button type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
+              echo '<button type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
+              echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
+            }
+            ;
+            ?>
+          </form>
         </div>
-        <?php echo '<div class="course-image w-2/5 rounded"
+        <?php echo '<div class="course-image w-2/5"
         style="background-size: cover; background-image: url(/' . $course['caratula'] . ');"></div>';
         ?>
       </section>
@@ -126,12 +129,14 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <div class="modal-background">
             <div class="modal z-40">
               <h2>Añadir lección</h2>
-              <form id="lesson-form" class="flex flex-col gap-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+              <form id="lesson-form" class="flex flex-col gap-2"
+                action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+                enctype="multipart/form-data">
                 <input type="text" placeholder="Nombre de la lección" name="nombreLeccion">
                 <textarea placeholder="Descripción de la lección" name="descripcionLeccion"></textarea>
                 <input type="file" id="file" name="file" accept="video/*">
                 <input id="subm-Modal" type="submit" name="submit" value="Añadir">
-                <input type="hidden" name="courseID" value ="<?php echo $course['title'] ?>">
+                <input type="hidden" name="courseID" value="<?php echo $course['title'] ?>">
               </form>
               <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
                 preserveAspectRatio="none">
@@ -149,8 +154,9 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           });
         </script>
         <div class="w-full flex flex-row justify-end items-center gap-2">
-          <div id="six" class="button ">Añadir lección</div>
+
           <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
+            <div id="six" class="add-lesson-button">Añadir lección</div>
             <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
               enctype="multipart/form-data">
               <input id="btn-del" type="submit" name="delete" value="Eliminar Curso">
@@ -160,9 +166,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         </div>
         <hr class="m-4">
       </section>
-      <section class="w-full flex flex-row flex-wrap gap-3">
+      <section class="w-full flex flex-row justify-center flex-wrap gap-3">
         <!-- Dónde se muestran las tarjetas -->
-        <?php foreach($videos as $video) echo showVideosHTML($video); ?>
+        <?php foreach ($videos as $video)
+          echo showVideosHTML($video); ?>
         <!-- goofy ah video -->
         <!-- <div class="lesson-card flex flex-col gap-4 p-5">
           <h2>Nombre</h2>
@@ -172,6 +179,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           </dialog>
         </div> -->
       </section>
+      </div>
     </div>
   </main>
   <script>
