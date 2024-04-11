@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       <p class="typeText"></p>
     </div>
   </section>
-  
+
   <section class="form-box">
     <div class="flex justify-center items-center flex-col logo">
       <img src="/img/logo-name.png" alt="logo">
@@ -103,15 +103,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       </div>
       <button class="button-86" id="login-form-button">Iniciar sesión</button>
     </form>
-    <div class="forgot-password">
-      <p id="toggle-area-text">¿Has olvidado la contraseña?</p>
-      <strong id="toggle-form">Recuperar.</strong>
-    </div>
+    <section class="flex flex-col gap-4">
+      <div class="forgot-password">
+        <p id="toggle-area-text">¿Has olvidado la contraseña?</p>
+        <strong id="toggle-form">Recuperar.</strong>
+      </div>
 
-    <div class="change-form">
-      <p>¿Todavía no tienes una cuenta?</p>
-      <a href="./view/register.php">Registrarme</a>
-    </div>
+      <div class="change-form">
+        <p>¿Todavía no tienes una cuenta?</p>
+        <a href="./view/register.php">Registrarme</a>
+      </div>
+    </section>
   </section>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
