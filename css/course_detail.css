@@ -1,5 +1,8 @@
 .course-title {
   min-height: 20vh;
+  background: #5c5c5c;
+  color: #fff;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
 .course-image {
@@ -8,8 +11,13 @@
   background-size: contain;
 }
 
-#btn-add,
-#six {
+.details-container {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.add-lesson-button {
   padding: 10px 20px;
   user-select: none;
   background: #6938ef;
@@ -56,7 +64,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  width: 40%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;

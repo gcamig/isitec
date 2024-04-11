@@ -212,7 +212,7 @@ function showCourseHTML($course)
                     <h3 class="card-title w-full px-3 pt-3">';
   $courseHTML .= $course["title"];
   $courseHTML .= '</h3>';
-                  // <div class="w-full p-2 overflow-hidden float-left" style="height: 50px">';
+  // <div class="w-full p-2 overflow-hidden float-left" style="height: 50px">';
   // foreach ($tags as $tag) {
   //   $courseHTML .= '<div>#' . $tag . '</div>';
   // }
@@ -281,12 +281,11 @@ function getVideosByCourse($courseID)
 
 function showVideosHTML($video)
 {
-  
   return '<div class="lesson-card flex flex-col gap-4 p-5">
   <h2>' . $video['videoName'] . '</h2>
   <p>' . $video['descripcion'] . '</p>
   <dialog class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 backdrop:backdrop-blur-[3px]">
-    <video controls src="/' . $video['video'] . '"></video>
+    <video controls autoplay src="/' . $video['video'] . '"></video>
   </dialog>
 </div>';
 }
