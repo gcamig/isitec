@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Variabels for email input validation
+  // Variables para la validación del usuario
+  let user = document.querySelector("#user")
+  let userContainer = document.querySelector("#input-usr")
+  let userError = document.querySelector("#userError")
+  
+  // Variables para la validación del correo electrónico
   var email = document.querySelector("#email")
   var emailContainer = document.querySelector("#input-email")
   var emailError = document.querySelector("#emailError")
 
-  // variables for password input validation
+  // Variables para la validación de la contraseña
   let password = document.querySelector("#pwd")
   let pswdVerification = document.querySelector("#pswd-verif")
   let container = document.querySelector("#input-pwd")
@@ -12,18 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
   let errorText = document.querySelector("#error")
   let verifText = document.querySelector("#verifError")
 
-  // variables for user input validation
-  let user = document.querySelector("#user")
-  let userContainer = document.querySelector("#input-usr")
-  let userError = document.querySelector("#userError")
+  
 
 
-  // email input validation
+  // Validación del correo electrónico
   email.onkeyup = function () {
-    if (!validateEmail(/\S+@\S+\.\S+/, "Incorrect email format")) {
+    if (!validateEmail(/\S+@\S+\.\S+/, "Formato de correo electrónico incorrecto")) {
       emailContainer.classList.add("invalid")
       disableButton()
-    } else if (!validateEmail(/^\S*$/, "Email cannot contain spaces")) {
+    } else if (!validateEmail(/^\S*$/, "El correo electrónico no puede contener espacios")) {
       emailContainer.classList.add("invalid")
       disableButton()
     } else {
@@ -32,25 +34,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // password input validation
+  // Validación de la contraseña
   password.onkeyup = function () {
-    if (!validatePassword(/[A-Z]/, "Must contain at least one uppercase letter")) {
+    if (!validatePassword(/[A-Z]/, "Debe contener al menos una letra mayúscula")) {
       container.classList.add("invalid")
       disableButton()
-    } else if (!validatePassword(/[a-z]/, "Must contain at least one lowercase letter")) {
+    } else if (!validatePassword(/[a-z]/, "Debe contener al menos una letra minúscula")) {
       container.classList.add("invalid")
       disableButton()
-    } else if (!validatePassword(/[0-9]/, "Must contain at least one number")) {
+    } else if (!validatePassword(/[0-9]/, "Debe contener al menos un número")) {
       container.classList.add("invalid")
       disableButton()
-    } else if (!validatePassword(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, "Must contain at least one special character")) {
+    } else if (!validatePassword(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, "Debe contener al menos un carácter especial")) {
       container.classList.add("invalid")
       disableButton()
     } else if (password.value.length < 8) {
       container.classList.add("invalid")
       errorText.classList.remove("inactive")
       errorText.classList.add("active")
-      errorText.innerText = "Must be at least 8 characters"
+      errorText.innerText = "Debe tener al menos 8 caracteres"
     }
     else {
       container.classList.remove("invalid")
@@ -58,14 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // password verification input validation
+  // Validación de la verificación de la contraseña
   if (pswdVerification) {
     pswdVerification.onkeyup = function () {
       if (password.value !== pswdVerification.value) {
         containerVerification.classList.add("invalid")
         verifText.classList.remove("inactive")
         verifText.classList.add("active")
-        verifText.innerText = "Passwords do not match"
+        verifText.innerText = "Las contraseñas no coinciden"
         disableButton()
       } else {
         verifText.classList.remove("active")
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // user input validation
+  // Validación del usuario
   user.onkeyup = function () {
     if (!validateUser()) {
       userContainer.classList.add("invalid")
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!regex.test(user.value)) {
       userError.classList.remove("inactive")
       userError.classList.add("active")
-      userError.innerText = "Username cannot contain spaces"
+      userError.innerText = "El nombre de usuario no puede contener espacios"
       return false;
     } else {
       userError.classList.remove("active")

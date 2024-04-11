@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
 <html lang="es">
 
 <head>
-  <title>Login | Cetisi</title>
+  <title>Iniciar sesión | Cetisi</title>
   <meta charset="utf-8">
   <meta name="author" content="Cetisi">
   <meta name="description" content="Programming courses website by Cetisi">
@@ -64,23 +64,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
 <body id="screen">
   <section class="text-animation-box">
     <div>
-      <h1 class="typeHeader">Welcome back!</h1>
+      <h1 class="typeHeader"></h1>
       <p class="typeText"></p>
     </div>
   </section>
+  
   <section class="form-box">
-    <h1>Login</h1>
+    <div class="flex justify-center items-center flex-col logo">
+      <img src="/img/logo-name.png" alt="logo">
+    </div>
     <?= $msgError ?>
     <!-- Reset password -->
     <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>"
       method="POST">
       <div class="input-box" id="input-email">
-        <label for="email"><ion-icon name="person-outline"></ion-icon></label>
+        <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
         <input type="text" id="resetPassMail" name="resetPassMail" required="true" placeholder="">
         <span>Email</span>
         <p id="userError" class="inactive"></p>
       </div>
-      <button class="button-86" id="reset-pass-form-button">Submit</button>
+      <button class="button-86" id="reset-pass-form-button">Enviar</button>
     </form>
 
     <!-- Fi reset password -->
@@ -88,32 +91,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
       <div class="input-box" id="input-usr">
         <label for="usr"><ion-icon name="person-outline"></ion-icon></label>
         <input type="text" id="usr" name="user" required="true" placeholder="">
-        <span>User / Email</span>
+        <span>Usuario / Email</span>
         <p id="userError" class="inactive"></p>
       </div>
 
       <div class="input-box" id="input-pwd">
         <label for="pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
         <input type="password" id="pswd" name="password" required placeholder="">
-        <span>Password</span>
+        <span>Contraseña</span>
         <p id="error" class="inactive"></p>
       </div>
-      <button class="button-86" id="login-form-button">Sign In</button>
+      <button class="button-86" id="login-form-button">Iniciar sesión</button>
     </form>
     <div class="forgot-password">
-      <p id="toggle-area-text">Forgot password?</p>
-      <strong id="toggle-form">Click here.</strong>
+      <p id="toggle-area-text">¿Has olvidado la contraseña?</p>
+      <strong id="toggle-form">Recuperar.</strong>
     </div>
 
     <div class="change-form">
-      <p>Don't have an account?</p>
-      <a href="./view/register.php">Sign Up</a>
+      <p>¿Todavía no tienes una cuenta?</p>
+      <a href="./view/register.php">Registrarme</a>
     </div>
   </section>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="./js/typing.js"></script>
-  <script src="./js/background.js"></script>
   <script src="./js/modal.js"></script>
 </body>
 

@@ -84,11 +84,10 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/img/icon-white.png">
+  <link rel="stylesheet" type="text/css" href="/css/output.css">
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="/css/selectFile.css" /> -->
   <link rel="stylesheet" type="text/css" href="/css/modal.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="academia" id="screen">
@@ -105,18 +104,18 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             <?php echo $course['description'] ?>
           </p>
           <div class="flex items-center gap-5">
-            <ion-icon style="font-size: 20px" name="star"></ion-icon>
+            <ion-icon style="font-size: 20px;" name="star"></ion-icon>
             <span style="font-size: 20px;"><?php echo $course['score'] ?></span>
           </div>
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             class="flex flex-row gap-3 items-center">
             <?php
             if (isFounder($_SESSION['username'], $course['title'])) {
-              echo '<button type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
-              echo '<button type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
+              echo '<button style="font-size: 20px;" type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
+              echo '<hr style="background: #fff; height: 20px; width: 1px;">';
+              echo '<button style="font-size: 20px;" type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
               echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
-            }
-            ;
+            };
             ?>
           </form>
         </div>

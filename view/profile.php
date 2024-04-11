@@ -24,9 +24,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="./img/icon-white.png">
+  <link rel="stylesheet" type="text/css" href="/css/output.css">
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/profile.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="academia" id="screen">

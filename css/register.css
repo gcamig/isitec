@@ -1,7 +1,5 @@
 .form-box {
-  width: 500px;
   justify-content: space-around;
-  gap: 0;
 }
 
 .sign-up-form {
@@ -44,7 +42,6 @@
 input {
   padding: 0.8rem;
   font-size: 1rem;
-  color: #fff;
 }
 
 label {
@@ -63,7 +60,7 @@ span {
   position: absolute;
   font-size: 0.7rem;
   color: #d20000;
-  top: 55px;
+  top: 50px;
   right: 5px;
 
   &.active {
@@ -72,6 +69,16 @@ span {
 
   &.inactive {
     display: none;
+  }
+}
+
+#input-user,
+#input-email,
+#input-pwd,
+#input-pwd-verif {
+  &.invalid {
+    outline: 1px solid red;
+    border-radius: 10px;
   }
 }
 
@@ -102,13 +109,13 @@ input:valid ~ span {
   display: none;
 }
 
-.buttons:first-child,
-.buttons:nth-child(2) {
+.buttons :first-child,
+.buttons :nth-child(2) {
   background: #6938ef;
   user-select: none;
   border-radius: 5px;
-}
 
-.buttons:hover {
-  background: #4f1ad1;
+  &:hover {
+    background: #4f1ad1;
+  }
 }

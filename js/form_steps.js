@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  var btnContainer = document.querySelector('.buttons');
   var steps = document.querySelectorAll('.form-group');
   var currentStep = 0;
   var nextBtn = document.getElementById('btn-next');
@@ -36,9 +37,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentStep === steps.length - 1) {
       nextBtn.classList.add('hidden');
       submitBtn.classList.remove('hidden');
+      btnContainer.classList.remove('flex-row');
+      btnContainer.classList.add('flex-col');
     } else {
       nextBtn.classList.remove('hidden');
       submitBtn.classList.add('hidden');
+      btnContainer.classList.remove('flex-col');
+      btnContainer.classList.add('flex-row');
     }
   }
 });

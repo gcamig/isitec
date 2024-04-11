@@ -36,27 +36,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 
 <head>
-  <title>Sign Up | Cetisi</title>
+  <title>Registro | Cetisi</title>
   <meta charset="utf-8">
   <meta name="author" content="Cetisi">
   <meta name="description" content="description">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/img/icon-white.png">
+  <link rel="stylesheet" href="/css/output.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/register.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
 <body id="screen">
   <section class="text-animation-box">
     <div>
-      <h1 class="typeHeader">Welcome back!</h1>
+      <h1 class="typeHeader"></h1>
       <p class="typeText"></p>
     </div>
   </section>
   <section class="form-box">
-    <h1>Sign Up</h1>
+    <div class="flex justify-center items-center flex-col logo">
+      <img src="/img/logo-name.png" alt="logo">
+    </div>
+    
     <?= $errorBox ?>
     <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
       <div class="sign-up-grid">
@@ -65,12 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="info-group" id="input-usr">
             <label for="usr"><ion-icon name="at-outline"></ion-icon></ion-icon></label>
             <input type="text" id="user" name="username" required placeholder="">
-            <span>Username</span>
+            <span>Nombre de usuario</span>
             <p id="userError" class="hidden"></p>
           </div>
-        </div>
 
-        <div class="form-group hidden">
           <div class="info-group" id="input-email">
             <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
             <input type="text" id="email" name="email" required placeholder="">
@@ -82,46 +82,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="info-group">
             <label for="firstName"><ion-icon name="person"></ion-icon></label>
             <input type="text" id="firstname" name="firstname" required placeholder="">
-            <span>First Name</span>
+            <span>Nombre</span>
           </div>
           <div class="info-group">
             <label for="lastname"><ion-icon name="person"></ion-icon></label>
             <input type="text" id="lastname" name="lastname" required placeholder="">
-            <span>Last Name</span>
+            <span>Apellido</span>
           </div>
         </div>
         <div class="form-group hidden">
           <div class="info-group" id="input-pwd">
             <label for="pwd"><ion-icon name="lock-closed-outline"></ion-icon></label>
             <input type="password" id="pwd" name="password" required placeholder="">
-            <span>Password</span>
+            <span>Contraseña</span>
             <p id="error" class="hidden"></p>
           </div>
           <div class="info-group" id="input-pwd-verif">
             <label for="veri-pswd"><ion-icon name="lock-closed-outline"></ion-icon></label>
             <input type="password" id="pswd-verif" name="veri-pswd" required placeholder="">
-            <span>Verify Password</span>
+            <span>Verificar contraseña</span>
             <p id="verifError" class="hidden"></p>
           </div>
         </div>
       </div>
       <div class="buttons flex flex-row justify-center gap-3">
-        <div id="btn-prev" class="px-4 py-1 text-white hidden">Anterior</div>
+        <div id="btn-prev" class="text-center px-4 py-1 text-white hidden">Anterior</div>
         <div id="btn-next" class="px-4 py-1 text-white">Siguiente</div>
 
-        <button id="btn-submit" class="px-4 py-1 text-white hidden">Crear</button>
+        <button id="btn-submit" class="px-4 py-1 text-white hidden button-86">Crear</button>
       </div>
     </form>
     <div class="change-form">
-      <p>Already have an account?</p>
-      <a href="/index.php">Sign In</a>
+      <p>Ya tienes una cuenta?</p>
+      <a href="/index.php">Iniciar sesión</a>
     </div>
   </section>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="/js/typing.js"></script>
-  <script src="/js/inputValidation.js"></script>
-  <!-- <script src="/js/background.js"></script> -->
+  <script src="/js/input_validation.js"></script>
   <script src="/js/form_steps.js"></script>
 </body>
 
