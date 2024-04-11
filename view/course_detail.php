@@ -151,7 +151,13 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <?php endif; ?>
         </div>
         <hr class="mt-2">
-
+      </section>
+      <section class="w-full flex flex-row flex-wrap">
+        <!-- Dónde se muestran las tarjetas -->
+        <div class="lesson-card flex flex-col gap-4 p-5">
+          <h2>Nombre</h2>
+          <p>Descripción</p>
+        </div>
       </section>
 
 
