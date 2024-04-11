@@ -78,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
     <!-- Reset password -->
     <form class="reset-password-form inactive" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>"
       method="POST">
+      <?= $msgError ?> 
       <div class="input-box" id="input-email">
         <label for="email"><ion-icon name="mail-outline"></ion-icon></label>
         <input type="text" id="resetPassMail" name="resetPassMail" required="true" placeholder="">
