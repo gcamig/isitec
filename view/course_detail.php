@@ -152,7 +152,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
             }
           });
         </script>
-        <div class="w-full flex flex-row justify-end items-center gap-2">
+        <div class="w-full flex flex-row justify-end items-center gap-2 px-4">
 
           <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
             <div id="six" class="add-lesson-button">Añadir lección</div>

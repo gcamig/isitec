@@ -215,9 +215,9 @@ function showCourseHTML($course)
   // </div>
   $courseHTML .= '</div>
                   <div class="card-footer w-full p-3">
-                    <div class="w-full course-rating px-2 flex">
+                    <div class="w-full course-rating px-2 flex justify-between">
                       <span class="cetisi-badge badge-aptitude_test" style="background-color: #46d4b8; font-size: 10px;">course</span>
-                      <div class="w-full test-aptitude-info ml-2 flex items-center justify-between gap-2">
+                      <div class="test-aptitude-info mr-2 flex items-center justify-end gap-2">
                         <small class="w-full flex gap-1 items-center"><ion-icon name="star"></ion-icon>
                         ' . $course['score'] . '                  
                         </small>                
