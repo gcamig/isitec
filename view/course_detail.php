@@ -13,7 +13,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     //entramos por post(entramos al añadir video o dar like)
     $course = getCourseById($_POST['courseID']);
     $videos = getVideosByCourse($course['idcourse']);
-    if (isset($_POST["submit"]) && $_POST["submit"] == "Añadir") {
+    
+    if (isset($_POST["submit"])) {
       $videoName = $_FILES["video"]["name"];
       $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
       $target_file = "media/" . $videoHashName;
@@ -39,7 +40,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       }
 
       $video = [
-        'videoName' => $videoName,
+        'videoName' => $_POST['nombreLeccion'],
         'video' => $target_file,
         'courseID' => $course['idcourse']
       ];
@@ -119,11 +120,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <div class="modal-background">
             <div class="modal z-40">
               <h2>Añadir lección</h2>
-              <form id="lesson-form" class="flex flex-col gap-2" action="">
-                <input type="text" placeholder="Nombre de la lección">
-                <textarea placeholder="Descripción de la lección"></textarea>
+              <form id="lesson-form" class="flex flex-col gap-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <input type="text" placeholder="Nombre de la lección" name="nombreLeccion">
+                <textarea placeholder="Descripción de la lección" name="descripcionLeccion"></textarea>
                 <input type="file" id="file" name="file" accept="video/*">
-                <button>Añadir</button>
+                <input id="subm-Modal" type="submit" name="submit" value="Añadir">
               </form>
               <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
                 preserveAspectRatio="none">
