@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
     resetForm.classList.toggle("inactive");
     loginForm.classList.toggle("inactive");
     if (resetForm.classList.contains("active")) {
-      toggleText.textContent = "Back to Login. ";
+      btn.textContent = "Iniciar sesión";
+      toggleText.textContent = "Volver al incio. ";
     } else {
-      toggleText.textContent = "Forgot Password? ";
+      btn.textContent = "Recuperar";
+      toggleText.textContent = "¿Has olvidado la contraseña? ";
     } 
   })
 })
