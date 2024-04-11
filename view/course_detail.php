@@ -15,8 +15,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     $videos = getVideosByCourse($course['idcourse']);
     
     if (isset($_POST["submit"])) {
-      $videoName = $_FILES["video"]["name"];
-      $videoHashName = hash('sha256', $_FILES["video"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
+      $videoName = $_FILES["file"]["name"];
+      $videoHashName = hash('sha256', $_FILES["file"]["name"] . rand(0, 1000)) . '.' . strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
       $target_file = "media/" . $videoHashName;
       $uploadOk = 1;
       $videoFileType = strtolower(pathinfo($videoName, PATHINFO_EXTENSION));
@@ -34,7 +34,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       // }
 
       // Comprobar el tamaño del archivo (en este ejemplo, 100MB)
-      if ($_FILES["video"]["size"] > 100000000) {
+      if ($_FILES["file"]["size"] > 100000000) {
         echo "Lo siento, tu archivo es demasiado grande.";
         $uploadOk = 0;
       }
@@ -42,7 +42,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       $video = [
         'videoName' => $_POST['nombreLeccion'],
         'video' => $target_file,
-        'courseID' => $course['idcourse']
+        'courseID' => $course['idcourse'],
+        'videoDescription' => $_POST['descripcionLeccion'],
       ];
 
       $video['videoName'] == "" ? $insert = false : $insert = insertVideo($video);
@@ -52,7 +53,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         echo "Lo siento, tu archivo no fue subido.";
       } else {
         //todo: modificar esto no hacen falta los echo
-        move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
+        move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
         $videos = getVideosByCourse($course['idcourse']);
       }
     } else if (isset($_POST["rating"])) {
@@ -120,11 +121,12 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <div class="modal-background">
             <div class="modal z-40">
               <h2>Añadir lección</h2>
-              <form id="lesson-form" class="flex flex-col gap-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+              <form id="lesson-form" class="flex flex-col gap-2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <input type="text" placeholder="Nombre de la lección" name="nombreLeccion">
                 <textarea placeholder="Descripción de la lección" name="descripcionLeccion"></textarea>
                 <input type="file" id="file" name="file" accept="video/*">
                 <input id="subm-Modal" type="submit" name="submit" value="Añadir">
+                <input type="hidden" name="courseID" value ="<?php echo $course['title'] ?>">
               </form>
               <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
                 preserveAspectRatio="none">
