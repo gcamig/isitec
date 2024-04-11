@@ -28,8 +28,8 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <meta name="keywords" content="programming, courses, learn, education, web, development">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="./img/logo-white.png"> 
-  <link rel="stylesheet" type="text/css" href="/css/output.css" />
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="academia" id="screen">
