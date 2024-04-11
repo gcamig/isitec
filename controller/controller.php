@@ -64,13 +64,11 @@ function mailBodyConstructor($user, $type)
     $verificationLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
     $body = "
           <html>
-          <body>
+          <body style='font-size: 1.5em; font-family: Arial, Helvetica, sans-serif;'>
               <p>Hola " . $user['username'] . ",</p>
               <p>Gracias por registrarte en nuestro sitio. Por favor haz clic en el siguiente botón para verificar tu correo electrónico:</p>
               <a href='" . $verificationLink . "' style='display:inline-block;background-color:#4CAF50;color:white;padding:14px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:4px 2px;cursor:pointer;border-radius:10px;'>Verificar Correo</a>
-              <p>Si el botón no funciona, también puedes copiar y pegar el siguiente enlace en tu navegador:</p>
-              <p><a href='" . $verificationLink . "'>" . $verificationLink . "</a></p>
-              <p>Gracias,<br>Tu equipo</p>
+              <p>Gracias,<br>Equipo Cetisi</p>
           </body>
           </html>
       ";

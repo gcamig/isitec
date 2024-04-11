@@ -110,7 +110,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             class="flex flex-row gap-3 items-center">
             <?php
-            if (isFounder($_SESSION['username'], $course['title'])) {
+            if (!isFounder($_SESSION['username'], $course['title'])) {
               echo '<button style="font-size: 20px;" type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
               echo '<hr style="background: #fff; height: 20px; width: 1px;">';
               echo '<button style="font-size: 20px;" type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
@@ -165,7 +165,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         </div>
         <hr class="m-4">
       </section>
-      <section class="w-full flex flex-row justify-center flex-wrap gap-3">
+      <section class="w-full flex flex-row justify-center flex-wrap gap-3 mb-5">
         <!-- Dónde se muestran las tarjetas -->
         <?php foreach ($videos as $video)
           echo showVideosHTML($video); ?>
