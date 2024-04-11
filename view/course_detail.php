@@ -166,7 +166,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
         </div>
         <hr class="m-4">
       </section>
-      <section class="w-full flex flex-row justify-center flex-wrap gap-3">
+      <section class="w-full flex flex-row justify-center flex-wrap gap-3 mb-5">
         <!-- Dónde se muestran las tarjetas -->
         <?php foreach ($videos as $video)
           echo showVideosHTML($video); ?>

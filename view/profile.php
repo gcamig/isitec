@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <div class="flex flex-row">
                 <div class="flex flex-col">
                   <label>Nombre</label>
-                  <input type="text" name="first_name" placeholder="Escribe aquí tu nombre" value="<?php echo $_SESSION['user']['userFirstName'] ?>">
+                  <input class="" type="text" name="first_name" placeholder="Escribe aquí tu nombre" value="<?php echo $_SESSION['user']['userFirstName'] ?>">
                 </div>
                 <div class="flex flex-col">
                 <label>Apellidos</label>
