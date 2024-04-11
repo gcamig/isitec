@@ -17,13 +17,11 @@ echo <<<HTML
                     <ul>
                         <li class="nav-item-divider pr-1"></li>
                         <li><a href="./home.php">Inicio</a></li>
-                        <!-- <li><a href="./user_space.php">Mi academia</a></li>
-                        <li><a href="./catalog.php">Cursos</a></li> -->
                     </ul>
                 </div>
                 <div class="ml-auto">
                     <ul>
-                        <li><ion-icon name="information-circle-sharp"></ion-icon></li>
+                        <li><a href="/view/info.php"><ion-icon name="information-circle-sharp"></ion-icon></a></li>
                         <li class="nav-item-divider p-2"></li>
                         <li id="dropdown-trigger" class="relative">
                             <ion-icon name="person"></ion-icon>
@@ -31,10 +29,10 @@ echo <<<HTML
                                 <div class="dropdown-arrow"></div>
                                 <div class="flex flex-col p-5">
                                     <h1>$userfullname</h1>
-                                    <a href="/view/profile.php">Editar perfil</a>
+                                    <a style="color: #6938ef;" href="/view/profile.php">Editar perfil</a>
                                 </div>
                                 <div class="px-5 py-3">
-                                    <a href="support">Centro de ayuda</a>
+                                    <a href="/view/info.php">Info</a>
                                 </div>
                                 <div class="p-5">
                                     <a style="color: #6938ef;" href="/controller/logout.php">Cerrar Sesión</a>
