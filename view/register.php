@@ -59,8 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <img src="/img/logo-name.png" alt="logo">
     </div>
     
-    <?= $msgError ?>
+   
     <form class="sign-up-form" action="<?php htmlspecialchars($_SERVER["REQUEST_METHOD"]) ?>" method="POST">
+      <?= $msgError ?>  
       <div class="sign-up-grid">
 
         <div class="form-group">
