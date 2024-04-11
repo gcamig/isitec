@@ -111,7 +111,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             class="flex flex-row gap-3 items-center">
             <?php
-            if (isFounder($_SESSION['username'], $course['title'])) {
+            if (!isFounder($_SESSION['username'], $course['title'])) {
               echo '<button type="submit" name="like" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-up"></ion-icon>' . $course['nlikes'] . '</button>';
               echo '<button type="submit" name="dislike" class="flex flex-row gap-1 items-center"><ion-icon name="thumbs-down"></ion-icon>' . $course['nDislikes'] . '</button>';
               echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';

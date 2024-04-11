@@ -61,7 +61,7 @@ function mailBodyConstructor($user, $type)
 {
   if ($type == "verification") {
     //TODO: CAMBIAR EL CUERPO COMO DICE EN EL WORD
-    $verificationLink = 'http://cetisi.cat/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
+    $verificationLink = 'http://localhost/controller/mailCheckAccount.php?code=' . $user['activationCode'] . '&mail=' . $user['email'];
     $body = "
           <html>
           <body>
@@ -75,7 +75,7 @@ function mailBodyConstructor($user, $type)
           </html>
       ";
   } else if ($type == "password") {
-    $passwordLink = 'http://cetisi.cat/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
+    $passwordLink = 'http://localhost/view/resetPassword.php?code=' . $user['resetPassCode'] . '&mail=' . $user['email'];
     $body = "
       <html>
       <body>
@@ -285,7 +285,7 @@ function showVideosHTML($video)
   <h2>' . $video['videoName'] . '</h2>
   <p>' . $video['descripcion'] . '</p>
   <dialog class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 backdrop:backdrop-blur-[3px]">
-    <video controls autoplay src="/' . $video['video'] . '"></video>
+    <video controls src="/' . $video['video'] . '"></video>
   </dialog>
 </div>';
 }
@@ -303,4 +303,9 @@ function insertDislike($courseId)
 function deleteCourse($courseId)
 {
   deleteCourseDB($courseId);
+}
+
+function updateUser($actualUser, $newUser)
+{
+  return updateUserDB($actualUser, $newUser);
 }

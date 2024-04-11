@@ -561,3 +561,27 @@ function deleteCourseVideoDB($courseId)
         echo "";
     }
 }
+
+function updateUserDB($actualUser, $newUser)
+{
+    $conn = getDBConnection();
+    $sql = $newUser['password'] != '' ? "UPDATE `users` SET userFirstName = :firstname, userLastName = :lastname, mail = :mail, passHash = :password, profilePic = :profilePic WHERE username = :username" :
+        "UPDATE `users` SET userFirstName = :firstname, userLastName = :lastname, mail = :mail, profilePic = :profilePic WHERE username = :username";
+    try {
+        $stmt = $conn->prepare($sql);
+        if($newUser['password'] != '')$stmt->execute([':firstname' => $newUser['firstName'], ':lastname' => $newUser['lastName'], ':mail' => $newUser['email'], ':password' => password_hash($newUser['password'], PASSWORD_BCRYPT), ':username' => $actualUser, ':profilePic' => $newUser['img']]);
+        else $stmt->execute([':firstname' => $newUser['firstName'], ':lastname' => $newUser['lastName'], ':mail' => $newUser['email'], ':username' => $actualUser, ':profilePic' => $newUser['img']]); 
+        $sqlGetUser = "SELECT * FROM `users` WHERE username = :username";
+        $stmtGetUser = $conn->prepare($sqlGetUser);
+        $stmtGetUser->execute([':username' => $actualUser]);
+            
+        $updatedUser = $stmtGetUser->fetch(PDO::FETCH_ASSOC);
+            
+        return $updatedUser;
+    } catch (PDOException $e) {
+        echo "";
+        return null;
+    }
+    
+    
+}

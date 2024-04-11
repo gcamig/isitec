@@ -1,15 +1,36 @@
 <?php
 chdir("..");
+require "controller/controller.php";
 session_start();
+$profilePic = $_SESSION['user']['profilePic'] != null ? $_SESSION['user']['profilePic'] : "img/user.jpg";
+$errorMsg = '';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   if(isset($_POST['submit'])) {
-    //significa que le hemos dado a guardar cambios
     $newUser = [
       'firstName' => $_POST['first_name'],
       'lastName' => $_POST['last_name'],
       'email' => $_POST['email'],
-      'password' => $_POST['password']
+      'password' => $_POST['password'],
+      'img' => $_SESSION['user']['profilePic']
     ];
+
+    if ($_FILES["img"]["tmp_name"] != "") {
+      //tratamiento de la imagen
+      $img_name_hash = hash('sha256', $_FILES["img"]["name"] . rand(0, 1000));
+      $img_extension = pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION);
+      $img_destino = "media/" . $img_name_hash . "." . $img_extension;
+      //significa que le hemos dado a guardar cambios
+      $newUser['img'] = $img_destino;
+      move_uploaded_file($_FILES["img"]["tmp_name"], $img_destino);
+    }
+    if($newUser['firstName']=='' || $newUser['lastName']=='' || $newUser['email']==''){
+      $errorMsg = 'No puedes dejar los campos del perfil bacios';
+    }else
+    {    
+      $_SESSION['user'] = updateUser($_SESSION['user']['username'], $newUser);
+      header("Location: /view/profile.php");
+      exit();
+    }
   }
 }
 ?>
@@ -40,16 +61,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </ul>
     </nav>
     <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade p-4 show active shadow">
-        <form class="ow-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form class="ow-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
           <div>
             <div class="text-2xl my-2">
               <p class="mb-3">Imagen de perfil</p>
               <hr>
             </div>
             <div class="my-4 flex flex-row ">
-              <img class=" size-40 rounded-full" src="/media/6858de99d6d381ec14e99972108cc4ac33298513fd0140614265a950f39caac0.png">
+              <?php echo '<img class=" size-40 rounded-full" src="/' . $profilePic . '">' ?>
               <div class="slctImg">
-                <button type="button" class="w-40 h-14" onclick="document.getElementById('myFiles').click()">Seleccionar Imagen</button>
+                <button type="button" class="w-40 h-14" onclick="document.getElementById('myFiles').click()">Cambiar Imagen</button>
                 <input type="file" accept="*.jpg, *.jpeg, *.png" id="myFiles" name="img" hidden>
               </div>
             </div>
@@ -61,26 +82,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <div class="flex flex-row">
                 <div class="flex flex-col">
                   <label>Nombre</label>
-                  <input type="text"   name="first_name" placeholder="Escribe aquí tu nombre" >
+                  <input type="text" name="first_name" placeholder="Escribe aquí tu nombre" value="<?php echo $_SESSION['user']['userFirstName'] ?>">
                 </div>
                 <div class="flex flex-col">
                 <label>Apellidos</label>
-                  <input type="text"  name="last_name" placeholder="Escribe aquí tus apellidos" >
+                  <input type="text"  name="last_name" placeholder="Escribe aquí tus apellidos" value="<?php echo $_SESSION['user']['userLastName'] ?>" >
                 </div>
               </div>
               <div class="flex flex-row">
                 <div class="flex flex-col">
                   <label>Email</label>
-                  <input type="text"  name="email" placeholder="Escribe aquí tu email" >
+                  <input type="email"  name="email" placeholder="Escribe aquí tu email" value="<?php echo $_SESSION['user']['mail'] ?>">
                 </div>
                 <div class="flex flex-col">
                 <label>Contraseña</label>
-                  <input type="text"  name="password" placeholder="Escribe aquí tu contraseña" >
+                  <input type="password"  name="password" placeholder="Escribe aquí tu contraseña">
+                </div>
+                <div class="flex flex-col">
+                <label>Repetir Contraseña</label>
+                  <input type="password"  name="repeatPassword" placeholder="Escribe aquí tu contraseña">
                 </div>
               </div>
             </div>
           </div>
-          <input type="submit" name="submit" value="Guardar Cambios" class="button">
+          <div class="flex flex-col">
+            <?php echo $errorMsg; ?>
+            <input type="submit" name="submit" value="Guardar Cambios" class="button">
+          </div>
         </form>
     </div> 
   </main>
