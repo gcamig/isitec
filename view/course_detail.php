@@ -81,6 +81,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <link rel="stylesheet" type="text/css" href="/css/course_detail.css" />
   <link rel="stylesheet" type="text/css" href="/css/selectFile.css" />
+  <link rel="stylesheet" type="text/css" href="/css/modal.css" />
 </head>
 
 <body class="academia" id="screen">
@@ -104,22 +105,45 @@ if (!isset($_COOKIE['PHPSESSID'])) {
               echo '<input type="submit" name="rating" value=""><ion-icon name="thumbs-up"></ion-icon></input>';
               echo '<input type="submit" name="rating" value=""><ion-icon name="thumbs-down"></ion-icon></input>';
               echo '<input type="hidden" name="courseID" value ="' . $course['title'] . '">';
-            };
+            }
+            ;
             ?>
           </form>
         </div>
-        <?php echo '<div class="course-image w-2/5"
+        <?php echo '<div class="course-image w-2/5 rounded"
         style="background-size: cover; background-image: url(/' . $course['caratula'] . ');"></div>';
         ?>
       </section>
-      <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
-          <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-            <input id="btn-del" type="submit" name="delete" value="Eliminar Curso">
-            <input type="hidden" name="courseID" value="<?php echo $course['title'] ?>">
-          </form>
-        <?php endif; ?>
+      <section>
+        <div id="modal-container">
+          <div class="modal-background">
+            <div class="modal">
+              <h2>I'm a Modal</h2>
+              <p>Hear me roar.</p>
+              <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                preserveAspectRatio="none">
+                <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="w-full flex flex-row justify-end">
+          <div id="six" class="button">Sketch</div>
+          <?php if (isFounder($_SESSION['username'], $course['title'])): ?>
+            <form class="flex flex-col gap-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+              enctype="multipart/form-data">
+              <input id="btn-del" type="submit" name="delete" value="Eliminar Curso">
+              <input type="hidden" name="courseID" value="<?php echo $course['title'] ?>">
+            </form>
+          <?php endif; ?>
+        </div>
+
+      </section>
+
+
     </div>
   </main>
+  <script src="/js/lessons_modal.js"></script>
   <script src="/js/course_detail.js"></script>
   <script src="/js/user-dropdown.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
