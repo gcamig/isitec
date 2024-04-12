@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!regex.test(user.value)) {
       userError.classList.remove("inactive")
       userError.classList.add("active")
-      userError.innerText = "El nombre de usuario no puede contener espacios"
+      userError.innerText = "El nombre no puede contener espacios"
       return false;
     } else {
       userError.classList.remove("active")
