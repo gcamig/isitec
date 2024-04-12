@@ -50,6 +50,7 @@
 .info-area {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 
   & label {
     font-weight: 500;
@@ -60,5 +61,6 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-top: 5px;
+    width: 100%;
   }
 }

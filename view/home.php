@@ -57,19 +57,11 @@ if (!isset($_COOKIE['PHPSESSID'])) {
       </div>
 
       <aside class="aside">
-        <form>
-          <div class="searchbox">
-            <form action="search">
-              <input class="searchBox-input" type="search" placeholder="Buscar por nombre" autocomplete="off"
-                autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="512" aria-label="Search">
-            </form>
-          </div>
-        </form>
         <div class="dynamic-widgets-c">
           <div class="dynamic-widgets">
             <div class="widget">
               <div>
-                <span>Categorías</span>
+                <span class="text-lg">Categorías</span>
               </div>
               <div>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

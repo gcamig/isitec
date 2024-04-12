@@ -39,11 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { {
   if (!empty($_GET)) {
     //mirem si el registre s'ha completat correctament
     if (isset($_GET["register"]))
-      $_GET["register"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Registre correcte</div>" : "<div class='error-box text-red-600 font-semibold'>Hi ha hagut un error en el registre</div>";
+      $_GET["register"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Registro correcto</div>" : "<div class='error-box text-red-600 font-semibold'>Ha habido un error en el registro</div>";
     if (isset($_GET["verificationMail"]))
-      $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Correu verificat correctament</div>" : "<div class='error-box text-red-600 font-semibold'>No s'ha pogut verificar el correu</div>";
+      $_GET["verificationMail"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Correo verificado correctamente</div>" : "<div class='error-box text-red-600 font-semibold'>No se ha podido verificar el correo</div>";
     if (isset($_GET["resetPass"]))
-      $_GET["resetPass"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Contrasenya modificada correctament</div>" : "<div class='error-box text-red-600 font-semibold'>Error al cambiar la contrasenya</div>";
+      $_GET["resetPass"] == "success" ? $msgError = "<div class='error-box text-green-500 font-semibold'>Contraseña modificada correctamente</div>" : "<div class='error-box text-red-600 font-semibold'>Error al cambiar la contraseña</div>";
   }
 }
 

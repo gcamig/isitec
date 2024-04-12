@@ -76,6 +76,13 @@ input[type="checkbox"].tag:checked + label {
   background: #4f1ad1;
 }
 
+@media (max-width: 600px) {
+  .tags-container{
+    width: 100%;
+  
+  }
+}
+
 @media (max-width: 1030px) {
   main{
     margin-top: 10vh;

@@ -453,7 +453,34 @@ main {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 600px) {
+  .tags-list{
+    max-height: 200px;
+  }
+  nav ion-icon {
+    font-size: 2rem;
+  }
+
+  .menu li a {
+    font-size: 1rem;
+  }
+
+  nav figure img {
+    height: 0px;
+    object-fit: contain;
+  }
+
+  nav figure figcaption {
+    display: none;
+  }
+
+  .menu :first-child .nav-item-divider {
+    display: none;
+  }
+
+  .menu :first-child :nth-child(2) a {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 1028px) {
