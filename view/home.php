@@ -69,7 +69,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
                     <?php foreach ($tags as $tag)
                       echo (showTagsHTML($tag, $hashtags)); ?>
                   </ul>
-                  <div class="filters">
+                  <div class="filters flex flex-row gap-1">
                       <input type="submit" value="Filtrar">
                       <input type="submit" name="reset" value="Reiniciar filtro">
                   </div>

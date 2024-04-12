@@ -483,8 +483,29 @@ main {
   }
 }
 
-@media (max-width: 1028px) {
+@media (min-width: 601px) and (max-width: 1028px)  {
   .contenido-central {
     flex-direction: column-reverse;
+  }
+  
+  .tags-list{
+    max-height: 200px;
+  }
+  
+  nav ion-icon {
+    font-size: 2rem;
+  }
+
+  .menu li a {
+    font-size: 1rem;
+  }
+
+  nav figure img {
+    height: 70px;
+    object-fit: contain;
+  }
+
+  .menu :first-child :nth-child(2) a {
+    font-size: 1.5rem;
   }
 }
