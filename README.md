@@ -4,7 +4,7 @@
 
 El nombre original del proyecto era *Isitec*, pero al estar ocupado el dominio, se optó por **Cetitsi**, que es *Isitec* al revés.
 
-🔗 **[Visita Cetitsi aquí](http://cetisi.cat)**
+🔗 **[Visita Cetitsi aquí](cetisi.cat)**
 
 ---
 
